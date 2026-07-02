@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/*
+  ============================================================
+  DESAIN & IDENTITAS VISUAL — Website Profil Desa Gunung Anyar
+  ============================================================
+  Tailwind v4 memakai konfigurasi berbasis CSS lewat blok @theme.
+  Semua token warna/font di bawah otomatis menjadi utility class,
+  contoh: --color-hutan-700  ->  bg-hutan-700 / text-hutan-700.
+  Ubah nilai di sini untuk mengganti identitas visual seluruh situs.
+*/
+
+@theme {
+  /* --- Warna primer: hijau sawah/perkebunan --- */
+  --color-hutan-900: #1b330d;
+  --color-hutan-800: #234211;
+  --color-hutan-700: #2d5016; /* primer tua */
+  --color-hutan-600: #3c6a1e;
+  --color-hutan-500: #4a7c2e; /* primer medium */
+  --color-hutan-400: #6b9a4f;
+  --color-hutan-300: #9cbd84;
+  --color-hutan-100: #e3ecd9;
+
+  /* --- Aksen emas panen (CTA & highlight, pakai secukupnya) --- */
+  --color-emas-600: #b8842d;
+  --color-emas-500: #d9a441;
+  --color-emas-300: #ecc987;
+  --color-emas-100: #f7ecd2;
+
+  /* --- Aksen kedua: terracotta (tombol sangat penting, terbatas) --- */
+  --color-terakota-600: #a44b2d;
+  --color-terakota-500: #c15f3c;
+
+  /* --- Netral hangat & teks --- */
+  --color-krem: #faf7f0; /* latar dasar putih hangat */
+  --color-krem-200: #f0e9db;
+  --color-tinta: #1e2a1a; /* teks utama, hijau gelap keabuan */
+  --color-tinta-600: #46503f; /* teks sekunder */
+
+  /* --- Warna kategori peta & potensi (dipakai konsisten di seluruh situs) --- */
+  --color-kat-wisata: #0f6e56;
+  --color-kat-pertanian: #3b6d11;
+  --color-kat-umkm: #993c1d;
+  --color-kat-fasilitas: #185fa5;
+  --color-kat-budaya: #534ab7;
+
+  /* --- Tipografi: display berkarakter + sans mudah dibaca ---
+     Font dimuat lewat <link> Google Fonts di app/layout.js */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+
+  /* --- Radius & shadow lembut --- */
+  --radius-card: 1rem;
+  --shadow-lift: 0 10px 30px -12px rgba(30, 42, 26, 0.25);
+}
+
+/* ---------------- Base styles ---------------- */
+:root {
+  --background: var(--color-krem);
+  --foreground: var(--color-tinta);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+  Dibungkus @layer base agar utility warna (mis. text-white) yang dipasang
+  langsung pada heading tetap bisa menimpa warna default ini. Tanpa @layer,
+  CSS di sini "unlayered" dan justru mengalahkan utility class Tailwind
+  meski class itu lebih spesifik — menyebabkan heading tetap hijau walau
+  sudah diberi text-white (mis. judul di hero, PageHero, CTA gelap, footer).
+*/
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-hutan-900);
+  }
+}
+
+/* Fokus keyboard yang jelas (aksesibilitas WCAG) */
+:focus-visible {
+  outline: 3px solid var(--color-emas-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Utility kecil untuk lebar konten yang konsisten */
+@utility container-desa {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ---------------- Animasi scroll-reveal (pengganti AOS) ---------------- */
+/* Elemen dengan class .reveal muncul halus saat masuk viewport.
+   Kelas .is-visible ditambahkan oleh hook useReveal (js/lib). */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hormati preferensi pengguna yang mengurangi animasi */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------------- Penyesuaian Leaflet ---------------- */
+/* Popup peta agar selaras dengan gaya visual situs */
+.leaflet-popup-content-wrapper {
+  border-radius: 0.85rem;
+  box-shadow: var(--shadow-lift);
+}
+.leaflet-popup-content {
+  margin: 0;
+  width: 260px !important;
+}
+.leaflet-container {
+  font-family: var(--font-sans);
+}
+
+/* Penanda (marker) kustom berbentuk lingkaran berwarna sesuai kategori */
+.marker-kategori {
+  background: transparent;
+  border: none;
+}
+.marker-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+.marker-pin svg {
+  width: 18px;
+  height: 18px;
+}
+/* Efek fokus pada penanda yang sedang dipilih */
+.marker-pin.aktif {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.55);
+}

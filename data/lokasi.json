@@ -1,0 +1,145 @@
+[
+  {
+    "id": "loc-001",
+    "nama": "Air Terjun Sumber Rejeng",
+    "kategori": "wisata",
+    "latitude": -7.9231,
+    "longitude": 113.9558,
+    "deskripsi": "Air terjun bertingkat setinggi kurang lebih 18 meter dengan kolam alami berair jernih di kaki lereng. Suasana sejuk dengan rimbunnya pepohonan bambu di sekelilingnya.",
+    "info_tambahan": "Jam kunjungan: 07.00–17.00 WIB · Tiket masuk: Rp5.000",
+    "alamat": "Dusun Krajan, RT 02/RW 01",
+    "foto": "/images/lokasi/air-terjun-sumber-rejeng.jpg",
+    "detail": {
+      "jam_operasional": "07.00–17.00 WIB",
+      "rute": "± 2 km dari kantor desa ke arah barat, dilanjutkan jalan setapak 300 m",
+      "galeri": [
+        "/images/lokasi/air-terjun-sumber-rejeng.jpg",
+        "/images/lokasi/air-terjun-sumber-rejeng-2.jpg"
+      ]
+    }
+  },
+  {
+    "id": "loc-002",
+    "nama": "Bukit Pandang Anyar",
+    "kategori": "wisata",
+    "latitude": -7.9182,
+    "longitude": 113.9647,
+    "deskripsi": "Puncak bukit dengan panorama hamparan sawah dan Gunung Raung di kejauhan. Titik favorit untuk menikmati matahari terbit dan berkemah akhir pekan.",
+    "info_tambahan": "Terbaik dikunjungi saat pagi (05.00–08.00) untuk sunrise",
+    "alamat": "Dusun Sumbersari, RT 04/RW 02",
+    "foto": "/images/lokasi/bukit-pandang-anyar.jpg",
+    "detail": {
+      "jam_operasional": "24 jam (fasilitas warung 06.00–18.00)",
+      "rute": "± 3 km arah utara desa, akses motor sampai lereng bukit"
+    }
+  },
+  {
+    "id": "loc-003",
+    "nama": "Hamparan Sawah Krajan",
+    "kategori": "pertanian",
+    "latitude": -7.9298,
+    "longitude": 113.9601,
+    "deskripsi": "Lahan sawah irigasi produktif yang menjadi lumbung padi utama desa. Menghasilkan padi dua kali musim tanam dalam setahun.",
+    "info_tambahan": "Komoditas utama: padi · Luas ± 45 ha",
+    "alamat": "Dusun Krajan",
+    "foto": "/images/lokasi/sawah-krajan.jpg",
+    "detail": {
+      "komoditas": "Padi (varietas Ciherang & Inpari)",
+      "luas_lahan": "± 45 hektar",
+      "estimasi_hasil": "± 6 ton gabah kering/ha per musim panen"
+    }
+  },
+  {
+    "id": "loc-004",
+    "nama": "Kebun Kopi Arabika Lereng Raung",
+    "kategori": "pertanian",
+    "latitude": -7.9155,
+    "longitude": 113.9689,
+    "deskripsi": "Kebun kopi arabika rakyat di ketinggian yang menjadi bagian dari kawasan kopi khas Bondowoso. Dikelola kelompok tani setempat dengan pola tanam agroforestri.",
+    "info_tambahan": "Panen raya: Mei–Agustus · Komoditas: kopi arabika",
+    "alamat": "Dusun Sumbersari, lereng utara",
+    "foto": "/images/lokasi/kebun-kopi.jpg",
+    "detail": {
+      "komoditas": "Kopi arabika",
+      "luas_lahan": "± 28 hektar",
+      "estimasi_hasil": "± 800 kg green bean/ha per tahun"
+    }
+  },
+  {
+    "id": "loc-005",
+    "nama": "Rumah Kopi Anyar Roastery",
+    "kategori": "umkm",
+    "latitude": -7.9276,
+    "longitude": 113.9629,
+    "deskripsi": "Usaha pengolahan dan sangrai kopi arabika hasil kebun desa. Menjual biji sangrai dan bubuk kopi dengan kemasan siap kirim ke luar daerah.",
+    "info_tambahan": "3 tenaga kerja lokal · Melayani pesanan grosir & eceran",
+    "alamat": "Dusun Krajan, RT 01/RW 01",
+    "foto": "/images/lokasi/rumah-kopi-anyar.jpg",
+    "detail": {
+      "pemilik": "Bapak Suhartono",
+      "produk": "Kopi arabika sangrai & bubuk (kemasan 200 g)",
+      "harga": "Rp35.000 – Rp60.000",
+      "whatsapp": "6281200000001"
+    }
+  },
+  {
+    "id": "loc-006",
+    "nama": "Sentra Tape Bu Aminah",
+    "kategori": "umkm",
+    "latitude": -7.9312,
+    "longitude": 113.9575,
+    "deskripsi": "Produsen tape singkong khas Bondowoso yang legit dan manis alami. Produk unggulan oleh-oleh desa dengan kemasan besek tradisional.",
+    "info_tambahan": "Produksi harian ± 40 kg · Dikelola kelompok ibu rumah tangga",
+    "alamat": "Dusun Tegalsari, RT 03/RW 02",
+    "foto": "/images/lokasi/tape-bu-aminah.jpg",
+    "detail": {
+      "pemilik": "Ibu Aminah",
+      "produk": "Tape singkong & prol tape",
+      "harga": "Rp10.000 – Rp25.000",
+      "whatsapp": "6281200000002"
+    }
+  },
+  {
+    "id": "loc-007",
+    "nama": "Kantor Desa Gunung Anyar",
+    "kategori": "fasilitas",
+    "latitude": -7.9285,
+    "longitude": 113.9612,
+    "deskripsi": "Pusat pemerintahan dan pelayanan administrasi warga Desa Gunung Anyar. Melayani pengurusan surat, kependudukan, dan informasi desa.",
+    "info_tambahan": "Jam pelayanan: Senin–Jumat, 08.00–15.00 WIB",
+    "alamat": "Jl. Raya Gunung Anyar No. 1, Dusun Krajan",
+    "foto": "/images/lokasi/kantor-desa.jpg",
+    "detail": {
+      "jam_operasional": "Senin–Jumat, 08.00–15.00 WIB"
+    }
+  },
+  {
+    "id": "loc-008",
+    "nama": "Puskesmas Pembantu Gunung Anyar",
+    "kategori": "fasilitas",
+    "latitude": -7.9269,
+    "longitude": 113.9588,
+    "deskripsi": "Fasilitas kesehatan tingkat desa yang melayani pemeriksaan umum, KIA, dan posyandu bagi warga sekitar.",
+    "info_tambahan": "Layanan: Senin–Sabtu, 08.00–12.00 WIB",
+    "alamat": "Dusun Krajan, RT 05/RW 01",
+    "foto": "/images/lokasi/pustu.jpg",
+    "detail": {
+      "jam_operasional": "Senin–Sabtu, 08.00–12.00 WIB"
+    }
+  },
+  {
+    "id": "loc-009",
+    "nama": "Sanggar Seni Tari Gandrung Anyar",
+    "kategori": "budaya",
+    "latitude": -7.9243,
+    "longitude": 113.9633,
+    "deskripsi": "Sanggar pelestarian kesenian tari dan musik tradisional desa. Menjadi tempat latihan generasi muda dan tampil pada perayaan hari besar desa.",
+    "info_tambahan": "Latihan rutin: Sabtu & Minggu sore",
+    "alamat": "Dusun Sumbersari, RT 02/RW 02",
+    "foto": "/images/lokasi/sanggar-seni.jpg",
+    "detail": {
+      "waktu_tampil": "Perayaan HUT desa, hari kemerdekaan, & hajatan warga",
+      "kontak_ketua": "Bapak Rahmat (Ketua Sanggar)"
+    }
+  }
+]
