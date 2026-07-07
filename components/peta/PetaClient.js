@@ -97,7 +97,7 @@ export default function PetaClient({ center }) {
           berwarna, sehingga tak perlu bar legenda terpisah. */}
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
         {/* Peta */}
-        <div className="h-[264px] overflow-hidden rounded-card border border-krem-200 shadow-sm md:h-[375px]">
+        <div className="h-[264px] overflow-hidden rounded-card border border-krem-200 shadow-lift transition-shadow duration-500 hover:shadow-float md:h-[375px]">
           <MapView
             lokasiTampil={lokasiTampil}
             selectedId={selectedId}
@@ -126,8 +126,8 @@ export default function PetaClient({ center }) {
             />
           </div>
 
-          {/* Legenda & filter kategori */}
-          <div className="rounded-card border border-krem-200 bg-white p-4">
+          {/* Legenda & filter kategori — panel kaca mengambang */}
+          <div className="panel-kaca rounded-card p-4 shadow-sm">
             <div className="flex items-center justify-between gap-2">
               <h2 className="text-sm font-semibold text-hutan-900">Legenda &amp; Filter</h2>
               <button
@@ -151,10 +151,10 @@ export default function PetaClient({ center }) {
                       type="button"
                       onClick={() => toggleKategori(k.key)}
                       aria-pressed={aktif}
-                      className={`flex w-full items-center justify-between gap-2 rounded-2xl border px-3 py-2 text-left text-sm font-medium transition-all ${
+                      className={`flex w-full items-center justify-between gap-2 rounded-2xl border px-3 py-2 text-left text-sm font-medium transition-all duration-300 ease-out active:scale-[0.98] ${
                         aktif
-                          ? "border-transparent text-white shadow-sm"
-                          : "border-krem-200 bg-white text-tinta-600 hover:border-hutan-300"
+                          ? "border-transparent text-white shadow-sm hover:shadow-lift"
+                          : "border-krem-200 bg-white text-tinta-600 hover:-translate-y-0.5 hover:border-hutan-300 hover:shadow-sm"
                       }`}
                       style={aktif ? { backgroundColor: k.warna } : undefined}
                     >
@@ -204,12 +204,14 @@ export default function PetaClient({ center }) {
                   <button
                     type="button"
                     onClick={() => pilihLokasi(lok.id)}
-                    className={`flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-sm ${
-                      dipilih ? "border-emas-500 bg-emas-100/50" : "border-krem-200 bg-white"
+                    className={`group flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lift active:scale-[0.99] ${
+                      dipilih
+                        ? "border-emas-500 bg-emas-100/50 shadow-glow-emas"
+                        : "border-krem-200 bg-white hover:border-hutan-300/60"
                     }`}
                   >
                     <span
-                      className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white"
+                      className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-sm transition-transform duration-300 ease-out group-hover:scale-110"
                       style={{ backgroundColor: meta ? meta.warna : "#4a7c2e" }}
                     >
                       <IconMapPin size={18} />

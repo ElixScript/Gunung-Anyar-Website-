@@ -64,14 +64,14 @@ export default function DetailLokasi({ lokasi, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-end justify-center bg-hutan-900/80 p-4 backdrop-blur-sm sm:items-center"
+      className="animasi-overlay fixed inset-0 z-[1000] flex items-end justify-center bg-hutan-900/75 p-4 backdrop-blur-md sm:items-center"
       role="dialog"
       aria-modal="true"
       aria-label={`Detail lokasi ${lokasi.nama}`}
       onClick={onClose}
     >
       <div
-        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-card bg-white shadow-lift"
+        className="animasi-modal relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[1.5rem] bg-white shadow-float"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Tombol tutup */}
@@ -79,7 +79,7 @@ export default function DetailLokasi({ lokasi, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="Tutup"
-          className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-hutan-800 shadow-sm transition-colors hover:bg-white"
+          className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-hutan-800 shadow-sm backdrop-blur transition-all duration-300 hover:rotate-90 hover:bg-white hover:shadow-lift"
         >
           <IconX size={20} />
         </button>

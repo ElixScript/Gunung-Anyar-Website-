@@ -52,9 +52,16 @@ export default function UmkmClient() {
           return (
             <article
               key={u.id}
-              className="flex flex-col overflow-hidden rounded-card border border-krem-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lift"
+              className="group flex flex-col overflow-hidden rounded-card border border-krem-200 bg-white shadow-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-hutan-300/60 hover:shadow-float"
             >
-              <SmartImage src={u.foto} alt={`Produk ${u.nama}`} ratio="4/3" />
+              <div className="overflow-hidden">
+                <SmartImage
+                  src={u.foto}
+                  alt={`Produk ${u.nama}`}
+                  ratio="4/3"
+                  imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+                />
+              </div>
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="text-lg font-semibold text-hutan-900">{u.nama}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-tinta-600">{u.deskripsi}</p>

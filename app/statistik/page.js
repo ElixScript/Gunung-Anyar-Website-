@@ -1,9 +1,10 @@
 import { IconUsers, IconHome2, IconRuler2, IconMapPins, IconInfoCircle } from "@tabler/icons-react";
 import { PageHero, SectionHeading } from "@/components/ui";
 import Reveal from "@/components/Reveal";
+import { CountUp } from "@/components/motion";
 import StatCharts from "@/components/statistik/StatCharts";
 import InfografisGallery from "@/components/statistik/InfografisGallery";
-import { getStatistik, formatAngka } from "@/lib/data";
+import { getStatistik } from "@/lib/data";
 import { site } from "@/lib/site";
 
 export const metadata = {
@@ -27,11 +28,12 @@ export default function StatistikPage() {
   const data = getStatistik();
   const r = data.ringkasan;
 
+  // nilai berupa angka murni agar bisa dianimasikan CountUp saat terlihat
   const ringkasan = [
-    { icon: IconUsers, nilai: formatAngka(r.jumlah_penduduk), label: "Jiwa Penduduk" },
-    { icon: IconHome2, nilai: formatAngka(r.jumlah_kk), label: "Kepala Keluarga" },
-    { icon: IconRuler2, nilai: `${formatAngka(r.luas_wilayah_ha)} ha`, label: "Luas Wilayah" },
-    { icon: IconMapPins, nilai: r.jumlah_dusun, label: "Dusun" },
+    { icon: IconUsers, nilai: r.jumlah_penduduk, suffix: "", label: "Jiwa Penduduk" },
+    { icon: IconHome2, nilai: r.jumlah_kk, suffix: "", label: "Kepala Keluarga" },
+    { icon: IconRuler2, nilai: r.luas_wilayah_ha, suffix: " ha", label: "Luas Wilayah" },
+    { icon: IconMapPins, nilai: r.jumlah_dusun, suffix: "", label: "Dusun" },
   ];
 
   return (
@@ -47,13 +49,13 @@ export default function StatistikPage() {
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {ringkasan.map((s, i) => (
             <Reveal key={s.label} delay={i * 70} className="h-full">
-              <div className="flex h-full items-center gap-4 rounded-card border border-krem-200 bg-white p-5 shadow-sm">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-hutan-100 text-hutan-700">
+              <div className="group flex h-full items-center gap-4 rounded-card border border-krem-200 bg-white p-5 shadow-sm transition-all duration-500 ease-out hover:-translate-y-1 hover:border-hutan-300/60 hover:shadow-float">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-hutan-100 to-hutan-300/40 text-hutan-700 transition-transform duration-300 ease-out group-hover:scale-110">
                   <s.icon size={24} stroke={1.75} />
                 </span>
                 <span>
-                  <span className="block font-display text-2xl font-semibold text-hutan-900">
-                    {s.nilai}
+                  <span className="block font-display text-3xl font-semibold text-hutan-900">
+                    <CountUp nilai={s.nilai} suffix={s.suffix} />
                   </span>
                   <span className="text-sm text-tinta-600">{s.label}</span>
                 </span>

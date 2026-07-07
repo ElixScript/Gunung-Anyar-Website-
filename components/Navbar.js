@@ -9,6 +9,7 @@ import {
   IconChevronDown,
 } from "@tabler/icons-react";
 import { site, navItems } from "@/lib/site";
+import { ScrollProgress } from "@/components/motion";
 
 /*
   Navbar sticky yang tampil di semua halaman.
@@ -47,25 +48,27 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-[900] transition-colors duration-300 ${
+      className={`sticky top-0 z-[900] transition-all duration-500 ${
         discroll || menuTerbuka
-          ? "bg-krem/95 shadow-md backdrop-blur"
-          : "bg-krem/80 backdrop-blur"
+          ? "bg-krem/75 shadow-[0_10px_34px_-22px_rgba(27,51,13,0.45)] backdrop-blur-xl"
+          : "bg-krem/55 backdrop-blur-md"
       }`}
     >
+      {/* Bar progres baca — micro detail premium */}
+      <ScrollProgress />
       <nav
         className="container-desa flex items-center justify-between py-3"
         aria-label="Navigasi utama"
       >
         {/* Logo / nama desa */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+        <Link href="/" className="group flex items-center gap-2.5 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/lambang-bondowoso.png"
             alt={`Lambang Kabupaten ${site.kabupaten}`}
             width={40}
             height={40}
-            className="h-10 w-10 shrink-0 object-contain"
+            className="h-10 w-10 shrink-0 object-contain transition-transform duration-500 ease-out group-hover:scale-110"
           />
           <span className="leading-tight">
             <span className="block font-display text-lg font-semibold text-hutan-900">
@@ -98,7 +101,7 @@ export default function Navbar() {
                   />
                 </Link>
                 {/* Dropdown desktop (muncul saat hover/fokus) */}
-                <ul className="invisible absolute left-0 top-full min-w-[210px] translate-y-1 rounded-2xl border border-krem-200 bg-white p-2 opacity-0 shadow-lift transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <ul className="invisible absolute left-0 top-full min-w-[210px] translate-y-2 scale-[0.98] rounded-2xl border border-white/60 bg-white/90 p-2 opacity-0 shadow-float backdrop-blur-xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100">
                   {item.children.map((child) => (
                     <li key={child.href}>
                       <Link

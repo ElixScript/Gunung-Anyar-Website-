@@ -1,11 +1,12 @@
 import { BeritaCard, PotensiCard } from "@/components/cards";
+import HeroVisual from "@/components/HeroVisual";
+import { Tilt } from "@/components/motion";
 import Reveal from "@/components/Reveal";
 import { SectionHeading, TautanSelengkapnya, Tombol } from "@/components/ui";
 import { getBeritaTerbaru, getLokasiById } from "@/lib/data";
 import { site } from "@/lib/site";
 import {
   IconArrowRight,
-  IconChevronDown,
   IconMap2,
   IconMapPin,
 } from "@tabler/icons-react";
@@ -35,72 +36,86 @@ export default function Beranda() {
         lihat public/images/SUMBER-FOTO.md), BUKAN foto asli Gunung Anyar.
         Ganti file tersebut dengan hasil dokumentasi lapangan tim pemetaan.
       */}
-      <section className="relative flex min-h-[60vh] items-center overflow-hidden bg-hutan-900 lg:min-h-[90vh]">
-        {/* Foto latar */}
-        <img
-          src="/images/hero/hero-desa.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        {/* Overlay gradasi gelap transparan agar teks kontras & terbaca */}
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-hutan-900/90 via-hutan-900/75 to-hutan-800/60"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-emas-500/20 blur-3xl"
-          aria-hidden="true"
-        />
+      <section className="lapisan-noise relative flex min-h-[92svh] items-center overflow-hidden bg-hutan-900 lg:min-h-[100svh]">
+        {/* Lapisan visual sinematik: slow zoom, color grading, blob parallax */}
+        <HeroVisual />
 
-        <div className="container-desa relative z-10 py-20 text-white">
-          {/* Kolom teks */}
+        <div className="container-desa relative z-10 py-24 text-white">
+          {/* Konten hero — entrance bertahap saat halaman terbuka */}
           <div>
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emas-300 backdrop-blur">
+            <div className="animasi-masuk" style={{ animationDelay: "150ms" }}>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emas-300 backdrop-blur-md">
                 <IconMapPin size={14} />
                 Kec. {site.kecamatan}, {site.kabupaten} · {site.provinsi}
               </span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className="mt-5 text-4xl leading-[1.05] text-white sm:text-6xl">
-                {site.namaDesa}
-              </h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-hutan-100/90 sm:text-xl">
-                {site.tagline}
-              </p>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Tombol href="/potensi" variant="primary">
-                  Jelajahi Potensi
-                  <IconArrowRight size={18} />
-                </Tombol>
-                <Tombol href="/peta" variant="outline">
-                  <IconMap2 size={18} />
-                  Lihat Peta
-                </Tombol>
-              </div>
-            </Reveal>
+            </div>
+
+            {/* Judul: tiap kata naik dari balik mask, ala opening film */}
+            <h1 className="mt-6 max-w-4xl text-5xl leading-[1.02] text-white sm:text-7xl lg:text-[5.5rem]">
+              {site.namaDesa.split(" ").map((kata, i) => (
+                <span key={i} className="kata-hero mr-[0.22em] last:mr-0">
+                  <span style={{ animationDelay: `${250 + i * 130}ms` }}>{kata}</span>
+                </span>
+              ))}
+            </h1>
+
+            <p
+              className="animasi-masuk mt-6 max-w-xl text-lg leading-relaxed text-hutan-100/90 sm:text-xl"
+              style={{ animationDelay: "650ms" }}
+            >
+              {site.tagline}
+            </p>
+
+            <div
+              className="animasi-masuk mt-9 flex flex-wrap gap-3"
+              style={{ animationDelay: "800ms" }}
+            >
+              <Tombol href="/potensi" variant="primary">
+                Jelajahi Potensi
+                <IconArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover/tombol:translate-x-1"
+                />
+              </Tombol>
+              <Tombol href="/peta" variant="outline">
+                <IconMap2 size={18} />
+                Lihat Peta
+              </Tombol>
+            </div>
           </div>
         </div>
 
-        {/* Indikator scroll ke bawah */}
+        {/* Indikator scroll: garis dengan titik meluncur */}
         <a
           href="#preview-peta"
-          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-white/70 transition-colors hover:text-white"
+          className="animasi-masuk absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2.5 text-white/70 transition-colors hover:text-white"
+          style={{ animationDelay: "1200ms" }}
           aria-label="Gulir ke bawah"
         >
-          <IconChevronDown size={30} className="animate-bounce" />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">Jelajahi</span>
+          <span className="relative h-10 w-[22px] rounded-full border border-white/40">
+            <span className="animasi-tetes-scroll absolute left-1/2 top-1.5 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-emas-300" />
+          </span>
         </a>
+
+        {/* Divider organik: lengkung menyatu ke latar krem konten */}
+        <svg
+          className="absolute inset-x-0 bottom-[-1px] z-10 h-12 w-full text-krem sm:h-16"
+          viewBox="0 0 1440 64"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M0,40 C240,64 480,8 720,24 C960,40 1200,60 1440,28 L1440,64 L0,64 Z"
+          />
+        </svg>
       </section>
 
       {/* ============ PREVIEW PETA ============ */}
-      <section id="preview-peta" className="container-desa py-20">
+      <section id="preview-peta" className="container-desa py-24">
         <div className="grid items-center gap-10 lg:grid-cols-2">
-          <Reveal>
+          <Reveal variant="left">
             <SectionHeading
               eyebrow="Peta Potensi"
               judul="Telusuri potensi desa lewat peta interaktif"
@@ -116,10 +131,11 @@ export default function Beranda() {
               </TautanSelengkapnya>
             </div>
           </Reveal>
-          <Reveal delay={120}>
+          <Reveal delay={120} variant="right">
+            <Tilt maks={4}>
             <Link
               href="/peta"
-              className="group relative block overflow-hidden rounded-card border border-krem-200 shadow-lift"
+              className="group relative block overflow-hidden rounded-card border border-krem-200 shadow-lift transition-shadow duration-500 hover:shadow-float"
             >
               {/* Preview peta bergaya (placeholder). Tampilan peta asli ada di halaman /peta */}
               <div className="relative aspect-[16/10] bg-hutan-100">
@@ -151,12 +167,13 @@ export default function Beranda() {
                   <IconMapPin size={16} />
                 </span>
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-hutan-900/70 to-transparent p-4">
-                  <span className="rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-hutan-800 shadow transition-transform group-hover:scale-105">
+                  <span className="rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-hutan-800 shadow backdrop-blur transition-transform duration-300 ease-out group-hover:scale-105">
                     Klik untuk membuka peta lengkap
                   </span>
                 </div>
               </div>
             </Link>
+            </Tilt>
           </Reveal>
         </div>
       </section>
@@ -207,13 +224,17 @@ export default function Beranda() {
 
       {/* ============ CTA PENUTUP ============ */}
       <section className="container-desa pb-8">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-[1.5rem] bg-hutan-800 px-6 py-14 text-center text-white sm:px-12">
+        <Reveal variant="zoom">
+          <div className="lapisan-noise relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-hutan-800 via-hutan-800 to-hutan-900 px-6 py-16 text-center text-white shadow-float sm:px-12">
             <div
-              className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-emas-500/20 blur-3xl"
+              className="animasi-ambang-a pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-emas-500/20 blur-3xl"
               aria-hidden="true"
             />
-            <h2 className="relative text-3xl text-white sm:text-4xl">
+            <div
+              className="animasi-ambang-b pointer-events-none absolute -bottom-24 -left-12 h-72 w-72 rounded-full bg-hutan-400/20 blur-3xl"
+              aria-hidden="true"
+            />
+            <h2 className="relative text-3xl text-white sm:text-5xl">
               Ingin tahu lebih banyak tentang desa kami?
             </h2>
             <p className="relative mx-auto mt-3 max-w-xl text-hutan-100/85">

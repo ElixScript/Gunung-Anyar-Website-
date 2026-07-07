@@ -104,7 +104,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram desa"
-              className="grid h-10 w-10 place-items-center rounded-full bg-hutan-800 text-hutan-100 transition-colors hover:bg-emas-500 hover:text-hutan-900"
+              className="grid h-10 w-10 place-items-center rounded-full bg-hutan-800 text-hutan-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-emas-500 hover:text-hutan-900 hover:shadow-glow-emas"
             >
               <IconBrandInstagram size={20} />
             </a>
@@ -113,7 +113,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook desa"
-              className="grid h-10 w-10 place-items-center rounded-full bg-hutan-800 text-hutan-100 transition-colors hover:bg-emas-500 hover:text-hutan-900"
+              className="grid h-10 w-10 place-items-center rounded-full bg-hutan-800 text-hutan-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-emas-500 hover:text-hutan-900 hover:shadow-glow-emas"
             >
               <IconBrandFacebook size={20} />
             </a>
@@ -122,7 +122,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube desa"
-              className="grid h-10 w-10 place-items-center rounded-full bg-hutan-800 text-hutan-100 transition-colors hover:bg-emas-500 hover:text-hutan-900"
+              className="grid h-10 w-10 place-items-center rounded-full bg-hutan-800 text-hutan-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-emas-500 hover:text-hutan-900 hover:shadow-glow-emas"
             >
               <IconBrandYoutube size={20} />
             </a>

@@ -10,8 +10,16 @@ import { useEffect, useRef, useState } from "react";
   Prop:
   - as: tag HTML pembungkus (default "div")
   - delay: jeda animasi dalam ms (untuk efek berurutan)
+  - variant: arah/gaya animasi — "up" (default) | "left" | "right" | "zoom" | "blur"
+    (dipetakan ke atribut data-reveal, gayanya ada di globals.css)
 */
-export default function Reveal({ children, as: Tag = "div", delay = 0, className = "" }) {
+export default function Reveal({
+  children,
+  as: Tag = "div",
+  delay = 0,
+  variant = "up",
+  className = "",
+}) {
   const ref = useRef(null);
   const [terlihat, setTerlihat] = useState(false);
 
@@ -42,6 +50,7 @@ export default function Reveal({ children, as: Tag = "div", delay = 0, className
     <Tag
       ref={ref}
       className={`reveal ${terlihat ? "is-visible" : ""} ${className}`}
+      data-reveal={variant !== "up" ? variant : undefined}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

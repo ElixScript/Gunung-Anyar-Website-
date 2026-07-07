@@ -56,6 +56,8 @@ const PALET_KATEGORI = [
 const opsiDasar = {
   responsive: true,
   maintainAspectRatio: false,
+  // Grafik tumbuh halus saat pertama tampil (bukan langsung jadi)
+  animation: { duration: 1100, easing: "easeOutQuart", delay: 150 },
   plugins: {
     legend: { labels: { font: { family: "Inter" }, color: "#46503f", usePointStyle: true } },
     tooltip: {
@@ -71,7 +73,7 @@ const opsiDasar = {
 // Wadah satu kartu grafik
 function ChartCard({ judul, insight, sumber, children }) {
   return (
-    <div className="flex flex-col rounded-card border border-krem-200 bg-white p-5 shadow-sm">
+    <div className="flex flex-col rounded-card border border-krem-200 bg-white p-5 shadow-sm transition-all duration-500 ease-out hover:-translate-y-1 hover:border-hutan-300/60 hover:shadow-float">
       <h3 className="text-lg font-semibold text-hutan-900">{judul}</h3>
       <div className="relative mt-4 h-64">{children}</div>
       {insight && <p className="mt-4 text-sm leading-relaxed text-tinta-600">{insight}</p>}

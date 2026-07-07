@@ -90,9 +90,14 @@ function KartuPotensiDetail({ lok }) {
   const meta = getKategori(lok.kategori);
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-card border border-krem-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lift">
-      <div className="relative">
-        <SmartImage src={lok.foto} alt={`Foto ${lok.nama}`} ratio="16/9" />
+    <article className="group flex flex-col overflow-hidden rounded-card border border-krem-200 bg-white shadow-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-hutan-300/60 hover:shadow-float">
+      <div className="relative overflow-hidden">
+        <SmartImage
+          src={lok.foto}
+          alt={`Foto ${lok.nama}`}
+          ratio="16/9"
+          imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+        />
         <div className="absolute left-3 top-3">
           <BadgeKategori kategori={lok.kategori} />
         </div>

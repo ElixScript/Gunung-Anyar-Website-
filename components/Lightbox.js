@@ -43,7 +43,7 @@ export default function Lightbox({ items, index, onClose, onNav, unduh = false }
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-center justify-center bg-hutan-900/90 p-4 backdrop-blur-sm"
+      className="animasi-overlay fixed inset-0 z-[1000] flex items-center justify-center bg-hutan-900/85 p-4 backdrop-blur-lg"
       role="dialog"
       aria-modal="true"
       aria-label={item.caption || "Tampilan gambar"}
@@ -54,7 +54,7 @@ export default function Lightbox({ items, index, onClose, onNav, unduh = false }
         type="button"
         onClick={onClose}
         aria-label="Tutup"
-        className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+        className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-all duration-300 hover:rotate-90 hover:bg-white/20"
       >
         <IconX size={24} />
       </button>
@@ -73,7 +73,7 @@ export default function Lightbox({ items, index, onClose, onNav, unduh = false }
 
       {/* Konten gambar */}
       <figure
-        className="max-h-[85vh] w-full max-w-4xl"
+        className="animasi-modal max-h-[85vh] w-full max-w-4xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="overflow-hidden rounded-card bg-black/20">

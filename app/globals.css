@@ -24,6 +24,7 @@
   /* --- Aksen emas panen (CTA & highlight, pakai secukupnya) --- */
   --color-emas-600: #b8842d;
   --color-emas-500: #d9a441;
+  --color-emas-400: #e2b45f;
   --color-emas-300: #ecc987;
   --color-emas-100: #f7ecd2;
 
@@ -49,9 +50,18 @@
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
 
-  /* --- Radius & shadow lembut --- */
+  /* --- Radius & shadow lembut, berlapis (depth premium) --- */
   --radius-card: 1rem;
   --shadow-lift: 0 10px 30px -12px rgba(30, 42, 26, 0.25);
+  --shadow-float:
+    0 2px 6px -2px rgba(27, 51, 13, 0.12),
+    0 24px 60px -20px rgba(27, 51, 13, 0.35);
+  --shadow-glow-emas: 0 12px 34px -10px rgba(217, 164, 65, 0.55);
+  --shadow-glow-hutan: 0 12px 34px -10px rgba(45, 80, 22, 0.45);
+
+  /* --- Easing sinematik (dipakai semua motion situs) --- */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ---------------- Base styles ---------------- */
@@ -105,25 +115,170 @@ body {
 
 /* ---------------- Animasi scroll-reveal (pengganti AOS) ---------------- */
 /* Elemen dengan class .reveal muncul halus saat masuk viewport.
-   Kelas .is-visible ditambahkan oleh hook useReveal (js/lib). */
+   Kelas .is-visible ditambahkan oleh komponen <Reveal>.
+   Varian arah/gaya diatur lewat atribut data-reveal. */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo),
+    filter 0.9s var(--ease-out-expo);
+  will-change: opacity, transform;
 }
+.reveal[data-reveal="left"]  { transform: translateX(-40px); }
+.reveal[data-reveal="right"] { transform: translateX(40px); }
+.reveal[data-reveal="zoom"]  { transform: scale(0.93); }
+.reveal[data-reveal="blur"]  { transform: translateY(18px); filter: blur(10px); }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+  filter: none;
 }
 
-/* Hormati preferensi pengguna yang mengurangi animasi */
+/* ================================================================
+   LAPISAN MOTION & TEKSTUR PREMIUM
+   Semua animasi hanya memakai transform/opacity/filter (GPU-friendly)
+   dan dimatikan total lewat prefers-reduced-motion di bawah.
+   ================================================================ */
+
+/* Seleksi teks bernuansa panen — micro detail */
+::selection {
+  background: var(--color-emas-500);
+  color: var(--color-hutan-900);
+}
+
+/* --- Tekstur noise sangat halus (film grain) di section gelap --- */
+.lapisan-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* --- Panel kaca (glass morphism secukupnya) --- */
+.panel-kaca {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* --- Underline animasi untuk tautan --- */
+.link-garis {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-repeat: no-repeat;
+  background-position: left calc(100% - 1px);
+  transition: background-size 0.35s var(--ease-out-expo);
+}
+.link-garis:hover,
+.group:hover .link-garis {
+  background-size: 100% 1.5px;
+}
+
+/* --- Hero sinematik: slow settle-zoom ala opening dokumenter --- */
+@keyframes hero-zoom {
+  from { transform: scale(1.1); }
+  to   { transform: scale(1); }
+}
+.animasi-hero-zoom {
+  animation: hero-zoom 9s var(--ease-out-expo) both;
+  will-change: transform;
+}
+
+/* Blob cahaya organik yang mengambang perlahan */
+@keyframes ambang-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(24px, -30px, 0) scale(1.06); }
+}
+@keyframes ambang-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(-28px, 22px, 0) scale(0.95); }
+}
+.animasi-ambang-a { animation: ambang-a 14s ease-in-out infinite; will-change: transform; }
+.animasi-ambang-b { animation: ambang-b 18s ease-in-out infinite; will-change: transform; }
+
+/* Judul hero: tiap kata naik dari balik mask (dipicu saat load) */
+.kata-hero {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+@keyframes kata-naik {
+  from { opacity: 0; transform: translateY(110%) rotate(3deg); }
+  to   { opacity: 1; transform: none; }
+}
+.kata-hero > span {
+  display: inline-block;
+  animation: kata-naik 1s var(--ease-out-expo) both;
+  will-change: transform;
+}
+
+/* Entrance generik saat halaman dimuat (PageHero, hero content) */
+@keyframes naik-masuk {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+.animasi-masuk {
+  animation: naik-masuk 0.9s var(--ease-out-expo) both;
+}
+
+/* Indikator scroll: titik meluncur di dalam garis */
+@keyframes tetes-scroll {
+  0%   { transform: translateY(0); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: translateY(22px); opacity: 0; }
+}
+.animasi-tetes-scroll {
+  animation: tetes-scroll 2s ease-in-out infinite;
+}
+
+/* --- Modal premium (dipakai DetailLokasi & Lightbox) --- */
+@keyframes overlay-masuk {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modal-masuk {
+  from { opacity: 0; transform: translateY(30px) scale(0.965); }
+  to   { opacity: 1; transform: none; }
+}
+.animasi-overlay { animation: overlay-masuk 0.35s ease both; }
+.animasi-modal   { animation: modal-masuk 0.5s var(--ease-out-expo) both; }
+
+/* --- Kartu: efek angkat + kilau lembut (via utility Tailwind di JSX) --- */
+
+/* Matikan seluruh motion bila pengguna memintanya (WCAG) */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .reveal {
+  .reveal,
+  .reveal[data-reveal] {
     opacity: 1;
     transform: none;
+    filter: none;
+    transition: none;
+  }
+  .animasi-hero-zoom,
+  .animasi-ambang-a,
+  .animasi-ambang-b,
+  .kata-hero > span,
+  .animasi-masuk,
+  .animasi-tetes-scroll,
+  .animasi-overlay,
+  .animasi-modal,
+  .marker-pin {
+    animation: none !important;
+  }
+  .link-garis {
     transition: none;
   }
 }
@@ -147,6 +302,11 @@ body {
   background: transparent;
   border: none;
 }
+@keyframes marker-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
 .marker-pin {
   display: flex;
   align-items: center;
@@ -157,13 +317,38 @@ body {
   border: 2px solid #fff;
   border-radius: 9999px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  animation: marker-pop 0.45s var(--ease-spring) both;
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease;
+  cursor: pointer;
+}
+.marker-pin:hover {
+  transform: scale(1.15);
 }
 .marker-pin svg {
   width: 18px;
   height: 18px;
 }
-/* Efek fokus pada penanda yang sedang dipilih */
+/* Penanda terpilih: membesar + cincin emas berdenyut */
+@keyframes denyut-cincin {
+  0%   { box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.55), 0 0 0 4px rgba(217, 164, 65, 0.4); }
+  100% { box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.55), 0 0 0 18px rgba(217, 164, 65, 0); }
+}
 .marker-pin.aktif {
-  transform: scale(1.2);
+  transform: scale(1.22);
+  /* Cincin statis sebagai fallback (tetap terlihat saat reduced-motion) */
   box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.55);
+  animation: denyut-cincin 1.6s ease-out infinite;
+}
+
+/* Tooltip Leaflet selaras identitas situs */
+.leaflet-tooltip {
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-krem-200);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-hutan-900);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 10px;
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(6px);
 }
