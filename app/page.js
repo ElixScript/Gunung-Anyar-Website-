@@ -53,7 +53,7 @@ export default function Beranda() {
           aria-hidden="true"
         />
 
-        <div className="container-desa relative z-10 grid items-center gap-10 py-20 text-white lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        <div className="container-desa relative z-10 py-20 text-white">
           {/* Kolom teks */}
           <div>
             <Reveal>
@@ -85,21 +85,6 @@ export default function Beranda() {
               </div>
             </Reveal>
           </div>
-
-          {/* Kolom peta wilayah desa (batas dusun & penomoran RT/RW) — ukuran separuh dari sebelumnya */}
-          <Reveal delay={200} className="mx-auto w-full max-w-[18rem] translate-x-12 lg:mx-0 lg:max-w-[22rem] lg:translate-x-16">
-            <div className="overflow-hidden rounded-card border border-white/15 bg-white/5 p-2 shadow-lift backdrop-blur-sm">
-              <img
-                src="/images/profil/peta-wilayah-desa.png"
-                alt="Peta wilayah administratif Desa Gunung Anyar: batas antar dusun dan penomoran RT/RW"
-                className="w-full rounded-2xl"
-                loading="eager"
-              />
-            </div>
-            <p className="mt-2 text-center text-xs text-hutan-100/70">
-              Peta wilayah & pembagian dusun Desa Gunung Anyar
-            </p>
-          </Reveal>
         </div>
 
         {/* Indikator scroll ke bawah */}

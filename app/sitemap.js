@@ -21,7 +21,6 @@ export default function sitemap() {
     "/umkm",
     "/galeri",
     "/berita",
-    "/tentang-kkn",
     "/kontak",
   ].map((path) => ({
     url: `${base}${path}`,

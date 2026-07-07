@@ -55,19 +55,25 @@ const geografis = {
   ketinggian: "± 320 mdpl",
 };
 const perangkat = {
-  kepala: { nama: "Nama Kepala Desa", jabatan: "Kepala Desa", kontak: "0812-0000-0000" },
-  sekretaris: { nama: "Nama Sekretaris", jabatan: "Sekretaris Desa", kontak: "0812-0000-0001" },
+  kepala: { nama: "Tarid Efendi", jabatan: "Kepala Desa" },
+  bpd: { nama: "Badan Permusyawaratan Desa", jabatan: "BPD" },
+  sekretaris: { nama: "Agas Dwi N.", jabatan: "Sekretaris Desa" },
   kaur: [
-    { nama: "Nama Kaur", jabatan: "Kaur Keuangan" },
-    { nama: "Nama Kaur", jabatan: "Kaur Umum & Perencanaan" },
-    { nama: "Nama Kasi", jabatan: "Kasi Pemerintahan" },
-    { nama: "Nama Kasi", jabatan: "Kasi Kesejahteraan & Pelayanan" },
+    { nama: "Ika Puspita", jabatan: "Kaur Tata Usaha & Umum" },
+    { nama: "Aidatus Sholeha", jabatan: "Kaur Perencanaan" },
+    { nama: "Abdur Rahman S", jabatan: "Kaur Keuangan" },
+  ],
+  kasi: [
+    { nama: "Mustampi", jabatan: "Kasi Pemerintahan" },
+    { nama: "Asnamo", jabatan: "Kasi Pelayanan" },
+    { nama: "Misru", jabatan: "Kasi Kesejahteraan" },
   ],
   dusun: [
-    { nama: "Nama Kadus", jabatan: "Kepala Dusun Krajan" },
-    { nama: "Nama Kadus", jabatan: "Kepala Dusun Sumbersari" },
-    { nama: "Nama Kadus", jabatan: "Kepala Dusun Tegalsari" },
-    { nama: "Nama Kadus", jabatan: "Kepala Dusun Kalianyar" },
+    { nama: "Adi Bing Slamet", jabatan: "Kasun Krajan Baru" },
+    { nama: "Fuad", jabatan: "Kasun Kokebun" },
+    { nama: "Rudi S", jabatan: "Kasun Kobunduh" },
+    { nama: "Samsuri", jabatan: "Kasun Krajan Lama" },
+    { nama: "Haeri", jabatan: "Kasun Kogedang" },
   ],
 };
 // Jumlah RW/RT contoh per dusun
@@ -233,30 +239,59 @@ export default function ProfilPage() {
             />
           </Reveal>
 
-          {/* Bagan sederhana */}
+          {/* Bagan struktur */}
           <div className="flex flex-col items-center gap-6">
+            {/* Kepala Desa + BPD (mitra) */}
             <Reveal>
-              <KotakPerangkat data={perangkat.kepala} utama />
-            </Reveal>
-            <span className="h-6 w-px bg-hutan-300" aria-hidden="true" />
-            <Reveal>
-              <KotakPerangkat data={perangkat.sekretaris} />
-            </Reveal>
-            <span className="h-6 w-px bg-hutan-300" aria-hidden="true" />
-            <Reveal className="w-full">
-              <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {perangkat.kaur.map((k, i) => (
-                  <KotakPerangkat key={i} data={k} />
-                ))}
+              <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:gap-0">
+                <KotakPerangkat data={perangkat.kepala} utama />
+                <span
+                  className="h-5 w-px border-l-2 border-dashed border-hutan-300 sm:my-auto sm:h-px sm:w-10 sm:border-l-0 sm:border-t-2"
+                  aria-hidden="true"
+                />
+                <KotakPerangkat data={perangkat.bpd} mitra />
               </div>
             </Reveal>
+
             <span className="h-6 w-px bg-hutan-300" aria-hidden="true" />
+
+            {/* Sekretariat: Sekretaris membawahi para Kaur */}
             <Reveal className="w-full">
-              <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {perangkat.dusun.map((k, i) => (
-                  <KotakPerangkat key={i} data={k} />
-                ))}
+              <div className="flex flex-col items-center gap-4">
+                <KotakPerangkat data={perangkat.sekretaris} />
+                <span className="h-5 w-px bg-hutan-300" aria-hidden="true" />
+                <div className="grid w-full gap-4 sm:grid-cols-3">
+                  {perangkat.kaur.map((k, i) => (
+                    <KotakPerangkat key={i} data={k} />
+                  ))}
+                </div>
               </div>
+            </Reveal>
+
+            <span className="h-6 w-px bg-hutan-300" aria-hidden="true" />
+
+            {/* Pelaksana Teknis (Kasi) */}
+            <Reveal className="w-full">
+              <BarisPerangkat label="Pelaksana Teknis">
+                <div className="grid w-full gap-4 sm:grid-cols-3">
+                  {perangkat.kasi.map((k, i) => (
+                    <KotakPerangkat key={i} data={k} />
+                  ))}
+                </div>
+              </BarisPerangkat>
+            </Reveal>
+
+            <span className="h-6 w-px bg-hutan-300" aria-hidden="true" />
+
+            {/* Pelaksana Kewilayahan (Kasun) */}
+            <Reveal className="w-full">
+              <BarisPerangkat label="Pelaksana Kewilayahan">
+                <div className="grid w-full gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                  {perangkat.dusun.map((k, i) => (
+                    <KotakPerangkat key={i} data={k} />
+                  ))}
+                </div>
+              </BarisPerangkat>
             </Reveal>
           </div>
         </div>
@@ -366,18 +401,31 @@ export default function ProfilPage() {
 }
 
 /* Kotak satu jabatan pada bagan struktur */
-function KotakPerangkat({ data, utama = false }) {
+function KotakPerangkat({ data, utama = false, mitra = false }) {
+  const gaya = utama
+    ? "border-emas-500 bg-emas-100/50"
+    : mitra
+      ? "border-dashed border-hutan-300 bg-hutan-100/40"
+      : "border-krem-200 bg-white";
   return (
-    <div
-      className={`w-full max-w-xs rounded-2xl border p-4 text-center shadow-sm ${
-        utama ? "border-emas-500 bg-emas-100/50" : "border-krem-200 bg-white"
-      }`}
-    >
+    <div className={`w-full max-w-xs rounded-2xl border p-4 text-center shadow-sm ${gaya}`}>
       <p className="text-xs font-semibold uppercase tracking-wide text-hutan-600">
         {data.jabatan}
       </p>
       <p className="mt-1 font-semibold text-hutan-900">{data.nama}</p>
       {data.kontak && <p className="mt-0.5 text-xs text-tinta-600">{data.kontak}</p>}
+    </div>
+  );
+}
+
+/* Baris kelompok perangkat dengan label kategori */
+function BarisPerangkat({ label, children }) {
+  return (
+    <div className="w-full">
+      <span className="mb-3 block text-center text-xs font-semibold uppercase tracking-[0.18em] text-hutan-500">
+        {label}
+      </span>
+      {children}
     </div>
   );
 }

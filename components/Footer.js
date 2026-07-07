@@ -24,9 +24,14 @@ export default function Footer() {
         {/* Identitas desa */}
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-emas-500 text-hutan-900">
-              <IconMapPin size={24} stroke={1.75} />
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/lambang-bondowoso.png"
+              alt={`Lambang Kabupaten ${site.kabupaten}`}
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 object-contain"
+            />
             <span className="font-display text-xl font-semibold text-white">
               {site.namaDesa}
             </span>

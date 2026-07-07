@@ -1,10 +1,10 @@
-import { PageHero, SectionHeading } from "@/components/ui";
+import { PageHero } from "@/components/ui";
 import GaleriClient from "@/components/galeri/GaleriClient";
 import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Galeri",
-  description: `Galeri foto dan video ${site.namaDesa}: keindahan alam, kegiatan budaya, aktivitas masyarakat, dan dokumentasi program KKN.`,
+  description: `Galeri foto ${site.namaDesa}: keindahan alam, kegiatan budaya, aktivitas masyarakat, dan dokumentasi program KKN.`,
   alternates: { canonical: "/galeri" },
 };
 
@@ -26,48 +26,18 @@ const foto = [
   { src: "/images/galeri/kkn-4.jpg", caption: "Penyerahan website ke perangkat desa", kategori: "Dokumentasi KKN" },
 ];
 
-// Video YouTube (opsional). Ganti VIDEO_ID dengan ID video asli, atau kosongkan array.
-const video = [
-  { id: "dQw4w9WgXcQ", judul: "Profil Desa Gunung Anyar (contoh)" },
-];
-
 export default function GaleriPage() {
   return (
     <>
       <PageHero
         eyebrow="Galeri"
         judul="Galeri Desa"
-        deskripsi="Kumpulan momen dan keindahan Desa Gunung Anyar melalui foto dan video."
+        deskripsi="Kumpulan momen dan keindahan Desa Gunung Anyar melalui foto."
       />
 
       <section className="container-desa py-12">
         <GaleriClient items={foto} kategoriList={kategoriGaleri} />
       </section>
-
-      {/* Section video (opsional) */}
-      {video.length > 0 && (
-        <section className="container-desa pb-16">
-          <SectionHeading eyebrow="Video" judul="Video desa" className="mb-8" />
-          <div className="grid gap-6 md:grid-cols-2">
-            {video.map((v) => (
-              <div key={v.id}>
-                {/* Wrapper aspect-ratio 16:9 agar embed responsif */}
-                <div className="relative aspect-video overflow-hidden rounded-card border border-krem-200 shadow-sm">
-                  <iframe
-                    className="absolute inset-0 h-full w-full"
-                    src={`https://www.youtube-nocookie.com/embed/${v.id}`}
-                    title={v.judul}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <p className="mt-2 text-sm font-medium text-tinta-600">{v.judul}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
     </>
   );
 }

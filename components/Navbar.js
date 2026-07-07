@@ -7,7 +7,6 @@ import {
   IconMenu2,
   IconX,
   IconChevronDown,
-  IconMapPin,
 } from "@tabler/icons-react";
 import { site, navItems } from "@/lib/site";
 
@@ -60,9 +59,14 @@ export default function Navbar() {
       >
         {/* Logo / nama desa */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-hutan-700 text-white">
-            <IconMapPin size={22} stroke={1.75} />
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/lambang-bondowoso.png"
+            alt={`Lambang Kabupaten ${site.kabupaten}`}
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 object-contain"
+          />
           <span className="leading-tight">
             <span className="block font-display text-lg font-semibold text-hutan-900">
               {site.namaDesa}

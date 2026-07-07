@@ -16,6 +16,8 @@ import { getLokasi } from "@/lib/data";
     (dipakai oleh tautan "Lihat di Peta" dari halaman UMKM/Potensi).
 */
 
+import DetailLokasi from "@/components/peta/DetailLokasi";
+
 // Peta di-load hanya di klien; tampilkan placeholder saat memuat.
 const MapView = dynamic(() => import("@/components/peta/MapView"), {
   ssr: false,
@@ -37,14 +39,18 @@ export default function PetaClient({ center }) {
   );
   const [cari, setCari] = useState("");
   const [selectedId, setSelectedId] = useState(locAwal || null);
+  // Lokasi yang detailnya sedang dibuka pada modal (null = modal tertutup)
+  const [detailLokasi, setDetailLokasi] = useState(null);
 
-  // Jika halaman dibuka dengan ?loc=..., pastikan kategorinya aktif & pilih lokasi
+  // Jika halaman dibuka dengan ?loc=..., pastikan kategorinya aktif, pilih
+  // lokasi, dan langsung buka modal detailnya.
   useEffect(() => {
     if (!locAwal) return;
     const lok = semuaLokasi.find((l) => l.id === locAwal);
     if (lok) {
       setKategoriAktif((prev) => new Set(prev).add(lok.kategori));
       setSelectedId(locAwal);
+      setDetailLokasi(lok);
     }
   }, [locAwal, semuaLokasi]);
 
@@ -71,10 +77,13 @@ export default function PetaClient({ center }) {
     });
   }, [semuaLokasi, kategoriAktif, cari]);
 
-  // Saat memilih lokasi dari daftar/pencarian
+  // Saat memilih lokasi dari daftar/pencarian: sorot di peta + buka modal detail
   const pilihLokasi = (id) => {
     const lok = semuaLokasi.find((l) => l.id === id);
-    if (lok) setKategoriAktif((prev) => new Set(prev).add(lok.kategori));
+    if (lok) {
+      setKategoriAktif((prev) => new Set(prev).add(lok.kategori));
+      setDetailLokasi(lok);
+    }
     // Set ulang agar useEffect di peta memicu flyTo walau id sama
     setSelectedId(null);
     requestAnimationFrame(() => setSelectedId(id));
@@ -82,79 +91,90 @@ export default function PetaClient({ center }) {
 
   return (
     <div className="space-y-6">
-      {/* ---------- Baris kontrol: filter kategori + pencarian ---------- */}
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter kategori lokasi">
-          {kategoriLokasi.map((k) => {
-            const aktif = kategoriAktif.has(k.key);
-            return (
+      {/* ---------- Peta + panel legenda/filter di kanan ----------
+          Peta di kiri (tinggi 3/4 dari ukuran semula), panel legenda & filter
+          kategori di kanan. Tombol kategori sekaligus berfungsi sebagai legenda
+          berwarna, sehingga tak perlu bar legenda terpisah. */}
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
+        {/* Peta */}
+        <div className="h-[264px] overflow-hidden rounded-card border border-krem-200 shadow-sm md:h-[375px]">
+          <MapView
+            lokasiTampil={lokasiTampil}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            onOpenDetail={setDetailLokasi}
+            center={center}
+            zoom={14}
+          />
+        </div>
+
+        {/* Panel kanan: pencarian + legenda/filter kategori */}
+        <aside className="flex flex-col gap-4">
+          {/* Kotak pencarian */}
+          <div className="relative">
+            <IconSearch
+              size={18}
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-tinta-600"
+            />
+            <input
+              type="search"
+              value={cari}
+              onChange={(e) => setCari(e.target.value)}
+              placeholder="Cari nama lokasi…"
+              aria-label="Cari lokasi berdasarkan nama"
+              className="w-full rounded-full border border-krem-200 bg-white py-2.5 pl-10 pr-4 text-sm outline-none focus:border-hutan-500"
+            />
+          </div>
+
+          {/* Legenda & filter kategori */}
+          <div className="rounded-card border border-krem-200 bg-white p-4">
+            <div className="flex items-center justify-between gap-2">
+              <h2 className="text-sm font-semibold text-hutan-900">Legenda &amp; Filter</h2>
               <button
-                key={k.key}
                 type="button"
-                onClick={() => toggleKategori(k.key)}
-                aria-pressed={aktif}
-                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-all ${
-                  aktif
-                    ? "border-transparent text-white shadow-sm"
-                    : "border-krem-200 bg-white text-tinta-600 hover:border-hutan-300"
-                }`}
-                style={aktif ? { backgroundColor: k.warna } : undefined}
+                onClick={resetFilter}
+                className="inline-flex items-center gap-1 text-xs font-medium text-hutan-700 underline-offset-2 hover:underline"
               >
-                <span
-                  className="h-2.5 w-2.5 rounded-full"
-                  style={{ backgroundColor: aktif ? "#fff" : k.warna }}
-                />
-                {k.label}
+                <IconX size={14} />
+                Reset
               </button>
-            );
-          })}
-          <button
-            type="button"
-            onClick={resetFilter}
-            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-hutan-700 underline-offset-2 hover:underline"
-          >
-            <IconX size={15} />
-            Reset
-          </button>
-        </div>
-
-        {/* Kotak pencarian */}
-        <div className="relative w-full lg:w-72">
-          <IconSearch
-            size={18}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-tinta-600"
-          />
-          <input
-            type="search"
-            value={cari}
-            onChange={(e) => setCari(e.target.value)}
-            placeholder="Cari nama lokasi…"
-            aria-label="Cari lokasi berdasarkan nama"
-            className="w-full rounded-full border border-krem-200 bg-white py-2.5 pl-10 pr-4 text-sm outline-none focus:border-hutan-500"
-          />
-        </div>
-      </div>
-
-      {/* ---------- Peta ---------- */}
-      <div className="h-[350px] overflow-hidden rounded-card border border-krem-200 shadow-sm md:h-[500px]">
-        <MapView
-          lokasiTampil={lokasiTampil}
-          selectedId={selectedId}
-          onSelect={setSelectedId}
-          center={center}
-          zoom={14}
-        />
-      </div>
-
-      {/* ---------- Legenda ---------- */}
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 rounded-2xl border border-krem-200 bg-white px-5 py-3 text-sm">
-        <span className="font-semibold text-hutan-900">Legenda:</span>
-        {kategoriLokasi.map((k) => (
-          <span key={k.key} className="inline-flex items-center gap-2 text-tinta-600">
-            <span className="h-3.5 w-3.5 rounded-full border border-white shadow" style={{ backgroundColor: k.warna }} />
-            {k.label}
-          </span>
-        ))}
+            </div>
+            <p className="mt-1 text-xs text-tinta-600">
+              Klik kategori untuk menyaring titik yang tampil di peta.
+            </p>
+            <ul className="mt-3 space-y-2" role="group" aria-label="Filter kategori lokasi">
+              {kategoriLokasi.map((k) => {
+                const aktif = kategoriAktif.has(k.key);
+                return (
+                  <li key={k.key}>
+                    <button
+                      type="button"
+                      onClick={() => toggleKategori(k.key)}
+                      aria-pressed={aktif}
+                      className={`flex w-full items-center justify-between gap-2 rounded-2xl border px-3 py-2 text-left text-sm font-medium transition-all ${
+                        aktif
+                          ? "border-transparent text-white shadow-sm"
+                          : "border-krem-200 bg-white text-tinta-600 hover:border-hutan-300"
+                      }`}
+                      style={aktif ? { backgroundColor: k.warna } : undefined}
+                    >
+                      <span className="flex items-center gap-2">
+                        <span
+                          className="h-3 w-3 rounded-full"
+                          style={{ backgroundColor: aktif ? "#fff" : k.warna }}
+                        />
+                        {k.label}
+                      </span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wide opacity-80">
+                        {aktif ? "Aktif" : "Off"}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </aside>
       </div>
 
       {/* ---------- Daftar lokasi (list view) ----------
@@ -167,7 +187,7 @@ export default function PetaClient({ center }) {
           Daftar Lokasi ({lokasiTampil.length})
         </h2>
         <p className="mt-1 text-sm text-tinta-600">
-          Klik salah satu lokasi untuk menyorotnya di peta.
+          Klik salah satu lokasi untuk melihat detailnya sekaligus menyorotnya di peta.
         </p>
 
         {lokasiTampil.length === 0 ? (
@@ -210,6 +230,9 @@ export default function PetaClient({ center }) {
           </ul>
         )}
       </div>
+
+      {/* ---------- Modal detail lokasi (muncul saat marker/daftar diklik) ---------- */}
+      <DetailLokasi lokasi={detailLokasi} onClose={() => setDetailLokasi(null)} />
     </div>
   );
 }

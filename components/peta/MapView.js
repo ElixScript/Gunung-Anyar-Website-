@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { useEffect } from "react";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import SmartImage from "@/components/SmartImage";
 import { getKategori } from "@/lib/site";
 import { getLokasiById } from "@/lib/data";
 
@@ -62,8 +61,8 @@ function KontrolScrollZoom() {
   return null;
 }
 
-// Menggeser (fly) peta ke lokasi terpilih & membuka popup-nya.
-function KontrolPilihan({ selectedId, markerRefs }) {
+// Menggeser (fly) peta ke lokasi terpilih agar tersorot di tengah peta.
+function KontrolPilihan({ selectedId }) {
   const map = useMap();
   useEffect(() => {
     if (!selectedId) return;
@@ -72,13 +71,7 @@ function KontrolPilihan({ selectedId, markerRefs }) {
     map.flyTo([lok.latitude, lok.longitude], Math.max(map.getZoom(), 16), {
       duration: 0.8,
     });
-    // Beri jeda agar animasi geser selesai sebelum popup dibuka
-    const t = setTimeout(() => {
-      const marker = markerRefs.current[selectedId];
-      if (marker) marker.openPopup();
-    }, 450);
-    return () => clearTimeout(t);
-  }, [selectedId, map, markerRefs]);
+  }, [selectedId, map]);
   return null;
 }
 
@@ -86,11 +79,10 @@ export default function MapView({
   lokasiTampil,
   selectedId,
   onSelect,
+  onOpenDetail,
   center,
   zoom = 14,
 }) {
-  const markerRefs = useRef({}); // menyimpan instance marker per id
-
   return (
     <MapContainer
       center={[center.lat, center.lng]}
@@ -107,57 +99,22 @@ export default function MapView({
       />
 
       <KontrolScrollZoom />
-      <KontrolPilihan selectedId={selectedId} markerRefs={markerRefs} />
+      <KontrolPilihan selectedId={selectedId} />
 
-      {lokasiTampil.map((lok) => {
-        const meta = getKategori(lok.kategori);
-        return (
-          <Marker
-            key={lok.id}
-            position={[lok.latitude, lok.longitude]}
-            icon={buatIkon(lok.kategori, lok.id === selectedId)}
-            ref={(instance) => {
-              if (instance) markerRefs.current[lok.id] = instance;
-            }}
-            eventHandlers={{ click: () => onSelect && onSelect(lok.id) }}
-          >
-            <Popup>
-              <div className="overflow-hidden">
-                <SmartImage
-                  src={lok.foto}
-                  alt={`Foto ${lok.nama}`}
-                  ratio="16/9"
-                  label={lok.nama}
-                />
-                <div className="p-3">
-                  {meta && (
-                    <span
-                      className="inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold text-white"
-                      style={{ backgroundColor: meta.warna }}
-                    >
-                      {meta.label}
-                    </span>
-                  )}
-                  <h3 className="mt-1.5 font-display text-base font-semibold text-hutan-900">
-                    {lok.nama}
-                  </h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-tinta-600">
-                    {lok.deskripsi}
-                  </p>
-                  {lok.info_tambahan && (
-                    <p className="mt-2 border-t border-krem-200 pt-2 text-[12px] font-medium text-hutan-700">
-                      {lok.info_tambahan}
-                    </p>
-                  )}
-                  {lok.alamat && (
-                    <p className="mt-1 text-[11px] text-tinta-600/80">📍 {lok.alamat}</p>
-                  )}
-                </div>
-              </div>
-            </Popup>
-          </Marker>
-        );
-      })}
+      {lokasiTampil.map((lok) => (
+        <Marker
+          key={lok.id}
+          position={[lok.latitude, lok.longitude]}
+          icon={buatIkon(lok.kategori, lok.id === selectedId)}
+          eventHandlers={{
+            click: () => {
+              // Sorot di peta (flyTo/highlight) sekaligus buka modal detail.
+              onSelect && onSelect(lok.id);
+              onOpenDetail && onOpenDetail(lok);
+            },
+          }}
+        />
+      ))}
     </MapContainer>
   );
 }
