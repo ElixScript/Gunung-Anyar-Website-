@@ -6,12 +6,17 @@ import {
   IconMountain,
   IconRuler2,
   IconMapPin,
+  IconMapPins,
   IconSchool,
   IconStethoscope,
   IconBuildingMosque,
   IconDroplet,
   IconBolt,
   IconChartBar,
+  IconTemperature,
+  IconCloudRain,
+  IconPlant2,
+  IconUsers,
 } from "@tabler/icons-react";
 import { PageHero, SectionHeading, Tombol } from "@/components/ui";
 import Reveal from "@/components/Reveal";
@@ -21,38 +26,43 @@ import { getStatistik, getLokasiById, formatAngka } from "@/lib/data";
 
 export const metadata = {
   title: "Profil Desa",
-  description: `Profil lengkap ${site.namaDesa}: sejarah, visi misi, letak geografis, struktur pemerintahan, pembagian wilayah, dan sarana prasarana.`,
+  description: `Profil lengkap ${site.namaDesa}: gambaran umum, visi misi, letak geografis, struktur pemerintahan, pembagian wilayah, dan sarana prasarana.`,
   alternates: { canonical: "/profil" },
 };
 
-/* ---------- DATA CONTOH profil desa (ganti dengan data asli) ---------- */
-const sejarah = [
-  "Desa Gunung Anyar merupakan salah satu desa di wilayah Kecamatan Tapen, Kabupaten Bondowoso, yang tumbuh di kaki perbukitan dengan tanah subur dan sumber air yang melimpah. Menurut cerita tutur warga, nama “Gunung Anyar” berasal dari sebuah bukit baru (anyar) yang menjadi penanda pembukaan permukiman pertama.",
-  "Seiring waktu, desa berkembang dari kelompok kecil peladang menjadi desa pertanian yang mapan dengan komoditas padi dan kopi. Semangat gotong royong warga menjadi fondasi utama pembangunan desa hingga hari ini.",
+/* ---------- Profil ringkas Desa Gunung Anyar ---------- */
+const profil = [
+  "Gunung Anyar adalah desa di Kecamatan Tapen, Kabupaten Bondowoso, Jawa Timur. Terletak di dataran tinggi dengan ketinggian sekitar 158 mdpl, desa ini memiliki luas wilayah 655.803 Ha dengan suhu rata-rata harian sekitar 36°C.",
+  "Wilayah desa mengalami dua musim — penghujan dan kemarau — dengan curah hujan rata-rata 39,00 mm. Beriklim tropis dan bertanah subur, sebagian besar warga menggantungkan mata pencaharian pada sektor pertanian.",
+  "Desa Gunung Anyar terbagi menjadi 5 dusun, yaitu Dusun Krajan Baru, Krajan Lama, Kobunduh, Kogedhang, dan Kokebun. Berdasarkan Pendataan Keluarga tahun 2018, jumlah penduduk desa tercatat 4.120 jiwa dengan 1.597 kepala keluarga.",
 ];
-const timeline = [
-  { tahun: "1900-an", isi: "Pembukaan permukiman pertama di sekitar bukit oleh para peladang." },
-  { tahun: "1980", isi: "Pembangunan saluran irigasi yang memperluas lahan sawah produktif." },
-  { tahun: "2005", isi: "Berkembangnya perkebunan kopi rakyat di kawasan lereng utara." },
-  { tahun: "2026", isi: "Peluncuran website profil desa sebagai luaran program KKN." },
+// Fakta singkat — dirangkum dari profil desa (ditampilkan sebagai kartu)
+const faktaSingkat = [
+  { icon: IconMountain, label: "Topografi", nilai: "Dataran tinggi · 158 mdpl" },
+  { icon: IconTemperature, label: "Suhu rata-rata", nilai: "± 36°C harian" },
+  { icon: IconCloudRain, label: "Curah hujan", nilai: "39,00 mm (rata-rata)" },
+  { icon: IconPlant2, label: "Iklim & tanah", nilai: "Tropis, tanah subur" },
+  { icon: IconMapPins, label: "Wilayah", nilai: "5 dusun" },
+  { icon: IconUsers, label: "Penduduk", nilai: "4.120 jiwa · 1.597 KK" },
 ];
+// Visi & Misi resmi — RPJM Desa Gunung Anyar Periode 2022–2027 (BAB III)
 const visi =
-  "Terwujudnya Desa Gunung Anyar yang mandiri, sejahtera, dan berbudaya melalui optimalisasi potensi pertanian serta pemberdayaan masyarakat.";
+  "Terwujudnya Masyarakat Desa Gunung Anyar yang Berbudaya, Berdaya, dan Berkeadilan Secara Berkelanjutan.";
 const misi = [
-  "Meningkatkan kualitas pelayanan publik yang transparan dan partisipatif.",
-  "Mengembangkan sektor pertanian, perkebunan, dan UMKM sebagai penggerak ekonomi desa.",
-  "Memperkuat sarana pendidikan, kesehatan, dan infrastruktur dasar.",
-  "Melestarikan seni, budaya, dan lingkungan hidup desa.",
+  "Mewujudkan Pembangunan Infrastruktur, Ekonomi, dan Lingkungan Hidup.",
+  "Mewujudkan Kesejahteraan Sosial dan Kemasyarakatan.",
+  "Meningkatkan Pemberdayaan Masyarakat Desa.",
+  "Meningkatkan Akuntabilitas Penyelenggaraan Pemerintahan Desa.",
 ];
 const geografis = {
   batas: {
-    utara: "Kawasan hutan & lereng pegunungan",
-    selatan: "Desa tetangga (Kec. Tapen)",
-    timur: "Aliran sungai & persawahan",
-    barat: "Desa tetangga (Kec. Tapen)",
+    utara: "Desa Kalitapen",
+    selatan: "Desa Wonokusumo",
+    timur: "Desa Mangli Wetan",
+    barat: "Desa Jurangsapi",
   },
-  luas: "412 ha",
-  ketinggian: "± 320 mdpl",
+  luas: "655.803 Ha",
+  ketinggian: "158 mdpl",
 };
 const perangkat = {
   kepala: { nama: "Tarid Efendi", jabatan: "Kepala Desa" },
@@ -61,12 +71,10 @@ const perangkat = {
   kaur: [
     { nama: "Ika Puspita", jabatan: "Kaur Tata Usaha & Umum" },
     { nama: "Aidatus Sholeha", jabatan: "Kaur Perencanaan" },
-    { nama: "Abdur Rahman S", jabatan: "Kaur Keuangan" },
+    { nama: "Misru", jabatan: "Kaur Keuangan" },
   ],
   kasi: [
-    { nama: "Mustampi", jabatan: "Kasi Pemerintahan" },
-    { nama: "Asnamo", jabatan: "Kasi Pelayanan" },
-    { nama: "Misru", jabatan: "Kasi Kesejahteraan" },
+    { nama: "Faishol Roziqin", jabatan: "Kasi Kesejahteraan" },
   ],
   dusun: [
     { nama: "Adi Bing Slamet", jabatan: "Kasun Krajan Baru" },
@@ -113,34 +121,43 @@ export default function ProfilPage() {
       <PageHero
         eyebrow="Profil Desa"
         judul={`Mengenal ${site.namaDesa}`}
-        deskripsi="Sejarah, visi misi, kondisi geografis, pemerintahan, dan sarana prasarana desa dalam satu halaman."
+        deskripsi="Gambaran umum, visi misi, kondisi geografis, pemerintahan, dan sarana prasarana desa dalam satu halaman."
       />
 
-      {/* ---------- SEJARAH + TIMELINE ---------- */}
+      {/* ---------- PROFIL RINGKAS + FAKTA SINGKAT ---------- */}
       <section className="container-desa py-16">
         <div className="grid gap-10 lg:grid-cols-2">
-          <Reveal>
-            <SectionHeading eyebrow="Sejarah" judul="Jejak perjalanan desa" />
+          <Reveal variant="left">
+            <SectionHeading eyebrow="Gambaran Umum" judul={`Sekilas ${site.namaDesa}`} />
             <div className="mt-5 space-y-4 text-tinta-600 leading-relaxed">
-              {sejarah.map((p, i) => (
+              {profil.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
           </Reveal>
 
-          {/* Timeline vertikal */}
-          <Reveal delay={120}>
-            <ol className="relative ml-3 border-l-2 border-hutan-100">
-              {timeline.map((t) => (
-                <li key={t.tahun} className="mb-7 ml-6 last:mb-0">
-                  <span className="absolute -left-[9px] grid h-4 w-4 place-items-center rounded-full bg-emas-500 ring-4 ring-krem" />
-                  <span className="font-display text-lg font-semibold text-hutan-800">
-                    {t.tahun}
+          {/* Kartu fakta singkat desa */}
+          <Reveal delay={120} variant="right">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {faktaSingkat.map((f) => (
+                <div
+                  key={f.label}
+                  className="group flex items-start gap-3 rounded-2xl border border-krem-200 bg-white p-4 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-hutan-300/60 hover:shadow-lift"
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-hutan-100 text-hutan-700 transition-transform duration-300 ease-out group-hover:scale-110">
+                    <f.icon size={20} stroke={1.75} />
                   </span>
-                  <p className="mt-1 text-sm text-tinta-600">{t.isi}</p>
-                </li>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold uppercase tracking-wide text-hutan-600">
+                      {f.label}
+                    </span>
+                    <span className="mt-0.5 block text-sm font-medium text-hutan-900">
+                      {f.nilai}
+                    </span>
+                  </span>
+                </div>
               ))}
-            </ol>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -273,7 +290,7 @@ export default function ProfilPage() {
             {/* Pelaksana Teknis (Kasi) */}
             <Reveal className="w-full">
               <BarisPerangkat label="Pelaksana Teknis">
-                <div className="grid w-full gap-4 sm:grid-cols-3">
+                <div className="flex w-full flex-wrap justify-center gap-4">
                   {perangkat.kasi.map((k, i) => (
                     <KotakPerangkat key={i} data={k} />
                   ))}

@@ -1,17 +1,32 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /*
   Lapisan visual hero beranda (client) — teks hero tetap di server (SEO).
   Terdiri dari:
-  - Foto latar dengan slow settle-zoom (ala opening dokumenter)
+  - Video latar (autoplay, muted, loop) dengan poster foto saat memuat;
+    bila pengguna meminta pengurangan animasi, tampil foto statis saja.
   - Color grading: gradasi hijau gelap + warm tone emas
   - Dua blob cahaya organik yang mengambang + bergeser mengikuti kursor
   Semua gerakan berbasis transform (GPU) & mati saat reduced-motion.
 */
+const POSTER = "/images/hero/hero-desa.jpg";
+const VIDEO = "/videos/hero-background.mp4";
+
 export default function HeroVisual() {
   const lapisRef = useRef(null); // wadah blob yang digeser kursor
+  // Default false agar SSR & first paint memutar video; diperbarui di klien.
+  const [reduced, setReduced] = useState(false);
+
+  // Deteksi preferensi pengurangan animasi → pakai foto statis, bukan video.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     const wadah = lapisRef.current;
@@ -46,13 +61,26 @@ export default function HeroVisual() {
 
   return (
     <>
-      {/* Foto latar — slow zoom sinematik saat halaman terbuka */}
+      {/* Latar: video (autoplay, muted, loop) — atau foto statis saat reduced-motion */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <img
-          src="/images/hero/hero-desa.jpg"
-          alt=""
-          className="animasi-hero-zoom absolute inset-0 h-full w-full object-cover"
-        />
+        {reduced ? (
+          <img
+            src={POSTER}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src={VIDEO}
+            poster={POSTER}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        )}
       </div>
 
       {/* Color grading: hijau pekat kiri-bawah → hangat kanan-atas */}
