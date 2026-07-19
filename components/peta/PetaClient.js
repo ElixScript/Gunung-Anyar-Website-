@@ -3,9 +3,50 @@
 import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { IconSearch, IconX, IconMapPin, IconListSearch } from "@tabler/icons-react";
+import {
+  IconSearch,
+  IconX,
+  IconMapPin,
+  IconListSearch,
+  IconRipple,
+  IconMountain,
+  IconPlant2,
+  IconCoffee,
+  IconBuildingCommunity,
+  IconStethoscope,
+  IconMasksTheater,
+  IconChefHat,
+  IconFeather,
+  IconCube,
+  IconSeeding,
+  IconGrain,
+  IconEgg,
+  IconFlame,
+  IconWall,
+} from "@tabler/icons-react";
 import { kategoriLokasi, getKategori } from "@/lib/site";
 import { getLokasi } from "@/lib/data";
+
+// Ikon khas tiap lokasi pada kartu daftar — dipetakan dari field "ikon"
+// di data/lokasi.json agar setiap tempat punya identitas visual sendiri
+// (bukan pin yang sama semua). Fallback: IconMapPin.
+const IKON_LOKASI = {
+  ripple: IconRipple,
+  mountain: IconMountain,
+  "plant-2": IconPlant2,
+  coffee: IconCoffee,
+  "building-community": IconBuildingCommunity,
+  stethoscope: IconStethoscope,
+  "masks-theater": IconMasksTheater,
+  "chef-hat": IconChefHat,
+  feather: IconFeather,
+  cube: IconCube,
+  seeding: IconSeeding,
+  grain: IconGrain,
+  egg: IconEgg,
+  flame: IconFlame,
+  wall: IconWall,
+};
 
 /*
   Pengendali halaman Peta.
@@ -199,6 +240,8 @@ export default function PetaClient({ center }) {
             {lokasiTampil.map((lok) => {
               const meta = getKategori(lok.kategori);
               const dipilih = lok.id === selectedId;
+              // Ikon unik per lokasi (fallback pin bila belum diatur di data)
+              const IkonLokasi = IKON_LOKASI[lok.ikon] || IconMapPin;
               return (
                 <li key={lok.id}>
                   <button
@@ -214,7 +257,7 @@ export default function PetaClient({ center }) {
                       className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-sm transition-transform duration-300 ease-out group-hover:scale-110"
                       style={{ backgroundColor: meta ? meta.warna : "#4a7c2e" }}
                     >
-                      <IconMapPin size={18} />
+                      <IkonLokasi size={18} stroke={1.9} />
                     </span>
                     <span className="min-w-0">
                       <span className="block font-semibold text-hutan-900">{lok.nama}</span>

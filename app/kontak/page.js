@@ -11,13 +11,12 @@ import {
 import { PageHero, SectionHeading } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import MiniMap from "@/components/peta/MiniMap";
-import KontakForm from "@/components/kontak/KontakForm";
 import { site } from "@/lib/site";
 import { getLokasiById } from "@/lib/data";
 
 export const metadata = {
   title: "Kontak & Pengaduan",
-  description: `Hubungi Pemerintah ${site.namaDesa}. Alamat, telepon, email, jam pelayanan, lokasi kantor desa, dan formulir pesan.`,
+  description: `Hubungi Pemerintah ${site.namaDesa}. Alamat, telepon, email, jam pelayanan, dan lokasi kantor desa.`,
   alternates: { canonical: "/kontak" },
 };
 
@@ -28,7 +27,7 @@ const faq = [
   },
   {
     t: "Bagaimana cara memasarkan produk UMKM saya di website ini?",
-    j: "Hubungi perangkat desa atau kirim pesan melalui formulir di halaman ini. Sampaikan nama usaha, produk, foto, dan kontak Anda untuk didaftarkan ke direktori UMKM.",
+    j: "Hubungi perangkat desa melalui WhatsApp atau email yang tertera di halaman ini. Sampaikan nama usaha, produk, foto, dan kontak Anda untuk didaftarkan ke direktori UMKM.",
   },
   {
     t: "Apakah data pada website ini sudah final?",
@@ -41,9 +40,15 @@ export default function KontakPage() {
 
   const infoKontak = [
     { icon: IconMapPin, label: "Alamat", isi: site.kontak.alamat },
-    { icon: IconPhone, label: "Telepon", isi: site.kontak.telepon },
+    { icon: IconPhone, label: "Telepon", isi: site.kontak.telepon, href: `tel:${site.kontak.telepon.replace(/\s/g, "")}` },
     { icon: IconMail, label: "Email", isi: site.kontak.email, href: `mailto:${site.kontak.email}` },
     { icon: IconClock, label: "Jam Pelayanan", isi: site.kontak.jamPelayanan },
+  ];
+
+  const sosial = [
+    { href: site.sosial.instagram, icon: IconBrandInstagram, label: "Instagram" },
+    { href: site.sosial.facebook, icon: IconBrandFacebook, label: "Facebook" },
+    { href: site.sosial.youtube, icon: IconBrandYoutube, label: "YouTube" },
   ];
 
   return (
@@ -55,77 +60,85 @@ export default function KontakPage() {
       />
 
       <section className="container-desa py-12">
-        <div className="grid gap-10 lg:grid-cols-2">
-          {/* Kolom kiri: info + peta + sosial */}
-          <Reveal>
-            <SectionHeading eyebrow="Informasi" judul="Kantor Desa Gunung Anyar" />
-            <ul className="mt-6 space-y-4">
-              {infoKontak.map((k) => (
-                <li key={k.label} className="flex gap-3">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-hutan-100 text-hutan-700">
-                    <k.icon size={20} />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-hutan-900">{k.label}</p>
-                    {k.href ? (
-                      <a href={k.href} className="text-sm text-tinta-600 hover:text-hutan-700">
-                        {k.isi}
-                      </a>
-                    ) : (
-                      <p className="text-sm text-tinta-600">{k.isi}</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+        <div className="grid items-stretch gap-8 lg:grid-cols-2">
+          {/* Kolom kiri: kartu informasi + kanal kontak langsung */}
+          <Reveal className="h-full">
+            <div className="flex h-full flex-col rounded-card border border-krem-200 bg-white p-6 shadow-sm sm:p-8">
+              <SectionHeading eyebrow="Informasi" judul="Kantor Desa Gunung Anyar" />
 
-            {/* WhatsApp cepat + media sosial */}
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a
-                href={`https://wa.me/${site.kontak.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
-              >
-                <IconBrandWhatsapp size={18} /> Chat WhatsApp
-              </a>
-              <div className="flex gap-2">
-                {[
-                  { href: site.sosial.instagram, icon: IconBrandInstagram, label: "Instagram" },
-                  { href: site.sosial.facebook, icon: IconBrandFacebook, label: "Facebook" },
-                  { href: site.sosial.youtube, icon: IconBrandYoutube, label: "YouTube" },
-                ].map((s) => (
+              <ul className="mt-6 space-y-4">
+                {infoKontak.map((k) => (
+                  <li key={k.label} className="flex gap-3">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-hutan-100 text-hutan-700">
+                      <k.icon size={20} />
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-hutan-900">{k.label}</p>
+                      {k.href ? (
+                        <a href={k.href} className="text-sm text-tinta-600 transition-colors hover:text-hutan-700">
+                          {k.isi}
+                        </a>
+                      ) : (
+                        <p className="text-sm text-tinta-600">{k.isi}</p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <hr className="my-6 border-krem-200" />
+
+              {/* Kanal langsung: WhatsApp & email */}
+              <div className="mt-auto">
+                <p className="text-sm font-semibold text-hutan-900">Hubungi langsung</p>
+                <p className="mt-1 text-sm text-tinta-600">
+                  Sampaikan pertanyaan atau pengaduan Anda lewat WhatsApp atau email — kami akan menanggapi secepatnya.
+                </p>
+                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                   <a
-                    key={s.label}
-                    href={s.href}
+                    href={`https://wa.me/${site.kontak.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="grid h-11 w-11 place-items-center rounded-full border border-krem-200 bg-white text-hutan-700 transition-colors hover:bg-hutan-100"
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-lift transition-all hover:-translate-y-0.5"
                   >
-                    <s.icon size={20} />
+                    <IconBrandWhatsapp size={18} /> Chat WhatsApp
                   </a>
-                ))}
-              </div>
-            </div>
+                  <a
+                    href={`mailto:${site.kontak.email}`}
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-hutan-300 px-5 py-3 text-sm font-semibold text-hutan-700 transition-all hover:-translate-y-0.5 hover:bg-hutan-100"
+                  >
+                    <IconMail size={18} /> Kirim Email
+                  </a>
+                </div>
 
-            {/* Peta lokasi kantor desa */}
-            <div className="mt-6">
-              <MiniMap
-                lokasi={kantorDesa ? [kantorDesa] : []}
-                center={site.koordinat}
-                zoom={15}
-                tinggi="h-72"
-              />
+                {/* Media sosial */}
+                <div className="mt-5 flex items-center gap-2">
+                  <span className="mr-1 text-sm text-tinta-600">Ikuti kami:</span>
+                  {sosial.map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      className="grid h-11 w-11 place-items-center rounded-full border border-krem-200 bg-white text-hutan-700 transition-colors hover:bg-hutan-100"
+                    >
+                      <s.icon size={20} />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
 
-          {/* Kolom kanan: formulir */}
-          <Reveal delay={120}>
-            <div className="rounded-card border border-krem-200 bg-white p-6 shadow-sm sm:p-8">
-              <SectionHeading eyebrow="Formulir" judul="Kirim pesan" className="mb-6" />
-              <KontakForm />
-            </div>
+          {/* Kolom kanan: peta lokasi kantor desa (mengisi tinggi kolom) */}
+          <Reveal className="h-full" delay={120}>
+            <MiniMap
+              lokasi={kantorDesa ? [kantorDesa] : []}
+              center={site.koordinat}
+              zoom={15}
+              tinggi="h-80 lg:h-full lg:min-h-[420px]"
+            />
           </Reveal>
         </div>
 

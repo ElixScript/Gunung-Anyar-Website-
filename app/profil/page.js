@@ -8,10 +8,8 @@ import {
   IconMapPin,
   IconMapPins,
   IconSchool,
-  IconStethoscope,
-  IconBuildingMosque,
-  IconDroplet,
-  IconBolt,
+  IconBuildingCommunity,
+  IconMap2,
   IconChartBar,
   IconTemperature,
   IconCloudRain,
@@ -84,29 +82,21 @@ const perangkat = {
     { nama: "Haeri", jabatan: "Kasun Kogedang" },
   ],
 };
-// Jumlah RW/RT contoh per dusun
-const wilayahExtra = {
-  "Dusun Krajan": { rw: 2, rt: 6 },
-  "Dusun Sumbersari": { rw: 2, rt: 5 },
-  "Dusun Tegalsari": { rw: 1, rt: 4 },
-  "Dusun Kalianyar": { rw: 1, rt: 3 },
-};
+// Lima dusun di Desa Gunung Anyar (sesuai profil & struktur kewilayahan)
+const dusunList = ["Krajan Baru", "Krajan Lama", "Kobunduh", "Kogedhang", "Kokebun"];
 
 export default function ProfilPage() {
   const stat = getStatistik();
-  const sarana = stat.sarana_prasarana;
+  const r = stat.ringkasan;
+  const wil = stat.wilayah_administratif;
   const kantorDesa = getLokasiById("loc-007");
 
-  const totalPendidikan = sarana.pendidikan.reduce((a, b) => a + b.jumlah, 0);
-  const totalKesehatan = sarana.kesehatan.reduce((a, b) => a + b.jumlah, 0);
-  const totalIbadah = sarana.ibadah.reduce((a, b) => a + b.jumlah, 0);
-
-  const saranaGrid = [
-    { icon: IconSchool, nilai: totalPendidikan, label: "Sarana Pendidikan", detail: sarana.pendidikan.map((p) => `${p.jumlah} ${p.jenis}`).join(" · ") },
-    { icon: IconStethoscope, nilai: totalKesehatan, label: "Fasilitas Kesehatan", detail: sarana.kesehatan.map((p) => `${p.jumlah} ${p.jenis}`).join(" · ") },
-    { icon: IconBuildingMosque, nilai: totalIbadah, label: "Tempat Ibadah", detail: sarana.ibadah.map((p) => `${p.jumlah} ${p.jenis}`).join(" · ") },
-    { icon: IconDroplet, nilai: `${sarana.akses_air_bersih_persen}%`, label: "Akses Air Bersih", detail: "Rumah tangga terlayani" },
-    { icon: IconBolt, nilai: `${sarana.akses_listrik_persen}%`, label: "Akses Listrik", detail: "Rumah tangga teraliri listrik" },
+  // Ringkasan pembagian wilayah (angka dari data administrasi desa)
+  const wilayahTiles = [
+    { icon: IconMapPins, nilai: dusunList.length, label: "Dusun" },
+    { icon: IconBuildingCommunity, nilai: wil.rw, label: "Rukun Warga (RW)" },
+    { icon: IconMap2, nilai: wil.rt, label: "Rukun Tetangga (RT)" },
+    { icon: IconUsers, nilai: r.jumlah_penduduk, label: "Jumlah Penduduk" },
   ];
 
   const batasItems = [
@@ -319,98 +309,98 @@ export default function ProfilPage() {
         <Reveal>
           <SectionHeading
             eyebrow="Pembagian Wilayah"
-            judul="Dusun, RW, RT & jumlah penduduk"
+            judul="Dusun, RW & RT"
+            deskripsi={`Desa Gunung Anyar terbagi ke dalam ${dusunList.length} dusun dengan total ${wil.rw} RW dan ${wil.rt} RT.`}
             className="mb-8"
           />
         </Reveal>
+
+        {/* Ringkasan angka wilayah */}
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {wilayahTiles.map((t, i) => (
+            <Reveal key={t.label} delay={i * 70} className="h-full">
+              <div className="group flex h-full items-center gap-4 rounded-card border border-krem-200 bg-white p-5 shadow-sm transition-all duration-500 ease-out hover:-translate-y-1 hover:border-hutan-300/60 hover:shadow-float">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-hutan-100 to-hutan-300/40 text-hutan-700 transition-transform duration-300 ease-out group-hover:scale-110">
+                  <t.icon size={24} stroke={1.75} />
+                </span>
+                <span>
+                  <span className="block font-display text-3xl font-semibold text-hutan-900">
+                    {formatAngka(t.nilai)}
+                  </span>
+                  <span className="text-sm text-tinta-600">{t.label}</span>
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Daftar nama dusun */}
         <Reveal>
-          <div className="overflow-x-auto rounded-card border border-krem-200">
-            <table className="w-full min-w-[520px] text-left text-sm">
-              <thead className="bg-hutan-800 text-white">
-                <tr>
-                  <th className="px-5 py-3 font-semibold">Dusun</th>
-                  <th className="px-5 py-3 font-semibold">RW</th>
-                  <th className="px-5 py-3 font-semibold">RT</th>
-                  <th className="px-5 py-3 text-right font-semibold">Jumlah Penduduk</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-krem-200 bg-white">
-                {stat.penduduk_per_dusun.map((d) => {
-                  const extra = wilayahExtra[d.dusun] || { rw: "-", rt: "-" };
-                  const total = d.laki_laki + d.perempuan;
-                  return (
-                    <tr key={d.dusun} className="hover:bg-krem/60">
-                      <td className="px-5 py-3 font-medium text-hutan-900">{d.dusun}</td>
-                      <td className="px-5 py-3 text-tinta-600">{extra.rw}</td>
-                      <td className="px-5 py-3 text-tinta-600">{extra.rt}</td>
-                      <td className="px-5 py-3 text-right text-tinta-600">
-                        {formatAngka(total)} jiwa
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-              <tfoot>
-                <tr className="bg-krem-200 font-semibold text-hutan-900">
-                  <td className="px-5 py-3">Total</td>
-                  <td className="px-5 py-3" colSpan={2}></td>
-                  <td className="px-5 py-3 text-right">
-                    {formatAngka(stat.ringkasan.jumlah_penduduk)} jiwa
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+          <div className="mt-6 rounded-card border border-krem-200 bg-white p-6">
+            <p className="text-xs font-semibold uppercase tracking-wide text-hutan-600">
+              Daftar Dusun
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2.5">
+              {dusunList.map((d) => (
+                <span
+                  key={d}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-krem-200 bg-hutan-100/50 px-4 py-2 text-sm font-medium text-hutan-800"
+                >
+                  <IconMapPin size={15} className="text-hutan-600" />
+                  {d}
+                </span>
+              ))}
+            </div>
           </div>
         </Reveal>
       </section>
 
-      {/* ---------- DEMOGRAFI RINGKAS ---------- */}
+      {/* ---------- SARANA PENDIDIKAN ---------- */}
       <section className="bg-white py-16">
         <div className="container-desa">
           <Reveal>
-            <div className="flex flex-col items-start justify-between gap-4 rounded-card bg-hutan-100/60 p-8 sm:flex-row sm:items-center">
-              <div>
-                <SectionHeading
-                  eyebrow="Demografi"
-                  judul="Ingin melihat data lengkap?"
-                  deskripsi="Grafik demografi (usia, gender, pendidikan, mata pencaharian) dan Indeks Desa Membangun tersaji lengkap di dashboard statistik."
-                />
-              </div>
+            <SectionHeading
+              eyebrow="Sarana Pendidikan"
+              judul="Fasilitas pendidikan di desa"
+              deskripsi={`Terdapat ${r.jumlah_sekolah} satuan pendidikan yang melayani warga dari jenjang dasar hingga menengah.`}
+              className="mb-8"
+            />
+          </Reveal>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {stat.sekolah.map((s, i) => (
+              <Reveal key={s.jenjang} delay={i * 70} className="h-full">
+                <div className="flex h-full items-center gap-4 rounded-card border border-krem-200 bg-krem/60 p-5 shadow-sm transition-all duration-500 ease-out hover:-translate-y-1 hover:border-hutan-300/60 hover:shadow-lift">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-hutan-100 text-hutan-700">
+                    <IconSchool size={24} stroke={1.75} />
+                  </span>
+                  <div>
+                    <span className="font-display text-3xl font-semibold text-hutan-900">
+                      {formatAngka(s.jumlah)}
+                    </span>
+                    <p className="font-medium text-tinta">
+                      {s.jenjang === "SD" ? "Sekolah Dasar" : s.jenjang === "SMP" ? "Sekolah Menengah Pertama" : "Sekolah Menengah Atas"}
+                    </p>
+                    <p className="mt-0.5 text-xs text-tinta-600">Jenjang {s.jenjang}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* CTA ke dashboard statistik */}
+          <Reveal>
+            <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-card bg-hutan-100/60 p-8 sm:flex-row sm:items-center">
+              <SectionHeading
+                eyebrow="Demografi"
+                judul="Ingin melihat data lengkap?"
+                deskripsi="Grafik sebaran usia, komposisi jenis kelamin, agama, dan wilayah administratif tersaji lengkap di dashboard statistik."
+              />
               <Tombol href="/statistik" variant="hutan" className="shrink-0">
                 <IconChartBar size={18} />
                 Buka Dashboard Statistik
               </Tombol>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- SARANA PRASARANA ---------- */}
-      <section className="container-desa py-16">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Sarana & Prasarana"
-            judul="Fasilitas yang tersedia di desa"
-            className="mb-8"
-          />
-        </Reveal>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {saranaGrid.map((s, i) => (
-            <Reveal key={s.label} delay={i * 60} className="h-full">
-              <div className="flex h-full items-start gap-4 rounded-card border border-krem-200 bg-white p-5 shadow-sm">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-hutan-100 text-hutan-700">
-                  <s.icon size={24} stroke={1.75} />
-                </span>
-                <div>
-                  <span className="font-display text-2xl font-semibold text-hutan-900">
-                    {s.nilai}
-                  </span>
-                  <p className="font-medium text-tinta">{s.label}</p>
-                  <p className="mt-1 text-xs text-tinta-600">{s.detail}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
     </>

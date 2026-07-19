@@ -22,7 +22,7 @@ export default function Beranda() {
   const beritaTerbaru = getBeritaTerbaru(3);
 
   // Potensi unggulan pilihan (satu per beberapa kategori agar beragam)
-  const potensiUnggulan = ["loc-001", "loc-004", "loc-005", "loc-009"]
+  const potensiUnggulan = ["loc-001", "loc-004", "umkm-005", "loc-009"]
     .map(getLokasiById)
     .filter(Boolean);
 

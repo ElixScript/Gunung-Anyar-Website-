@@ -1,72 +1,39 @@
 {
-  "_catatan": "SEMUA ANGKA DI BAWAH ADALAH DATA CONTOH untuk placeholder tampilan. Ganti dengan data asli hasil survei/BPS sebelum website dirilis.",
-  "sumber_data": "Data Contoh — ganti dengan: BPS Kabupaten Bondowoso & Survei Mandiri Tim KKN 2026",
+  "sumber_data": "Data Administrasi Desa Gunung Anyar",
   "tahun_data": 2025,
   "ringkasan": {
-    "jumlah_penduduk": 2864,
-    "jumlah_kk": 812,
-    "luas_wilayah_ha": 412,
-    "jumlah_dusun": 4,
-    "jumlah_potensi_unggulan": 9
+    "jumlah_penduduk": 4103,
+    "laki_laki": 2022,
+    "perempuan": 2081,
+    "jumlah_rw": 9,
+    "jumlah_rt": 38,
+    "jumlah_sekolah": 5
   },
-  "penduduk_per_dusun": [
-    { "dusun": "Dusun Krajan", "laki_laki": 486, "perempuan": 472 },
-    { "dusun": "Dusun Sumbersari", "laki_laki": 398, "perempuan": 405 },
-    { "dusun": "Dusun Tegalsari", "laki_laki": 312, "perempuan": 328 },
-    { "dusun": "Dusun Kalianyar", "laki_laki": 231, "perempuan": 232 }
+  "jenis_kelamin": [
+    { "kategori": "Laki-laki", "jumlah": 2022 },
+    { "kategori": "Perempuan", "jumlah": 2081 }
   ],
-  "kelompok_usia": [
-    { "kelompok": "0–14 tahun", "laki_laki": 318, "perempuan": 301 },
-    { "kelompok": "15–24 tahun", "laki_laki": 246, "perempuan": 238 },
-    { "kelompok": "25–44 tahun", "laki_laki": 402, "perempuan": 415 },
-    { "kelompok": "45–64 tahun", "laki_laki": 328, "perempuan": 342 },
-    { "kelompok": "65+ tahun", "laki_laki": 133, "perempuan": 141 }
+  "wilayah_administratif": { "rw": 9, "rt": 38 },
+  "rentang_usia": [
+    { "kelompok": "< 3", "jumlah": 166 },
+    { "kelompok": "4–6", "jumlah": 473 },
+    { "kelompok": "7–12", "jumlah": 257 },
+    { "kelompok": "13–15", "jumlah": 363 },
+    { "kelompok": "16–18", "jumlah": 1152 },
+    { "kelompok": "19–59", "jumlah": 1456 },
+    { "kelompok": "> 60", "jumlah": 236 }
   ],
-  "mata_pencaharian": [
-    { "jenis": "Petani & Buruh Tani", "jumlah": 642 },
-    { "jenis": "Pekebun (Kopi)", "jumlah": 214 },
-    { "jenis": "Pedagang & UMKM", "jumlah": 168 },
-    { "jenis": "Wiraswasta", "jumlah": 121 },
-    { "jenis": "Karyawan Swasta", "jumlah": 96 },
-    { "jenis": "PNS/TNI/Polri", "jumlah": 38 },
-    { "jenis": "Lainnya", "jumlah": 74 }
+  "sekolah": [
+    { "jenjang": "SD", "jumlah": 3 },
+    { "jenjang": "SMP", "jumlah": 1 },
+    { "jenjang": "SMA", "jumlah": 1 }
   ],
-  "tingkat_pendidikan": [
-    { "jenjang": "Tidak/Belum Sekolah", "jumlah": 286 },
-    { "jenjang": "SD/Sederajat", "jumlah": 892 },
-    { "jenjang": "SMP/Sederajat", "jumlah": 704 },
-    { "jenjang": "SMA/Sederajat", "jumlah": 638 },
-    { "jenjang": "Diploma", "jumlah": 118 },
-    { "jenjang": "Sarjana (S1/S2)", "jumlah": 226 }
-  ],
-  "tren_penduduk_5_tahun": [
-    { "tahun": 2021, "jumlah": 2712 },
-    { "tahun": 2022, "jumlah": 2758 },
-    { "tahun": 2023, "jumlah": 2796 },
-    { "tahun": 2024, "jumlah": 2831 },
-    { "tahun": 2025, "jumlah": 2864 }
-  ],
-  "idm": {
-    "skor": 0.7124,
-    "status": "Berkembang",
-    "tahun": 2024
-  },
-  "sarana_prasarana": {
-    "pendidikan": [
-      { "jenis": "PAUD/TK", "jumlah": 3 },
-      { "jenis": "SD/MI", "jumlah": 2 },
-      { "jenis": "SMP/MTs", "jumlah": 1 }
-    ],
-    "kesehatan": [
-      { "jenis": "Puskesmas Pembantu", "jumlah": 1 },
-      { "jenis": "Posyandu", "jumlah": 5 },
-      { "jenis": "Bidan Desa", "jumlah": 2 }
-    ],
-    "ibadah": [
-      { "jenis": "Masjid", "jumlah": 6 },
-      { "jenis": "Musala", "jumlah": 14 }
-    ],
-    "akses_air_bersih_persen": 88,
-    "akses_listrik_persen": 99
-  }
+  "agama": [
+    { "nama": "Islam", "jumlah": 4094 },
+    { "nama": "Kristen", "jumlah": 6 },
+    { "nama": "Katolik", "jumlah": 2 },
+    { "nama": "Hindu", "jumlah": 0 },
+    { "nama": "Budha", "jumlah": 0 },
+    { "nama": "Konghuchu", "jumlah": 0 }
+  ]
 }

@@ -17,7 +17,6 @@ Berisi: profil desa, **peta potensi interaktif**, **dashboard statistik**, direk
 - **Leaflet + react-leaflet** — peta interaktif (tile gratis OpenStreetMap, tanpa API key)
 - **Chart.js + react-chartjs-2** — grafik statistik
 - **@tabler/icons-react** — ikon
-- **Formspree** — pengiriman formulir kontak (tanpa server)
 
 Karena hasil akhirnya file statis, website bisa di-*hosting* **gratis** di GitHub Pages, Netlify, atau Vercel.
 
@@ -80,7 +79,7 @@ Semua data dikumpulkan agar mudah diedit **tanpa perlu paham React**:
 
 | Yang ingin diubah | File yang diedit |
 |---|---|
-| Nama desa, kontak, alamat, media sosial, koordinat, ID Formspree | `lib/site.js` |
+| Nama desa, kontak, alamat, media sosial, koordinat | `lib/site.js` |
 | Lokasi & potensi di peta (juga dipakai halaman Potensi & UMKM) | `data/lokasi.json` |
 | Angka statistik & sarana prasarana | `data/statistik.json` |
 | Berita/artikel | `data/berita.json` |
@@ -99,18 +98,6 @@ Cara mendapatkan koordinat: buka [openstreetmap.org](https://www.openstreetmap.o
 ### Menambah/mengganti foto
 Letakkan file gambar di folder `public/images/...` sesuai kategori, lalu tulis path-nya di data (contoh: `/images/lokasi/nama-foto.jpg`).
 Selama foto belum ada, sistem menampilkan placeholder hijau otomatis. Disarankan memakai format **WebP/JPG** yang sudah dikompres agar cepat dibuka.
-
----
-
-## 📨 Mengaktifkan Formulir Kontak (Formspree)
-
-1. Daftar gratis di [formspree.io](https://formspree.io).
-2. Buat **New Form**, arahkan ke email desa.
-3. Salin **ID form** (bagian setelah `/f/`, contoh `mzbqwxyz`).
-4. Tempel pada `formspreeId` di file `lib/site.js`.
-
-Selesai — setiap pesan dari formulir kontak akan masuk ke email tersebut.
-Jika belum diatur, formulir menampilkan peringatan dan tetap menyediakan tautan email langsung.
 
 ---
 

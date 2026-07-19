@@ -3,6 +3,7 @@
     "id": "loc-001",
     "nama": "Air Terjun Sumber Rejeng",
     "kategori": "wisata",
+    "ikon": "ripple",
     "latitude": -7.9231,
     "longitude": 113.9558,
     "deskripsi": "Air terjun bertingkat setinggi kurang lebih 18 meter dengan kolam alami berair jernih di kaki lereng. Suasana sejuk dengan rimbunnya pepohonan bambu di sekelilingnya.",
@@ -22,6 +23,7 @@
     "id": "loc-002",
     "nama": "Bukit Pandang Anyar",
     "kategori": "wisata",
+    "ikon": "mountain",
     "latitude": -7.9182,
     "longitude": 113.9647,
     "deskripsi": "Puncak bukit dengan panorama hamparan sawah dan Gunung Raung di kejauhan. Titik favorit untuk menikmati matahari terbit dan berkemah akhir pekan.",
@@ -37,6 +39,7 @@
     "id": "loc-003",
     "nama": "Hamparan Sawah Krajan",
     "kategori": "pertanian",
+    "ikon": "plant-2",
     "latitude": -7.9298,
     "longitude": 113.9601,
     "deskripsi": "Lahan sawah irigasi produktif yang menjadi lumbung padi utama desa. Menghasilkan padi dua kali musim tanam dalam setahun.",
@@ -53,6 +56,7 @@
     "id": "loc-004",
     "nama": "Kebun Kopi Arabika Lereng Raung",
     "kategori": "pertanian",
+    "ikon": "coffee",
     "latitude": -7.9155,
     "longitude": 113.9689,
     "deskripsi": "Kebun kopi arabika rakyat di ketinggian yang menjadi bagian dari kawasan kopi khas Bondowoso. Dikelola kelompok tani setempat dengan pola tanam agroforestri.",
@@ -66,45 +70,12 @@
     }
   },
   {
-    "id": "loc-005",
-    "nama": "Rumah Kopi Anyar Roastery",
-    "kategori": "umkm",
-    "latitude": -7.9276,
-    "longitude": 113.9629,
-    "deskripsi": "Usaha pengolahan dan sangrai kopi arabika hasil kebun desa. Menjual biji sangrai dan bubuk kopi dengan kemasan siap kirim ke luar daerah.",
-    "info_tambahan": "3 tenaga kerja lokal · Melayani pesanan grosir & eceran",
-    "alamat": "Dusun Krajan, RT 01/RW 01",
-    "foto": "/images/lokasi/rumah-kopi-anyar.jpg",
-    "detail": {
-      "pemilik": "Bapak Suhartono",
-      "produk": "Kopi arabika sangrai & bubuk (kemasan 200 g)",
-      "harga": "Rp35.000 – Rp60.000",
-      "whatsapp": "6281200000001"
-    }
-  },
-  {
-    "id": "loc-006",
-    "nama": "Sentra Tape Bu Aminah",
-    "kategori": "umkm",
-    "latitude": -7.9312,
-    "longitude": 113.9575,
-    "deskripsi": "Produsen tape singkong khas Bondowoso yang legit dan manis alami. Produk unggulan oleh-oleh desa dengan kemasan besek tradisional.",
-    "info_tambahan": "Produksi harian ± 40 kg · Dikelola kelompok ibu rumah tangga",
-    "alamat": "Dusun Tegalsari, RT 03/RW 02",
-    "foto": "/images/lokasi/tape-bu-aminah.jpg",
-    "detail": {
-      "pemilik": "Ibu Aminah",
-      "produk": "Tape singkong & prol tape",
-      "harga": "Rp10.000 – Rp25.000",
-      "whatsapp": "6281200000002"
-    }
-  },
-  {
     "id": "loc-007",
     "nama": "Kantor Desa Gunung Anyar",
     "kategori": "fasilitas",
-    "latitude": -7.9285,
-    "longitude": 113.9612,
+    "ikon": "building-community",
+    "latitude": -7.8858,
+    "longitude": 113.9214,
     "deskripsi": "Pusat pemerintahan dan pelayanan administrasi warga Desa Gunung Anyar. Melayani pengurusan surat, kependudukan, dan informasi desa.",
     "info_tambahan": "Jam pelayanan: Senin–Jumat, 08.00–15.00 WIB",
     "alamat": "4W7C+PJX, Kokebun, Gn. Anyar, Tapen, Kabupaten Bondowoso, Jawa Timur 68283",
@@ -117,6 +88,7 @@
     "id": "loc-008",
     "nama": "Puskesmas Pembantu Gunung Anyar",
     "kategori": "fasilitas",
+    "ikon": "stethoscope",
     "latitude": -7.9269,
     "longitude": 113.9588,
     "deskripsi": "Fasilitas kesehatan tingkat desa yang melayani pemeriksaan umum, KIA, dan posyandu bagi warga sekitar.",
@@ -131,6 +103,7 @@
     "id": "loc-009",
     "nama": "Sanggar Seni Tari Gandrung Anyar",
     "kategori": "budaya",
+    "ikon": "masks-theater",
     "latitude": -7.9243,
     "longitude": 113.9633,
     "deskripsi": "Sanggar pelestarian kesenian tari dan musik tradisional desa. Menjadi tempat latihan generasi muda dan tampil pada perayaan hari besar desa.",
@@ -140,6 +113,127 @@
     "detail": {
       "waktu_tampil": "Perayaan HUT desa, hari kemerdekaan, & hajatan warga",
       "kontak_ketua": "Bapak Rahmat (Ketua Sanggar)"
+    }
+  },
+  {
+    "id": "umkm-001",
+    "nama": "Julekah Resto",
+    "kategori": "umkm",
+    "ikon": "chef-hat",
+    "latitude": -7.8719884865034,
+    "longitude": 113.918311390099,
+    "deskripsi": "Rumah makan milik warga yang menyajikan aneka masakan rumahan khas desa. Menjadi tempat makan andalan warga sekitar maupun pengunjung yang melintas.",
+    "info_tambahan": "Usaha kuliner warga Desa Gunung Anyar",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/julekah-resto.jpg",
+    "detail": {
+      "produk": "Aneka masakan rumahan & menu harian"
+    }
+  },
+  {
+    "id": "umkm-002",
+    "nama": "Ternak Bebek Petelur",
+    "kategori": "umkm",
+    "ikon": "feather",
+    "latitude": -7.88264845299895,
+    "longitude": 113.92489335129,
+    "deskripsi": "Usaha peternakan bebek petelur yang menghasilkan telur bebek segar setiap hari. Telurnya menjadi bahan baku telur asin serta dipasarkan ke warung dan pasar sekitar.",
+    "info_tambahan": "Peternakan rakyat warga desa",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/ternak-bebek-petelur.jpg",
+    "detail": {
+      "produk": "Telur bebek segar"
+    }
+  },
+  {
+    "id": "umkm-003",
+    "nama": "Industri Tahu Rumahan",
+    "kategori": "umkm",
+    "ikon": "cube",
+    "latitude": -7.89234030586635,
+    "longitude": 113.919001398962,
+    "deskripsi": "Industri rumahan pengolahan kedelai menjadi tahu segar. Diproduksi setiap hari secara tradisional dan dipasarkan ke pasar serta warung di desa dan sekitarnya.",
+    "info_tambahan": "Industri rumahan pengolahan kedelai",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/industri-tahu.jpg",
+    "detail": {
+      "produk": "Tahu segar"
+    }
+  },
+  {
+    "id": "umkm-004",
+    "nama": "Industri Tempe Rumahan",
+    "kategori": "umkm",
+    "ikon": "seeding",
+    "latitude": -7.88408808956553,
+    "longitude": 113.921011765127,
+    "deskripsi": "Usaha rumahan pembuatan tempe kedelai dengan proses fermentasi tradisional. Tempe segar dipasarkan setiap hari untuk memenuhi kebutuhan dapur warga desa.",
+    "info_tambahan": "Industri rumahan pengolahan kedelai",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/industri-tempe.jpg",
+    "detail": {
+      "produk": "Tempe kedelai"
+    }
+  },
+  {
+    "id": "umkm-005",
+    "nama": "Kacang Otok Husna",
+    "kategori": "umkm",
+    "ikon": "grain",
+    "latitude": -7.88585880790214,
+    "longitude": 113.924382249918,
+    "deskripsi": "Produsen kacang otok, camilan kacang gurih khas Bondowoso. Diolah secara rumahan dengan bumbu tradisional dan menjadi salah satu oleh-oleh khas desa.",
+    "info_tambahan": "Camilan khas Bondowoso buatan warga desa",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/kacang-otok-husna.jpg",
+    "detail": {
+      "produk": "Kacang otok (camilan kacang khas)"
+    }
+  },
+  {
+    "id": "umkm-006",
+    "nama": "Telur Asin Pak Elin",
+    "kategori": "umkm",
+    "ikon": "egg",
+    "latitude": -7.88554285224219,
+    "longitude": 113.924517112533,
+    "deskripsi": "Usaha pembuatan telur asin dari telur bebek pilihan. Diproses secara tradisional hingga menghasilkan telur asin masir yang gurih, cocok untuk lauk maupun oleh-oleh.",
+    "info_tambahan": "Usaha rumahan warga Desa Gunung Anyar",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/telur-asin-pak-elin.jpg",
+    "detail": {
+      "pemilik": "Pak Elin",
+      "produk": "Telur asin"
+    }
+  },
+  {
+    "id": "umkm-007",
+    "nama": "Penggoreng Krupuk",
+    "kategori": "umkm",
+    "ikon": "flame",
+    "latitude": -7.88373057152773,
+    "longitude": 113.924259054132,
+    "deskripsi": "Usaha penggorengan kerupuk yang memasok kerupuk renyah siap jual ke warung-warung dan pasar di sekitar desa setiap harinya.",
+    "info_tambahan": "Usaha rumahan warga Desa Gunung Anyar",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/penggoreng-krupuk.jpg",
+    "detail": {
+      "produk": "Kerupuk goreng siap jual"
+    }
+  },
+  {
+    "id": "umkm-008",
+    "nama": "Industri Bata Merah",
+    "kategori": "umkm",
+    "ikon": "wall",
+    "latitude": -7.88775809302814,
+    "longitude": 113.913709272973,
+    "deskripsi": "Industri rakyat pembuatan batu bata merah dari tanah liat setempat. Bata dicetak dan dibakar secara tradisional, menjadi bahan bangunan utama bagi warga desa dan sekitarnya.",
+    "info_tambahan": "Industri bahan bangunan rakyat",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/industri-bata-merah.jpg",
+    "detail": {
+      "produk": "Batu bata merah"
     }
   }
 ]
