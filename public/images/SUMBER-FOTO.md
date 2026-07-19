@@ -31,8 +31,21 @@ Sebelum publikasi resmi, cek ulang lisensi tiap file di halaman sumbernya
 | images/lokasi/air-terjun-sumber-rejeng.jpg | https://commons.wikimedia.org/wiki/File:Air_Terjun_Roro_Kuning.jpg |
 | images/lokasi/air-terjun-sumber-rejeng-2.jpg | https://commons.wikimedia.org/wiki/File:Air_terjun_haratai,kandangan,loksado,kalsel.jpg |
 | images/lokasi/sawah-krajan.jpg | https://commons.wikimedia.org/wiki/File:Bali,_Rice_fields_in_the_forest,_East_Bali,_Indonesia.jpg |
-| images/lokasi/pustu.jpg | https://commons.wikimedia.org/wiki/File:Posyandu_Desa_Batu_Lepoq_(2).jpg |
 | images/lokasi/sanggar-seni.jpg | https://commons.wikimedia.org/wiki/File:Ubud,_Balinese_dance,_Dancer,_Bali,_Indonesia.jpg |
+| images/lokasi/lapangan-lokomotif.jpg | https://commons.wikimedia.org/wiki/File:Lapangan_Sepak_Bola_Desa_Manunggal_Jaya.jpg (CC BY-SA 4.0) |
+| images/lokasi/lapangan-volly-garuda.jpg | https://commons.wikimedia.org/wiki/File:Lapangan_voli_di_lapangan_bola_stabat.jpg (CC BY-SA 4.0) |
+| images/lokasi/sdn-gunung-anyar-1.jpg | https://commons.wikimedia.org/wiki/File:Sekolah_Dasar_Negeri_57_Muara_Tembesi_-_Muara_Tembesi,_Batanghari,_JA.jpg (CC BY-SA 4.0) |
+| images/lokasi/sdn-gunung-anyar-2.jpg | https://commons.wikimedia.org/wiki/File:Halaman_SD_Negeri_Tirulor_1_Kediri.jpg (CC BY-SA 4.0) |
+| images/lokasi/paud-kasih-bunda.jpg | https://commons.wikimedia.org/wiki/File:Gedung_Sekolah_PAUD_Karang_Tanjung_Alian_Kebumen.jpg (CC BY-SA 4.0) |
+| images/lokasi/mushola-darul-jannah.jpg | https://commons.wikimedia.org/wiki/File:Musholla_Al-Falah,_Kel._Sidokumpul,_Kab._Lamongan_26-12-2024.jpg (CC0) |
+| images/lokasi/masjid-baiturrohim.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Jami_Baiturrohim_Desa_Kertasura.jpg (CC BY-SA 4.0) |
+| images/lokasi/masjid-al-amna.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Al-istiqomah_Kampung_Melayu_-_panoramio.jpg (CC BY 3.0) |
+| images/lokasi/masjid-raudlatul-hikmah.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Nurulhuda,_Desa_Beber.jpg (CC BY-SA 3.0) |
+| images/lokasi/masjid-miftahul-jannah.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Baiturrohmah,_Desa_Kondangsari.jpg (CC BY-SA 3.0) |
+| images/lokasi/mdta-miftahul-jannah.jpg | https://commons.wikimedia.org/wiki/File:TPQ_Al-Ma%27ruf_Beyan,_Pandanwangi-2.jpg (CC BY 4.0) |
+| images/lokasi/paud-ra-miftahul-jannah.jpg | https://commons.wikimedia.org/wiki/File:PAUD_AVODA_Papua_Barat.jpg (CC0) |
+| images/lokasi/madrasah-nurul-hidayah.jpg | https://commons.wikimedia.org/wiki/File:Ibtida_Awal_Banin_D_06.jpg (CC BY-SA 4.0) |
+| images/lokasi/bidan-ani-farmadiani.jpg | https://commons.wikimedia.org/wiki/File:Polindes_Desa_Lubuk_Layu,_Kecamatan_Samadua.jpg (CC BY-SA 2.0) |
 | images/lokasi/julekah-resto.jpg | https://commons.wikimedia.org/wiki/File:Nasi_Pecel_Daun_Jati.jpg (CC BY-SA 4.0) |
 | images/lokasi/ternak-bebek-petelur.jpg | https://commons.wikimedia.org/wiki/File:Ternak_Itik_di_Rawa.jpg (CC BY-SA 4.0, Hendry Hamim) |
 | images/lokasi/industri-tahu.jpg | https://commons.wikimedia.org/wiki/File:Proses_Pembuatan_Tahu.jpg (CC BY-SA 4.0, Ivuvisual) |

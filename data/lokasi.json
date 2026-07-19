@@ -85,18 +85,213 @@
     }
   },
   {
-    "id": "loc-008",
-    "nama": "Puskesmas Pembantu Gunung Anyar",
+    "id": "fas-001",
+    "nama": "Lapangan Lokomotif",
+    "kategori": "fasilitas",
+    "ikon": "ball-football",
+    "latitude": -7.87530553391391,
+    "longitude": 113.919955083629,
+    "deskripsi": "Lapangan sepak bola yang menjadi pusat kegiatan olahraga warga Desa Gunung Anyar. Digunakan untuk latihan, pertandingan antar-RT, hingga berbagai acara desa.",
+    "info_tambahan": "Sarana olahraga & ruang publik warga",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/lapangan-lokomotif.jpg",
+    "detail": {
+      "jenis_sarana": "Lapangan sepak bola"
+    }
+  },
+  {
+    "id": "fas-002",
+    "nama": "Lapangan Volly Ball Garuda",
+    "kategori": "fasilitas",
+    "ikon": "ball-volleyball",
+    "latitude": -7.87800333319773,
+    "longitude": 113.919858452959,
+    "deskripsi": "Lapangan bola voli yang aktif digunakan warga, terutama pada sore hari. Menjadi sarana olahraga sekaligus tempat berkumpulnya pemuda desa.",
+    "info_tambahan": "Sarana olahraga warga",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/lapangan-volly-garuda.jpg",
+    "detail": {
+      "jenis_sarana": "Lapangan bola voli"
+    }
+  },
+  {
+    "id": "fas-003",
+    "nama": "SDN Gunung Anyar 1",
+    "kategori": "fasilitas",
+    "ikon": "school",
+    "latitude": -7.88525350310263,
+    "longitude": 113.916318188404,
+    "deskripsi": "Sekolah Dasar Negeri yang menjadi salah satu pusat pendidikan dasar bagi anak-anak Desa Gunung Anyar.",
+    "info_tambahan": "Fasilitas pendidikan",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/sdn-gunung-anyar-1.jpg",
+    "detail": {
+      "jenjang": "Sekolah Dasar (SD)"
+    }
+  },
+  {
+    "id": "fas-004",
+    "nama": "SDN Gunung Anyar 2",
+    "kategori": "fasilitas",
+    "ikon": "school",
+    "latitude": -7.88027081360211,
+    "longitude": 113.922064736385,
+    "deskripsi": "Sekolah Dasar Negeri kedua di Desa Gunung Anyar yang melayani pendidikan dasar warga di sekitar wilayahnya.",
+    "info_tambahan": "Fasilitas pendidikan",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/sdn-gunung-anyar-2.jpg",
+    "detail": {
+      "jenjang": "Sekolah Dasar (SD)"
+    }
+  },
+  {
+    "id": "fas-005",
+    "nama": "PAUD Kasih Bunda",
+    "kategori": "fasilitas",
+    "ikon": "mood-kid",
+    "latitude": -7.88814056502203,
+    "longitude": 113.914615635929,
+    "deskripsi": "Lembaga Pendidikan Anak Usia Dini (PAUD) yang membina tumbuh kembang dan pendidikan awal anak-anak usia dini di desa.",
+    "info_tambahan": "Fasilitas pendidikan anak usia dini",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/paud-kasih-bunda.jpg",
+    "detail": {
+      "jenjang": "Pendidikan Anak Usia Dini (PAUD)"
+    }
+  },
+  {
+    "id": "fas-006",
+    "nama": "Mushola SD, SMP, SMK Darul Jannah",
+    "kategori": "fasilitas",
+    "ikon": "moon-stars",
+    "latitude": -7.88117641497161,
+    "longitude": 113.923701084623,
+    "deskripsi": "Mushola di lingkungan sekolah Darul Jannah (SD, SMP, SMK) yang menjadi sarana ibadah bagi para siswa dan warga sekitar.",
+    "info_tambahan": "Tempat ibadah lingkungan sekolah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/mushola-darul-jannah.jpg",
+    "detail": {
+      "jenis_sarana": "Mushola sekolah"
+    }
+  },
+  {
+    "id": "fas-007",
+    "nama": "Masjid Baiturrohim",
+    "kategori": "fasilitas",
+    "ikon": "building-mosque",
+    "latitude": -7.89106775813206,
+    "longitude": 113.91834368288,
+    "deskripsi": "Masjid yang menjadi salah satu pusat kegiatan ibadah dan keagamaan warga Desa Gunung Anyar.",
+    "info_tambahan": "Tempat ibadah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/masjid-baiturrohim.jpg",
+    "detail": {
+      "jenis_sarana": "Masjid"
+    }
+  },
+  {
+    "id": "fas-008",
+    "nama": "Masjid Al Amna",
+    "kategori": "fasilitas",
+    "ikon": "building-mosque",
+    "latitude": -7.88508780077355,
+    "longitude": 113.915515143645,
+    "deskripsi": "Masjid yang menjadi tempat ibadah dan kegiatan keagamaan bagi warga di sekitar wilayahnya.",
+    "info_tambahan": "Tempat ibadah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/masjid-al-amna.jpg",
+    "detail": {
+      "jenis_sarana": "Masjid"
+    }
+  },
+  {
+    "id": "fas-009",
+    "nama": "Masjid Raudlatul Hikmah",
+    "kategori": "fasilitas",
+    "ikon": "building-mosque",
+    "latitude": -7.87458346802116,
+    "longitude": 113.919858540481,
+    "deskripsi": "Masjid yang menjadi pusat ibadah dan kegiatan keagamaan warga di bagian utara Desa Gunung Anyar.",
+    "info_tambahan": "Tempat ibadah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/masjid-raudlatul-hikmah.jpg",
+    "detail": {
+      "jenis_sarana": "Masjid"
+    }
+  },
+  {
+    "id": "fas-010",
+    "nama": "Masjid Miftahul Jannah",
+    "kategori": "fasilitas",
+    "ikon": "building-mosque",
+    "latitude": -7.88231366500428,
+    "longitude": 113.923432429995,
+    "deskripsi": "Masjid yang menjadi tempat ibadah, pengajian, dan kegiatan keagamaan warga sekitar.",
+    "info_tambahan": "Tempat ibadah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/masjid-miftahul-jannah.jpg",
+    "detail": {
+      "jenis_sarana": "Masjid"
+    }
+  },
+  {
+    "id": "fas-011",
+    "nama": "MDTA Miftahul Jannah",
+    "kategori": "fasilitas",
+    "ikon": "book",
+    "latitude": -7.89113797334727,
+    "longitude": 113.919102591505,
+    "deskripsi": "Madrasah Diniyah Takmiliyah Awaliyah (MDTA) tempat anak-anak desa belajar ilmu agama pada sore hari sebagai pelengkap pendidikan formal.",
+    "info_tambahan": "Pendidikan keagamaan",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/mdta-miftahul-jannah.jpg",
+    "detail": {
+      "jenjang": "Madrasah Diniyah (MDTA)"
+    }
+  },
+  {
+    "id": "fas-012",
+    "nama": "PAUD dan RA Miftahul Jannah",
+    "kategori": "fasilitas",
+    "ikon": "mood-kid",
+    "latitude": -7.89116843550533,
+    "longitude": 113.918653703651,
+    "deskripsi": "Lembaga PAUD dan Raudhatul Athfal (RA) Miftahul Jannah yang menyelenggarakan pendidikan anak usia dini bernuansa keislaman.",
+    "info_tambahan": "Fasilitas pendidikan anak usia dini",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/paud-ra-miftahul-jannah.jpg",
+    "detail": {
+      "jenjang": "PAUD & Raudhatul Athfal (RA)"
+    }
+  },
+  {
+    "id": "fas-013",
+    "nama": "Madrasah Diniyah & Mushola Nurul Hidayah",
+    "kategori": "fasilitas",
+    "ikon": "book",
+    "latitude": -7.8879776225916,
+    "longitude": 113.914897496696,
+    "deskripsi": "Madrasah Diniyah dan mushola Nurul Hidayah yang menjadi sarana pendidikan agama sekaligus tempat ibadah warga sekitar.",
+    "info_tambahan": "Pendidikan keagamaan & tempat ibadah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/madrasah-nurul-hidayah.jpg",
+    "detail": {
+      "jenis_sarana": "Madrasah Diniyah & Mushola"
+    }
+  },
+  {
+    "id": "fas-014",
+    "nama": "Bidan Ani Farmadiani, S.ST",
     "kategori": "fasilitas",
     "ikon": "stethoscope",
-    "latitude": -7.9269,
-    "longitude": 113.9588,
-    "deskripsi": "Fasilitas kesehatan tingkat desa yang melayani pemeriksaan umum, KIA, dan posyandu bagi warga sekitar.",
-    "info_tambahan": "Layanan: Senin–Sabtu, 08.00–12.00 WIB",
-    "alamat": "Dusun Krajan, RT 05/RW 01",
-    "foto": "/images/lokasi/pustu.jpg",
+    "latitude": -7.88491350222046,
+    "longitude": 113.915668209216,
+    "deskripsi": "Praktik mandiri bidan yang melayani kesehatan ibu dan anak, persalinan, imunisasi, serta pemeriksaan kesehatan dasar bagi warga desa.",
+    "info_tambahan": "Fasilitas kesehatan",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/bidan-ani-farmadiani.jpg",
     "detail": {
-      "jam_operasional": "Senin–Sabtu, 08.00–12.00 WIB"
+      "layanan": "Kesehatan ibu & anak, persalinan, imunisasi"
     }
   },
   {

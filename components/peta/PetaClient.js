@@ -23,6 +23,13 @@ import {
   IconEgg,
   IconFlame,
   IconWall,
+  IconBallFootball,
+  IconBallVolleyball,
+  IconSchool,
+  IconMoodKid,
+  IconMoonStars,
+  IconBuildingMosque,
+  IconBook,
 } from "@tabler/icons-react";
 import { kategoriLokasi, getKategori } from "@/lib/site";
 import { getLokasi } from "@/lib/data";
@@ -46,6 +53,13 @@ const IKON_LOKASI = {
   egg: IconEgg,
   flame: IconFlame,
   wall: IconWall,
+  "ball-football": IconBallFootball,
+  "ball-volleyball": IconBallVolleyball,
+  school: IconSchool,
+  "mood-kid": IconMoodKid,
+  "moon-stars": IconMoonStars,
+  "building-mosque": IconBuildingMosque,
+  book: IconBook,
 };
 
 /*
