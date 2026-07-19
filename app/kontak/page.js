@@ -20,21 +20,6 @@ export const metadata = {
   alternates: { canonical: "/kontak" },
 };
 
-const faq = [
-  {
-    t: "Bagaimana cara mengurus surat keterangan di desa?",
-    j: "Datang ke kantor desa pada jam pelayanan dengan membawa KTP dan dokumen pendukung. Petugas akan membantu proses pengurusan surat yang Anda butuhkan.",
-  },
-  {
-    t: "Bagaimana cara memasarkan produk UMKM saya di website ini?",
-    j: "Hubungi perangkat desa melalui WhatsApp atau email yang tertera di halaman ini. Sampaikan nama usaha, produk, foto, dan kontak Anda untuk didaftarkan ke direktori UMKM.",
-  },
-  {
-    t: "Apakah data pada website ini sudah final?",
-    j: "Sebagian data masih berupa contoh dan akan terus diperbarui bersama perangkat desa agar sesuai kondisi terbaru.",
-  },
-];
-
 export default function KontakPage() {
   const kantorDesa = getLokasiById("loc-007");
 
@@ -140,25 +125,6 @@ export default function KontakPage() {
               tinggi="h-80 lg:h-full lg:min-h-[420px]"
             />
           </Reveal>
-        </div>
-
-        {/* FAQ */}
-        <div className="mt-16 max-w-3xl">
-          <SectionHeading eyebrow="FAQ" judul="Pertanyaan yang sering diajukan" className="mb-6" />
-          <div className="space-y-3">
-            {faq.map((f) => (
-              <details
-                key={f.t}
-                className="group rounded-2xl border border-krem-200 bg-white p-5 [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex cursor-pointer items-center justify-between gap-4 font-medium text-hutan-900">
-                  {f.t}
-                  <span className="text-hutan-600 transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-tinta-600">{f.j}</p>
-              </details>
-            ))}
-          </div>
         </div>
       </section>
     </>

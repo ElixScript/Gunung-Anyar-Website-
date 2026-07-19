@@ -30,6 +30,7 @@ import {
   IconMoonStars,
   IconBuildingMosque,
   IconBook,
+  IconBuildingStore,
 } from "@tabler/icons-react";
 import { kategoriLokasi, getKategori } from "@/lib/site";
 import { getLokasi } from "@/lib/data";
@@ -60,6 +61,7 @@ const IKON_LOKASI = {
   "moon-stars": IconMoonStars,
   "building-mosque": IconBuildingMosque,
   book: IconBook,
+  "building-store": IconBuildingStore,
 };
 
 /*
@@ -96,14 +98,17 @@ export default function PetaClient({ center }) {
   const [selectedId, setSelectedId] = useState(locAwal || null);
   // Lokasi yang detailnya sedang dibuka pada modal (null = modal tertutup)
   const [detailLokasi, setDetailLokasi] = useState(null);
+  // Kategori yang sedang dibuka pada daftar lokasi di bawah peta
+  const [kategoriTab, setKategoriTab] = useState(kategoriLokasi[0].key);
 
   // Jika halaman dibuka dengan ?loc=..., pastikan kategorinya aktif, pilih
-  // lokasi, dan langsung buka modal detailnya.
+  // lokasi, buka tab kategorinya, dan langsung buka modal detailnya.
   useEffect(() => {
     if (!locAwal) return;
     const lok = semuaLokasi.find((l) => l.id === locAwal);
     if (lok) {
       setKategoriAktif((prev) => new Set(prev).add(lok.kategori));
+      setKategoriTab(lok.kategori);
       setSelectedId(locAwal);
       setDetailLokasi(lok);
     }
@@ -232,62 +237,132 @@ export default function PetaClient({ center }) {
         </aside>
       </div>
 
-      {/* ---------- Daftar lokasi (list view) ----------
+      {/* ---------- Daftar lokasi (pilih kategori → kartu) ----------
           Penting untuk aksesibilitas & SEO: mesin pencari tidak dapat membaca
           isi di dalam peta interaktif, sehingga daftar ini menyediakan
-          teks yang dapat diindeks sekaligus navigasi alternatif tanpa peta. */}
-      <div>
-        <h2 className="flex items-center gap-2 text-xl font-semibold text-hutan-900">
-          <IconListSearch size={20} className="text-hutan-600" />
-          Daftar Lokasi ({lokasiTampil.length})
-        </h2>
-        <p className="mt-1 text-sm text-tinta-600">
-          Klik salah satu lokasi untuk melihat detailnya sekaligus menyorotnya di peta.
-        </p>
-
-        {lokasiTampil.length === 0 ? (
-          <p className="mt-6 rounded-xl bg-krem-200 px-4 py-6 text-center text-sm text-tinta-600">
-            Tidak ada lokasi yang cocok. Coba ubah filter atau kata kunci pencarian.
+          teks yang dapat diindeks sekaligus navigasi alternatif tanpa peta.
+          Alur: pengunjung memilih satu kategori lewat tombol berwarna,
+          barulah kartu lokasi kategori itu tampil — daftar tetap ringkas
+          walau total lokasinya banyak. */}
+      <div className="rounded-card border border-krem-200 bg-white p-5 shadow-sm sm:p-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="flex items-center gap-2 text-xl font-semibold text-hutan-900">
+            <IconListSearch size={20} className="text-hutan-600" />
+            Daftar Lokasi
+            <span className="rounded-full bg-hutan-100 px-2.5 py-0.5 text-sm font-semibold text-hutan-700">
+              {lokasiTampil.length}
+            </span>
+          </h2>
+          <p className="text-sm text-tinta-600">
+            Pilih kategori, lalu klik lokasi untuk menyorotnya di peta &amp; melihat detail.
           </p>
-        ) : (
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {lokasiTampil.map((lok) => {
-              const meta = getKategori(lok.kategori);
-              const dipilih = lok.id === selectedId;
-              // Ikon unik per lokasi (fallback pin bila belum diatur di data)
-              const IkonLokasi = IKON_LOKASI[lok.ikon] || IconMapPin;
-              return (
-                <li key={lok.id}>
-                  <button
-                    type="button"
-                    onClick={() => pilihLokasi(lok.id)}
-                    className={`group flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lift active:scale-[0.99] ${
-                      dipilih
-                        ? "border-emas-500 bg-emas-100/50 shadow-glow-emas"
-                        : "border-krem-200 bg-white hover:border-hutan-300/60"
-                    }`}
+        </div>
+
+        {/* Pemilih kategori: tombol berwarna dengan ikon + jumlah lokasi */}
+        <div
+          className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5"
+          role="tablist"
+          aria-label="Pilih kategori lokasi"
+        >
+          {kategoriLokasi.map((k) => {
+            const jumlah = lokasiTampil.filter((l) => l.kategori === k.key).length;
+            const aktif = kategoriTab === k.key;
+            const IkonKategori = IKON_LOKASI[k.icon] || IconMapPin;
+            return (
+              <button
+                key={k.key}
+                type="button"
+                role="tab"
+                aria-selected={aktif}
+                onClick={() => setKategoriTab(k.key)}
+                className={`group flex flex-col items-center gap-1.5 rounded-2xl border px-3 py-3.5 text-center transition-all duration-300 ease-out active:scale-[0.97] ${
+                  aktif
+                    ? "border-transparent text-white shadow-lift"
+                    : "border-krem-200 bg-krem/50 text-tinta-600 hover:-translate-y-0.5 hover:bg-white hover:shadow-sm"
+                }`}
+                style={aktif ? { backgroundColor: k.warna } : undefined}
+              >
+                <span
+                  className={`grid h-9 w-9 place-items-center rounded-full transition-transform duration-300 ease-out group-hover:scale-110 ${
+                    aktif ? "bg-white/20 text-white" : "text-white"
+                  }`}
+                  style={aktif ? undefined : { backgroundColor: k.warna }}
+                >
+                  <IkonKategori size={19} stroke={1.9} />
+                </span>
+                <span className={`text-xs font-semibold leading-snug ${aktif ? "text-white" : "text-hutan-900"}`}>
+                  {k.label}
+                </span>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                    aktif ? "bg-white/25 text-white" : "bg-krem-200 text-tinta-600"
+                  }`}
+                >
+                  {jumlah} lokasi
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Kartu lokasi kategori terpilih — muncul bertahap saat kategori diganti */}
+        {(() => {
+          const meta = getKategori(kategoriTab);
+          const items = lokasiTampil.filter((l) => l.kategori === kategoriTab);
+          if (items.length === 0) {
+            return (
+              <p className="mt-5 rounded-xl bg-krem-200 px-4 py-6 text-center text-sm text-tinta-600">
+                Tidak ada lokasi pada kategori ini yang cocok dengan filter/pencarian.
+                Coba kategori lain atau ubah kata kunci.
+              </p>
+            );
+          }
+          return (
+            <ul key={kategoriTab} className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((lok, i) => {
+                const dipilih = lok.id === selectedId;
+                const IkonLokasi = IKON_LOKASI[lok.ikon] || IconMapPin;
+                return (
+                  <li
+                    key={lok.id}
+                    className="animasi-kartu"
+                    style={{ animationDelay: `${i * 45}ms` }}
                   >
-                    <span
-                      className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-sm transition-transform duration-300 ease-out group-hover:scale-110"
-                      style={{ backgroundColor: meta ? meta.warna : "#4a7c2e" }}
+                    <button
+                      type="button"
+                      onClick={() => pilihLokasi(lok.id)}
+                      className={`group flex h-full w-full items-start gap-3 rounded-2xl border p-4 text-left transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lift active:scale-[0.99] ${
+                        dipilih
+                          ? "border-emas-500 bg-emas-100/50 shadow-glow-emas"
+                          : "border-krem-200 bg-white hover:border-hutan-300/60"
+                      }`}
                     >
-                      <IkonLokasi size={18} stroke={1.9} />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block font-semibold text-hutan-900">{lok.nama}</span>
-                      <span className="mt-0.5 block text-xs font-medium" style={{ color: meta?.warna }}>
-                        {meta?.label}
+                      <span
+                        className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-sm transition-transform duration-300 ease-out group-hover:scale-110"
+                        style={{ backgroundColor: meta ? meta.warna : "#4a7c2e" }}
+                      >
+                        <IkonLokasi size={18} stroke={1.9} />
                       </span>
-                      <span className="mt-1 line-clamp-2 block text-sm text-tinta-600">
-                        {lok.deskripsi}
+                      <span className="min-w-0">
+                        <span className="block font-semibold text-hutan-900">{lok.nama}</span>
+                        <span className="mt-1 line-clamp-2 block text-sm text-tinta-600">
+                          {lok.deskripsi}
+                        </span>
+                        <span
+                          className="mt-2 inline-flex items-center gap-1 text-xs font-semibold"
+                          style={{ color: meta?.warna }}
+                        >
+                          <IconMapPin size={13} />
+                          Lihat di peta
+                        </span>
                       </span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          );
+        })()}
       </div>
 
       {/* ---------- Modal detail lokasi (muncul saat marker/daftar diklik) ---------- */}

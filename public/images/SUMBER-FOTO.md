@@ -23,15 +23,11 @@ Sebelum publikasi resmi, cek ulang lisensi tiap file di halaman sumbernya
 | images/galeri/budaya-2.jpg | https://commons.wikimedia.org/wiki/File:Traditional_Dance_in_Yogyakarta,_Indonesia.jpg |
 | images/galeri/masyarakat-1.jpg | https://commons.wikimedia.org/wiki/File:Gotong_Royong_Pindah_Rumah.jpg |
 | images/galeri/masyarakat-2.jpg | https://commons.wikimedia.org/wiki/File:Timbang_Balita_di_Posyandu_Porendeang.jpg |
-| images/galeri/masyarakat-3.jpg, images/lokasi/kebun-kopi.jpg | https://commons.wikimedia.org/wiki/File:Coffee_berries_harvest_in_Anaimalai_Hills,_Southern_Western_Ghats_P1110955.jpg |
+| images/galeri/masyarakat-3.jpg | https://commons.wikimedia.org/wiki/File:Coffee_berries_harvest_in_Anaimalai_Hills,_Southern_Western_Ghats_P1110955.jpg |
 | images/galeri/kkn-1.jpg | https://commons.wikimedia.org/wiki/File:Different_point_of_view_of_roasted_beans_coming_out_from_the_roastery.jpg |
-| images/galeri/kkn-2.jpg, images/lokasi/bukit-pandang-anyar.jpg | https://commons.wikimedia.org/wiki/File:Sunrise_Puncak_Sikunir_Dieng.jpg |
+| images/galeri/kkn-2.jpg | https://commons.wikimedia.org/wiki/File:Sunrise_Puncak_Sikunir_Dieng.jpg |
 | images/galeri/kkn-3.jpg | https://commons.wikimedia.org/wiki/File:Membantu_Kegiatan_Posyandu_Kalimalang.jpg |
 | images/galeri/kkn-4.jpg, images/lokasi/kantor-desa.jpg | https://commons.wikimedia.org/wiki/File:Kantor_Balai_Desa_Wedusan.jpg |
-| images/lokasi/air-terjun-sumber-rejeng.jpg | https://commons.wikimedia.org/wiki/File:Air_Terjun_Roro_Kuning.jpg |
-| images/lokasi/air-terjun-sumber-rejeng-2.jpg | https://commons.wikimedia.org/wiki/File:Air_terjun_haratai,kandangan,loksado,kalsel.jpg |
-| images/lokasi/sawah-krajan.jpg | https://commons.wikimedia.org/wiki/File:Bali,_Rice_fields_in_the_forest,_East_Bali,_Indonesia.jpg |
-| images/lokasi/sanggar-seni.jpg | https://commons.wikimedia.org/wiki/File:Ubud,_Balinese_dance,_Dancer,_Bali,_Indonesia.jpg |
 | images/lokasi/lapangan-lokomotif.jpg | https://commons.wikimedia.org/wiki/File:Lapangan_Sepak_Bola_Desa_Manunggal_Jaya.jpg (CC BY-SA 4.0) |
 | images/lokasi/lapangan-volly-garuda.jpg | https://commons.wikimedia.org/wiki/File:Lapangan_voli_di_lapangan_bola_stabat.jpg (CC BY-SA 4.0) |
 | images/lokasi/sdn-gunung-anyar-1.jpg | https://commons.wikimedia.org/wiki/File:Sekolah_Dasar_Negeri_57_Muara_Tembesi_-_Muara_Tembesi,_Batanghari,_JA.jpg (CC BY-SA 4.0) |

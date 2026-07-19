@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Peta Interaktif",
-  description: `Peta interaktif potensi dan lokasi penting ${site.namaDesa}: wisata alam, pertanian, UMKM, fasilitas umum, dan situs budaya. Klik penanda untuk melihat detail.`,
+  description: `Peta interaktif potensi dan lokasi penting ${site.namaDesa}: UMKM, pendidikan, tempat ibadah, olahraga, serta layanan pemerintahan & kesehatan. Klik penanda untuk melihat detail.`,
   alternates: { canonical: "/peta" },
 };
 

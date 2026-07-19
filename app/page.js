@@ -21,8 +21,8 @@ export const metadata = {
 export default function Beranda() {
   const beritaTerbaru = getBeritaTerbaru(3);
 
-  // Potensi unggulan pilihan (satu per beberapa kategori agar beragam)
-  const potensiUnggulan = ["loc-001", "loc-004", "umkm-005", "loc-009"]
+  // Potensi unggulan pilihan (UMKM khas desa)
+  const potensiUnggulan = ["umkm-001", "umkm-005", "umkm-006", "umkm-008"]
     .map(getLokasiById)
     .filter(Boolean);
 
@@ -119,7 +119,7 @@ export default function Beranda() {
             <SectionHeading
               eyebrow="Peta Potensi"
               judul="Telusuri potensi desa lewat peta interaktif"
-              deskripsi="Temukan lokasi wisata alam, lahan pertanian, UMKM, fasilitas umum, dan situs budaya desa. Klik setiap penanda untuk melihat foto dan informasi lengkapnya."
+              deskripsi="Temukan lokasi UMKM, sarana pendidikan, tempat ibadah, lapangan olahraga, hingga layanan pemerintahan & kesehatan desa. Klik setiap penanda untuk melihat foto dan informasi lengkapnya."
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <Tombol href="/peta" variant="hutan">
@@ -157,13 +157,13 @@ export default function Beranda() {
                   <path d="M40 0 Q90 90 60 250" fill="none" stroke="#b8842d" strokeWidth="2" />
                 </svg>
                 {/* Penanda contoh */}
-                <span className="absolute left-[30%] top-[45%] grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kat-wisata text-white shadow-lg">
+                <span className="absolute left-[30%] top-[45%] grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kat-umkm text-white shadow-lg">
                   <IconMapPin size={16} />
                 </span>
-                <span className="absolute left-[62%] top-[35%] grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kat-umkm text-white shadow-lg">
+                <span className="absolute left-[62%] top-[35%] grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kat-ibadah text-white shadow-lg">
                   <IconMapPin size={16} />
                 </span>
-                <span className="absolute left-[50%] top-[68%] grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kat-fasilitas text-white shadow-lg">
+                <span className="absolute left-[50%] top-[68%] grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kat-pendidikan text-white shadow-lg">
                   <IconMapPin size={16} />
                 </span>
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-hutan-900/70 to-transparent p-4">

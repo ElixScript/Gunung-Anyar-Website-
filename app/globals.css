@@ -39,11 +39,11 @@
   --color-tinta-600: #46503f; /* teks sekunder */
 
   /* --- Warna kategori peta & potensi (dipakai konsisten di seluruh situs) --- */
-  --color-kat-wisata: #0f6e56;
-  --color-kat-pertanian: #3b6d11;
   --color-kat-umkm: #993c1d;
-  --color-kat-fasilitas: #185fa5;
-  --color-kat-budaya: #534ab7;
+  --color-kat-pendidikan: #185fa5;
+  --color-kat-ibadah: #0f6e56;
+  --color-kat-olahraga: #534ab7;
+  --color-kat-layanan: #3b6d11;
 
   /* --- Tipografi: display berkarakter + sans mudah dibaca ---
      Font dimuat lewat <link> Google Fonts di app/layout.js */
@@ -229,6 +229,15 @@ body {
 }
 .animasi-masuk {
   animation: naik-masuk 0.9s var(--ease-out-expo) both;
+}
+
+/* Kartu daftar lokasi: muncul bertahap saat kategori dipilih */
+@keyframes kartu-masuk {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.animasi-kartu {
+  animation: kartu-masuk 0.5s var(--ease-out-expo) both;
 }
 
 /* Indikator scroll: titik meluncur di dalam garis */

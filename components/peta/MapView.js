@@ -17,16 +17,16 @@ import { getLokasiById } from "@/lib/data";
 
 // Glyph ikon (SVG putih) untuk tiap kategori — ditaruh di tengah penanda.
 const GLYPHS = {
-  wisata:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20l5-9 3 5 2-3 4 7"/></svg>',
-  pertanian:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13c-4 0-6-2-6-6 4 0 6 2 6 6z"/><path d="M12 11c0-3 2-5 6-5 0 3-2 5-6 5z"/></svg>',
   umkm:
     '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16v10H4z"/><path d="M4 9l1.2-4h13.6L20 9"/><path d="M4 9c0 1.5 1 2.5 2.4 2.5S8.8 10.5 8.8 9M8.8 9c0 1.5 1 2.5 2.4 2.5S13.6 10.5 13.6 9M13.6 9c0 1.5 1 2.5 2.4 2.5S20 10.5 20 9"/></svg>',
-  fasilitas:
+  pendidikan:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-4.5"/></svg>',
+  ibadah:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1 2-3 3.5-3 6a3 3 0 0 0 6 0c0-2.5-2-4-3-6z"/><path d="M5 21v-7h14v7"/><path d="M5 21h14"/><path d="M10 21v-3.5a2 2 0 0 1 4 0V21"/></svg>',
+  olahraga:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8l3.8 2.8-1.5 4.4H9.7l-1.5-4.4z"/></svg>',
+  layanan:
     '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-4h6v4"/><path d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>',
-  budaya:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>',
 };
 
 // Membuat ikon penanda berbentuk lingkaran berwarna sesuai kategori
