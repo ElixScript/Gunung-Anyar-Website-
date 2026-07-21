@@ -1,17 +1,57 @@
-# Sumber Foto Ilustrasi (Sementara)
+# Sumber Foto
 
-Semua foto di bawah ini adalah **foto ilustrasi/placeholder** yang diunduh dari
-**Wikimedia Commons** (foto bebas lisensi/domain publik & CC), bukan foto asli
-Desa Gunung Anyar. Tujuannya hanya agar tampilan situs enak dilihat sebelum
-foto dokumentasi asli dari tim pemetaan tersedia.
+Sebagian besar foto lokasi kini sudah memakai **foto asli dokumentasi lapangan
+Desa Gunung Anyar** (dikonversi dari file HEIC pada folder `foto untuk website/`,
+lalu diperkecil ke lebar maks 1400px, JPEG kualitas ~78 agar situs tetap ringan).
 
-**WAJIB diganti dengan foto asli sebelum website diserahkan/dipublikasikan
-secara resmi**, terutama untuk halaman Peta, Potensi, dan UMKM — karena foto
-di kategori tersebut melekat pada nama lokasi/usaha tertentu dan bisa
-menyesatkan jika tidak sesuai kondisi nyata.
+Sebagian foto lain (hero, galeri, dan beberapa lokasi yang belum ada foto aslinya)
+masih memakai **foto ilustrasi/placeholder** dari Wikimedia Commons (lisensi bebas /
+CC). Foto placeholder ini sebaiknya diganti bila dokumentasi aslinya sudah tersedia.
 
-Sebelum publikasi resmi, cek ulang lisensi tiap file di halaman sumbernya
-(sebagian CC BY-SA mewajibkan atribusi nama fotografer).
+---
+
+## Foto asli Desa Gunung Anyar (dokumentasi lapangan)
+
+| File di situs | Lokasi/usaha |
+|---|---|
+| images/lokasi/kantor-desa.jpg | Kantor / Balai Desa Gunung Anyar |
+| images/lokasi/bidan-ani-farmadiani.jpg | Bidan Ani Farmadiani, S.ST |
+| images/lokasi/julekah-resto.jpg | Julekah Resto |
+| images/lokasi/kacang-otok-husna.jpg | Kacang Otok Husna (folder "Kedelai") |
+| images/lokasi/penggoreng-krupuk.jpg | Penggoreng Krupuk |
+| images/lokasi/lapangan-lokomotif.jpg | Lapangan Lokomotif |
+| images/lokasi/lapangan-volly-garuda.jpg | Lapangan Volly Ball Garuda |
+| images/lokasi/madrasah-nurul-hidayah.jpg | Madrasah Diniyah & Mushola Nurul Hidayah |
+| images/lokasi/masjid-al-amna.jpg | Masjid Al Amna |
+| images/lokasi/masjid-baitul-makmur.jpg | Masjid Baitul Makmur |
+| images/lokasi/masjid-baiturrohim.jpg | Masjid Baiturrohim |
+| images/lokasi/masjid-miftahul-jannah.jpg | Masjid Miftahul Jannah |
+| images/lokasi/masjid-raudlatul-hikmah.jpg | Masjid Raudlatul Hikmah |
+| images/lokasi/mdta-miftahul-jannah.jpg | MDTA Miftahul Jannah |
+| images/lokasi/mushola-darul-jannah.jpg | Mushola SD, SMP, SMK Darul Jannah |
+| images/lokasi/paud-ra-miftahul-jannah.jpg | PAUD dan RA Miftahul Jannah |
+| images/lokasi/paud-kasih-bunda.jpg | PAUD Kasih Bunda |
+| images/lokasi/ternak-bebek-petelur.jpg | Ternak Bebek Petelur (folder "Peternak telur") |
+| images/lokasi/sdn-gunung-anyar-1.jpg | SDN Gunung Anyar 1 |
+| images/lokasi/sdn-gunung-anyar-2.jpg | SDN Gunung Anyar 2 |
+| images/lokasi/industri-tahu.jpg | Industri Tahu Rumahan |
+| images/lokasi/telur-asin-pak-elin.jpg | Telur Asin Pak Elin |
+
+> Catatan: folder `Kedelai` (berisi foto camilan kacang kedelai) dipetakan ke
+> **Kacang Otok Husna** — satu-satunya UMKM yang belum punya folder foto sendiri.
+> Bila ternyata kurang tepat, tinggal ganti file `kacang-otok-husna.jpg`.
+
+## Foto masih placeholder (Wikimedia Commons)
+
+Folder `Bata` dan `Tempe` masih kosong sehingga dua UMKM ini tetap memakai
+foto ilustrasi:
+
+| File di situs | Sumber (Wikimedia Commons) |
+|---|---|
+| images/lokasi/industri-tempe.jpg | https://commons.wikimedia.org/wiki/File:Tempe_Kedelai.jpg (CC BY-SA 4.0, Dhimas Ageng Bayu Saputra) |
+| images/lokasi/industri-bata-merah.jpg | https://commons.wikimedia.org/wiki/File:Pembuatan_Batu_Bata_di_Desa_Pandanwangi-1.jpg (CC BY 4.0, Indonesiagood) |
+
+Foto hero & galeri (masih ilustrasi):
 
 | File di situs | Sumber (Wikimedia Commons) |
 |---|---|
@@ -27,29 +67,7 @@ Sebelum publikasi resmi, cek ulang lisensi tiap file di halaman sumbernya
 | images/galeri/kkn-1.jpg | https://commons.wikimedia.org/wiki/File:Different_point_of_view_of_roasted_beans_coming_out_from_the_roastery.jpg |
 | images/galeri/kkn-2.jpg | https://commons.wikimedia.org/wiki/File:Sunrise_Puncak_Sikunir_Dieng.jpg |
 | images/galeri/kkn-3.jpg | https://commons.wikimedia.org/wiki/File:Membantu_Kegiatan_Posyandu_Kalimalang.jpg |
-| images/galeri/kkn-4.jpg, images/lokasi/kantor-desa.jpg | https://commons.wikimedia.org/wiki/File:Kantor_Balai_Desa_Wedusan.jpg |
-| images/lokasi/lapangan-lokomotif.jpg | https://commons.wikimedia.org/wiki/File:Lapangan_Sepak_Bola_Desa_Manunggal_Jaya.jpg (CC BY-SA 4.0) |
-| images/lokasi/lapangan-volly-garuda.jpg | https://commons.wikimedia.org/wiki/File:Lapangan_voli_di_lapangan_bola_stabat.jpg (CC BY-SA 4.0) |
-| images/lokasi/sdn-gunung-anyar-1.jpg | https://commons.wikimedia.org/wiki/File:Sekolah_Dasar_Negeri_57_Muara_Tembesi_-_Muara_Tembesi,_Batanghari,_JA.jpg (CC BY-SA 4.0) |
-| images/lokasi/sdn-gunung-anyar-2.jpg | https://commons.wikimedia.org/wiki/File:Halaman_SD_Negeri_Tirulor_1_Kediri.jpg (CC BY-SA 4.0) |
-| images/lokasi/paud-kasih-bunda.jpg | https://commons.wikimedia.org/wiki/File:Gedung_Sekolah_PAUD_Karang_Tanjung_Alian_Kebumen.jpg (CC BY-SA 4.0) |
-| images/lokasi/mushola-darul-jannah.jpg | https://commons.wikimedia.org/wiki/File:Musholla_Al-Falah,_Kel._Sidokumpul,_Kab._Lamongan_26-12-2024.jpg (CC0) |
-| images/lokasi/masjid-baiturrohim.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Jami_Baiturrohim_Desa_Kertasura.jpg (CC BY-SA 4.0) |
-| images/lokasi/masjid-al-amna.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Al-istiqomah_Kampung_Melayu_-_panoramio.jpg (CC BY 3.0) |
-| images/lokasi/masjid-raudlatul-hikmah.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Nurulhuda,_Desa_Beber.jpg (CC BY-SA 3.0) |
-| images/lokasi/masjid-miftahul-jannah.jpg | https://commons.wikimedia.org/wiki/File:Masjid_Baiturrohmah,_Desa_Kondangsari.jpg (CC BY-SA 3.0) |
-| images/lokasi/mdta-miftahul-jannah.jpg | https://commons.wikimedia.org/wiki/File:TPQ_Al-Ma%27ruf_Beyan,_Pandanwangi-2.jpg (CC BY 4.0) |
-| images/lokasi/paud-ra-miftahul-jannah.jpg | https://commons.wikimedia.org/wiki/File:PAUD_AVODA_Papua_Barat.jpg (CC0) |
-| images/lokasi/madrasah-nurul-hidayah.jpg | https://commons.wikimedia.org/wiki/File:Ibtida_Awal_Banin_D_06.jpg (CC BY-SA 4.0) |
-| images/lokasi/bidan-ani-farmadiani.jpg | https://commons.wikimedia.org/wiki/File:Polindes_Desa_Lubuk_Layu,_Kecamatan_Samadua.jpg (CC BY-SA 2.0) |
-| images/lokasi/julekah-resto.jpg | https://commons.wikimedia.org/wiki/File:Nasi_Pecel_Daun_Jati.jpg (CC BY-SA 4.0) |
-| images/lokasi/ternak-bebek-petelur.jpg | https://commons.wikimedia.org/wiki/File:Ternak_Itik_di_Rawa.jpg (CC BY-SA 4.0, Hendry Hamim) |
-| images/lokasi/industri-tahu.jpg | https://commons.wikimedia.org/wiki/File:Proses_Pembuatan_Tahu.jpg (CC BY-SA 4.0, Ivuvisual) |
-| images/lokasi/industri-tempe.jpg | https://commons.wikimedia.org/wiki/File:Tempe_Kedelai.jpg (CC BY-SA 4.0, Dhimas Ageng Bayu Saputra) |
-| images/lokasi/kacang-otok-husna.jpg | https://commons.wikimedia.org/wiki/File:Kacang_goreng_fried_peanuts.JPG (CC BY 3.0) |
-| images/lokasi/telur-asin-pak-elin.jpg | https://commons.wikimedia.org/wiki/File:Telur_Asin.jpg (CC BY-SA 4.0, Edgina36) |
-| images/lokasi/penggoreng-krupuk.jpg | https://commons.wikimedia.org/wiki/File:Menggoreng_kerupuk.jpg (CC BY-SA 4.0, NUNU ANUGRAH) |
-| images/lokasi/industri-bata-merah.jpg | https://commons.wikimedia.org/wiki/File:Pembuatan_Batu_Bata_di_Desa_Pandanwangi-1.jpg (CC BY 4.0, Indonesiagood) |
+| images/galeri/kkn-4.jpg | https://commons.wikimedia.org/wiki/File:Kantor_Balai_Desa_Wedusan.jpg |
 
-Catatan: semua file sudah dikompres & diperkecil (maks lebar 1600px, JPEG
-kualitas ~78) agar situs tetap cepat dibuka.
+Sebelum publikasi resmi, cek ulang lisensi tiap file placeholder di halaman sumbernya
+(sebagian CC BY-SA mewajibkan atribusi nama fotografer).

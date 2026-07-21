@@ -4,9 +4,9 @@
     "nama": "Kantor Desa Gunung Anyar",
     "kategori": "layanan",
     "ikon": "building-community",
-    "latitude": -7.8858,
-    "longitude": 113.9214,
-    "deskripsi": "Pusat pemerintahan dan pelayanan administrasi warga Desa Gunung Anyar. Melayani pengurusan surat, kependudukan, dan informasi desa.",
+    "latitude": -7.88560420109162,
+    "longitude": 113.921614194951,
+    "deskripsi": "Pusat pemerintahan dan pelayanan administrasi warga Desa Gunung Anyar, sekaligus balai pertemuan dan musyawarah warga. Melayani pengurusan surat, kependudukan, dan informasi desa.",
     "info_tambahan": "Jam pelayanan: Senin–Jumat, 08.00–15.00 WIB",
     "alamat": "4W7C+PJX, Kokebun, Gn. Anyar, Tapen, Kabupaten Bondowoso, Jawa Timur 68283",
     "foto": "/images/lokasi/kantor-desa.jpg",
@@ -49,8 +49,8 @@
     "nama": "SDN Gunung Anyar 1",
     "kategori": "pendidikan",
     "ikon": "school",
-    "latitude": -7.88525350310263,
-    "longitude": 113.916318188404,
+    "latitude": -7.88525352603599,
+    "longitude": 113.916314878267,
     "deskripsi": "Sekolah Dasar Negeri yang menjadi salah satu pusat pendidikan dasar bagi anak-anak Desa Gunung Anyar.",
     "info_tambahan": "Fasilitas pendidikan",
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
@@ -139,8 +139,8 @@
     "nama": "Masjid Raudlatul Hikmah",
     "kategori": "ibadah",
     "ikon": "building-mosque",
-    "latitude": -7.87458346802116,
-    "longitude": 113.919858540481,
+    "latitude": -7.87470439283107,
+    "longitude": 113.919953512412,
     "deskripsi": "Masjid yang menjadi pusat ibadah dan kegiatan keagamaan warga di bagian utara Desa Gunung Anyar.",
     "info_tambahan": "Tempat ibadah",
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
@@ -160,6 +160,21 @@
     "info_tambahan": "Tempat ibadah",
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/masjid-miftahul-jannah.jpg",
+    "detail": {
+      "jenis_sarana": "Masjid"
+    }
+  },
+  {
+    "id": "fas-016",
+    "nama": "Masjid Baitul Makmur",
+    "kategori": "ibadah",
+    "ikon": "building-mosque",
+    "latitude": -7.88562655418664,
+    "longitude": 113.919789495907,
+    "deskripsi": "Masjid Baitul Makmur yang menjadi salah satu pusat kegiatan ibadah dan keagamaan warga Desa Gunung Anyar.",
+    "info_tambahan": "Tempat ibadah",
+    "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
+    "foto": "/images/lokasi/masjid-baitul-makmur.jpg",
     "detail": {
       "jenis_sarana": "Masjid"
     }
