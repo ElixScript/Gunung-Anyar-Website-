@@ -246,12 +246,13 @@
     "ikon": "chef-hat",
     "latitude": -7.8719884865034,
     "longitude": 113.918311390099,
-    "deskripsi": "Rumah makan milik warga yang menyajikan aneka masakan rumahan khas desa. Menjadi tempat makan andalan warga sekitar maupun pengunjung yang melintas.",
-    "info_tambahan": "Usaha kuliner warga Desa Gunung Anyar",
+    "deskripsi": "Rumah makan khas milik warga yang mengangkat lele sebagai menu utama. Menyajikan aneka olahan lele — seperti lele goreng dan pecel lele — dan menjadi tempat makan andalan warga sekitar maupun pengunjung yang melintas.",
+    "info_tambahan": "Rumah makan spesialis aneka olahan lele",
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/julekah-resto.jpg",
     "detail": {
-      "produk": "Aneka masakan rumahan & menu harian"
+      "produk": "Aneka olahan lele (lele goreng, pecel lele, dll.)",
+      "whatsapp": "6282233841949"
     }
   },
   {
@@ -266,7 +267,9 @@
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/ternak-bebek-petelur.jpg",
     "detail": {
-      "produk": "Telur bebek segar"
+      "pemilik": "Pak Joko Prayitno",
+      "produk": "Telur bebek segar",
+      "whatsapp": "6285243285394"
     }
   },
   {
@@ -281,7 +284,9 @@
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/industri-tahu.jpg",
     "detail": {
-      "produk": "Tahu segar"
+      "pemilik": "Ibu Putri",
+      "produk": "Tahu segar",
+      "whatsapp": "62895399841934"
     }
   },
   {
@@ -296,7 +301,9 @@
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/industri-tempe.jpg",
     "detail": {
-      "produk": "Tempe kedelai"
+      "pemilik": "Pak Tolak",
+      "produk": "Tempe kedelai",
+      "whatsapp": "6285280544274"
     }
   },
   {
@@ -311,7 +318,9 @@
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/kacang-otok-husna.jpg",
     "detail": {
-      "produk": "Kacang otok (camilan kacang khas)"
+      "pemilik": "Bu Khusnul",
+      "produk": "Kacang otok (camilan kacang khas)",
+      "whatsapp": "6285234984751"
     }
   },
   {
@@ -327,7 +336,8 @@
     "foto": "/images/lokasi/telur-asin-pak-elin.jpg",
     "detail": {
       "pemilik": "Pak Elin",
-      "produk": "Telur asin"
+      "produk": "Telur asin",
+      "whatsapp": "6282333898562"
     }
   },
   {
@@ -342,7 +352,9 @@
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/penggoreng-krupuk.jpg",
     "detail": {
-      "produk": "Kerupuk goreng siap jual"
+      "pemilik": "Pak Farel",
+      "produk": "Kerupuk goreng siap jual",
+      "whatsapp": "6282115077100"
     }
   },
   {
@@ -357,7 +369,9 @@
     "alamat": "Desa Gunung Anyar, Kecamatan Tapen",
     "foto": "/images/lokasi/industri-bata-merah.jpg",
     "detail": {
-      "produk": "Batu bata merah"
+      "pemilik": "Pak Ega",
+      "produk": "Batu bata merah",
+      "whatsapp": "6285258897110"
     }
   }
 ]

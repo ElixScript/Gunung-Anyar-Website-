@@ -8,8 +8,7 @@ import { getKategori } from "@/lib/site";
 /*
   Modal detail lokasi peta.
   Menggantikan popup kecil Leaflet: saat marker (atau item daftar) dipilih,
-  detail lokasi tampil sebagai dialog di tengah layar — pola sama seperti
-  peta pada project kkn-taretan-2026, namun mengikuti palet & komponen desa ini.
+  detail lokasi tampil sebagai dialog di tengah layar.
 
   Terkontrol lewat prop `lokasi`: null = tertutup, objek lokasi = terbuka.
   Menampilkan SELURUH informasi lokasi (foto, kategori, deskripsi,

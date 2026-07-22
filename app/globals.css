@@ -182,16 +182,6 @@ body {
   background-size: 100% 1.5px;
 }
 
-/* --- Hero sinematik: slow settle-zoom ala opening dokumenter --- */
-@keyframes hero-zoom {
-  from { transform: scale(1.1); }
-  to   { transform: scale(1); }
-}
-.animasi-hero-zoom {
-  animation: hero-zoom 9s var(--ease-out-expo) both;
-  will-change: transform;
-}
-
 /* Blob cahaya organik yang mengambang perlahan */
 @keyframes ambang-a {
   0%, 100% { transform: translate3d(0, 0, 0); }
@@ -262,8 +252,6 @@ body {
 .animasi-overlay { animation: overlay-masuk 0.35s ease both; }
 .animasi-modal   { animation: modal-masuk 0.5s var(--ease-out-expo) both; }
 
-/* --- Kartu: efek angkat + kilau lembut (via utility Tailwind di JSX) --- */
-
 /* Matikan seluruh motion bila pengguna memintanya (WCAG) */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -276,7 +264,6 @@ body {
     filter: none;
     transition: none;
   }
-  .animasi-hero-zoom,
   .animasi-ambang-a,
   .animasi-ambang-b,
   .kata-hero > span,

@@ -30,11 +30,12 @@ export default function Beranda() {
     <>
       {/* ============ HERO ============ */}
       {/*
-        Latar belakang memakai foto (public/images/hero/hero-desa.jpg) dengan
-        overlay gradasi gelap agar teks tetap terbaca (sesuai spesifikasi hero).
-        FOTO SAAT INI MASIH ILUSTRASI (sawah Bali, sumber Wikimedia Commons —
-        lihat public/images/SUMBER-FOTO.md), BUKAN foto asli Gunung Anyar.
-        Ganti file tersebut dengan hasil dokumentasi lapangan tim pemetaan.
+        Latar belakang hero berupa video (public/videos/hero-background.mp4)
+        dengan foto (public/images/hero/hero-desa.jpg) sebagai poster sekaligus
+        fallback saat pengguna memilih pengurangan animasi. Lapisan visual (video,
+        color grading, blob parallax) diatur di komponen HeroVisual; overlay
+        gradasi gelap menjaga teks tetap terbaca. Sebagian aset ini masih
+        ilustrasi — lihat public/images/SUMBER-FOTO.md.
       */}
       <section className="lapisan-noise relative flex min-h-[92svh] items-center overflow-hidden bg-hutan-900 lg:min-h-[100svh]">
         {/* Lapisan visual sinematik: slow zoom, color grading, blob parallax */}
