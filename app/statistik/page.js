@@ -9,14 +9,29 @@ import { PageHero, SectionHeading } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import { CountUp } from "@/components/motion";
 import StatCharts from "@/components/statistik/StatCharts";
+import TransparansiAnggaran from "@/components/statistik/TransparansiAnggaran";
 import { getStatistik } from "@/lib/data";
 import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Data & Statistik",
-  description: `Dashboard data statistik ${site.namaDesa}: jumlah penduduk, komposisi jenis kelamin, sebaran usia, agama, wilayah administratif, dan sarana pendidikan.`,
+  description: `Dashboard data statistik ${site.namaDesa}: jumlah penduduk, komposisi jenis kelamin, sebaran usia, agama, wilayah administratif, sarana pendidikan, dan transparansi anggaran desa (APBDes).`,
   alternates: { canonical: "/statistik" },
 };
+
+// Dokumen transparansi anggaran desa (APBDes) — infografis & laporan realisasi.
+const dokumenAnggaran = [
+  {
+    src: "/images/infografis/apbdes-2026.jpg",
+    judul: "Infografis APBDes 2026",
+    tahun: "2026",
+  },
+  {
+    src: "/images/infografis/realisasi-apbdes-2025.jpg",
+    judul: "Laporan Realisasi APBDes 2025",
+    tahun: "2025",
+  },
+];
 
 export default function StatistikPage() {
   const data = getStatistik();
@@ -76,6 +91,19 @@ export default function StatistikPage() {
             />
           </Reveal>
           <StatCharts data={data} />
+        </div>
+
+        {/* Transparansi Anggaran Desa (APBDes) */}
+        <div className="mt-16">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Transparansi"
+              judul="Transparansi Anggaran Desa (APBDes)"
+              deskripsi="Ringkasan Anggaran Pendapatan dan Belanja Desa beserta laporan realisasinya, sebagai wujud keterbukaan pengelolaan keuangan Desa Gunung Anyar. Klik dokumen untuk memperbesar atau mengunduh."
+              className="mb-8"
+            />
+          </Reveal>
+          <TransparansiAnggaran dokumen={dokumenAnggaran} />
         </div>
       </div>
     </>
