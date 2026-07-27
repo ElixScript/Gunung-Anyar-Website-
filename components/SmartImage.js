@@ -14,12 +14,14 @@ import { IconPhoto } from "@tabler/icons-react";
   - src, alt : seperti <img> biasa
   - ratio    : "16/9" (default), "4/3", "1/1", "3/4"
   - label    : teks yang ditampilkan pada placeholder (default = alt)
+  - fit      : "cover" (default, memangkas) atau "contain" (foto utuh)
 */
 export default function SmartImage({
   src,
   alt = "",
   ratio = "16/9",
   label,
+  fit = "cover",
   className = "",
   imgClassName = "",
 }) {
@@ -44,7 +46,7 @@ export default function SmartImage({
           alt={alt}
           loading="lazy"
           onError={() => setGagal(true)}
-          className={`h-full w-full object-cover ${imgClassName}`}
+          className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} ${imgClassName}`}
         />
       )}
     </div>

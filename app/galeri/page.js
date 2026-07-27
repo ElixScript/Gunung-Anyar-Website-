@@ -4,26 +4,25 @@ import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Galeri",
-  description: `Galeri foto ${site.namaDesa}: keindahan alam, kegiatan budaya, aktivitas masyarakat, dan dokumentasi program KKN.`,
+  description: `Galeri foto ${site.namaDesa}: aktivitas masyarakat, kegiatan sekolah, dan dokumentasi program KKN.`,
   alternates: { canonical: "/galeri" },
 };
 
-const kategoriGaleri = ["Alam", "Budaya", "Kegiatan Masyarakat", "Dokumentasi KKN"];
-
-// DATA CONTOH — ganti file di /public/images/galeri dengan foto asli.
+// Foto tampil tanpa caption. Teks `alt` hanya untuk pembaca layar & SEO,
+// tidak pernah dirender di atas foto.
+// Tiap foto punya versi kecil (-thumb, 800px) untuk grid dan versi penuh
+// (1600px) untuk lightbox, supaya halaman tetap ringan dibuka.
 const foto = [
-  { src: "/images/galeri/alam-1.jpg", caption: "Panorama sawah saat pagi", kategori: "Alam" },
-  { src: "/images/galeri/alam-2.jpg", caption: "Air terjun Sumber Rejeng", kategori: "Alam" },
-  { src: "/images/galeri/alam-3.jpg", caption: "Sunrise dari Bukit Pandang Anyar", kategori: "Alam" },
-  { src: "/images/galeri/budaya-1.jpg", caption: "Latihan tari tradisional", kategori: "Budaya" },
-  { src: "/images/galeri/budaya-2.jpg", caption: "Pentas seni HUT desa", kategori: "Budaya" },
-  { src: "/images/galeri/masyarakat-1.jpg", caption: "Gotong royong warga", kategori: "Kegiatan Masyarakat" },
-  { src: "/images/galeri/masyarakat-2.jpg", caption: "Kegiatan posyandu", kategori: "Kegiatan Masyarakat" },
-  { src: "/images/galeri/masyarakat-3.jpg", caption: "Panen raya kopi", kategori: "Kegiatan Masyarakat" },
-  { src: "/images/galeri/kkn-1.jpg", caption: "Pelatihan UMKM oleh Tim KKN", kategori: "Dokumentasi KKN" },
-  { src: "/images/galeri/kkn-2.jpg", caption: "Pemetaan lapangan bersama warga", kategori: "Dokumentasi KKN" },
-  { src: "/images/galeri/kkn-3.jpg", caption: "Sosialisasi program kerja", kategori: "Dokumentasi KKN" },
-  { src: "/images/galeri/kkn-4.jpg", caption: "Penyerahan website ke perangkat desa", kategori: "Dokumentasi KKN" },
+  { src: "/images/galeri/galeri-01.jpg", thumb: "/images/galeri/galeri-01-thumb.jpg", alt: "Foto bersama tim KKN di halaman balai desa" },
+  { src: "/images/galeri/galeri-02.jpg", thumb: "/images/galeri/galeri-02-thumb.jpg", alt: "Warga memadati lapangan desa saat acara pertandingan" },
+  { src: "/images/galeri/galeri-03.jpg", thumb: "/images/galeri/galeri-03-thumb.jpg", alt: "Perajin mencetak tahu di industri rumahan desa" },
+  { src: "/images/galeri/galeri-04.jpg", thumb: "/images/galeri/galeri-04-thumb.jpg", alt: "Siswa sekolah dasar mengikuti kegiatan di sekolah" },
+  { src: "/images/galeri/galeri-05.jpg", thumb: "/images/galeri/galeri-05-thumb.jpg", alt: "Foto bersama seluruh siswa di halaman sekolah dasar" },
+  { src: "/images/galeri/galeri-06.jpg", thumb: "/images/galeri/galeri-06-thumb.jpg", alt: "Tim KKN di depan gerbang SD Negeri Gunung Anyar" },
+  { src: "/images/galeri/galeri-07.jpg", thumb: "/images/galeri/galeri-07-thumb.jpg", alt: "Kegiatan anak-anak bersama tim KKN pada malam hari" },
+  { src: "/images/galeri/galeri-08.jpg", thumb: "/images/galeri/galeri-08-thumb.jpg", alt: "Foto bersama tim KKN dan aparat pemerintahan setempat" },
+  { src: "/images/galeri/galeri-09.jpg", thumb: "/images/galeri/galeri-09-thumb.jpg", alt: "Tim KKN mendampingi pendataan di kantor desa" },
+  { src: "/images/galeri/galeri-10.jpg", thumb: "/images/galeri/galeri-10-thumb.jpg", alt: "Tim KKN menghadiri Exponak Kontes Ternak Bondowoso" },
 ];
 
 export default function GaleriPage() {
@@ -36,7 +35,9 @@ export default function GaleriPage() {
       />
 
       <section className="container-desa py-12">
-        <GaleriClient items={foto} kategoriList={kategoriGaleri} />
+        {/* Tanpa kategoriList: seluruh foto berasal dari satu rangkaian
+            dokumentasi, jadi tab filter tidak ditampilkan. */}
+        <GaleriClient items={foto} />
       </section>
     </>
   );

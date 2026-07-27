@@ -35,7 +35,7 @@ export default function Beranda() {
         fallback saat pengguna memilih pengurangan animasi. Lapisan visual (video,
         color grading, blob parallax) diatur di komponen HeroVisual; overlay
         gradasi gelap menjaga teks tetap terbaca. Sebagian aset ini masih
-        ilustrasi — lihat public/images/SUMBER-FOTO.md.
+        ilustrasi — lihat SUMBER-FOTO.md di akar proyek.
       */}
       <section className="lapisan-noise relative flex min-h-[92svh] items-center overflow-hidden bg-hutan-900 lg:min-h-[100svh]">
         {/* Lapisan visual sinematik: slow zoom, color grading, blob parallax */}

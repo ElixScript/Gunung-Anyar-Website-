@@ -76,18 +76,20 @@ export default function Lightbox({ items, index, onClose, onNav, unduh = false }
         className="animasi-modal max-h-[85vh] w-full max-w-4xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* `contain` agar foto tampil utuh, tidak terpangkas rasio kotak */}
         <div className="overflow-hidden rounded-card bg-black/20">
           <SmartImage
             src={item.src}
-            alt={item.caption || ""}
+            alt={item.alt || item.caption || ""}
             ratio="16/9"
+            fit="contain"
             label={item.caption}
           />
         </div>
         <figcaption className="mt-3 flex items-center justify-between gap-4 text-white">
           <span className="text-sm">
-            {item.caption}
-            <span className="ml-2 text-white/60">
+            {item.caption && <span className="mr-2">{item.caption}</span>}
+            <span className="text-white/60">
               {index + 1} / {items.length}
             </span>
           </span>

@@ -4,7 +4,6 @@ import { IconChevronRight, IconCalendar, IconUser, IconArrowLeft } from "@tabler
 import SmartImage from "@/components/SmartImage";
 import { BeritaCard } from "@/components/cards";
 import { getBerita, getBeritaBySlug, formatTanggal } from "@/lib/data";
-import { site } from "@/lib/site";
 
 // Membuat halaman statis untuk setiap slug berita (wajib untuk output: export)
 export function generateStaticParams() {

@@ -4,9 +4,9 @@ Website profil desa untuk **Desa Gunung Anyar, Kecamatan Tapen, Kabupaten Bondow
 
 Berisi: profil desa, **peta potensi interaktif**, **dashboard statistik**, direktori UMKM, galeri, berita, dan halaman kontak.
 
-> ⚠️ **Sebagian besar data masih berupa CONTOH (placeholder)** agar tampilan bisa langsung dilihat. Ganti dengan data asli sebelum dirilis (lihat bagian [Cara Mengganti Data](#-cara-mengganti-data)).
+> ⚠️ **Sebagian data masih berupa CONTOH (placeholder)** — terutama sejarah & visi-misi di `app/profil/page.js`. Ganti dengan data asli sebelum dirilis (lihat bagian [Cara Mengganti Data](#-cara-mengganti-data)).
 >
-> ⚠️ **Foto juga masih ilustrasi** (diunduh dari Wikimedia Commons, bebas lisensi) — bukan foto asli Desa Gunung Anyar. Daftar sumber & keterangan lengkap ada di `public/images/SUMBER-FOTO.md`. **Wajib diganti** dengan hasil dokumentasi lapangan tim pemetaan sebelum website diserahkan resmi, terutama foto di halaman Peta/Potensi/UMKM (melekat pada nama lokasi tertentu) dan foto anggota tim di halaman Tentang KKN (saat ini masih ikon avatar generik, bukan foto sungguhan).
+> ⚠️ **Sebagian kecil foto masih ilustrasi** (Wikimedia Commons, bebas lisensi): foto hero dan dua UMKM yang belum sempat didokumentasikan (bata merah & tempe). Foto galeri, lokasi, dan berita sudah memakai dokumentasi asli. Daftar sumber lengkap ada di `SUMBER-FOTO.md` di akar proyek.
 
 ---
 
@@ -84,14 +84,14 @@ Semua data dikumpulkan agar mudah diedit **tanpa perlu paham React**:
 | Angka statistik & sarana prasarana | `data/statistik.json` |
 | Berita/artikel | `data/berita.json` |
 | Sejarah, visi-misi, struktur pemerintahan | `app/profil/page.js` (bagian atas, "DATA CONTOH") |
-| Anggota tim, timeline KKN | `app/tentang-kkn/page.js` |
-| Daftar foto galeri & video | `app/galeri/page.js` |
+| Daftar foto galeri | `app/galeri/page.js` |
 | Daftar infografis | `app/statistik/page.js` |
 | Warna & font (identitas visual) | `app/globals.css` (blok `@theme`) |
 
 ### Menambah lokasi di peta
 Buka `data/lokasi.json` dan tambahkan objek baru. Field wajib: `id`, `nama`, `kategori`, `latitude`, `longitude`, `deskripsi`, `foto`.
-`kategori` harus salah satu dari: `wisata`, `pertanian`, `umkm`, `fasilitas`, `budaya`.
+`kategori` harus salah satu dari: `umkm`, `pendidikan`, `ibadah`, `olahraga`, `layanan`
+(daftar resminya ada di `kategoriLokasi` pada `lib/site.js`).
 
 Cara mendapatkan koordinat: buka [openstreetmap.org](https://www.openstreetmap.org), klik kanan pada titik lokasi → "Show address" / salin angka latitude & longitude.
 
@@ -113,7 +113,6 @@ app/                    Halaman-halaman situs (tiap folder = 1 URL)
   umkm/                 Direktori UMKM
   galeri/               Galeri
   berita/               Berita (+ [slug] untuk halaman detail)
-  tentang-kkn/          Tentang Program KKN
   kontak/               Kontak & Pengaduan
   layout.js             Kerangka umum (navbar, footer, font, metadata)
   globals.css           Warna, font, dan gaya global
@@ -121,7 +120,9 @@ app/                    Halaman-halaman situs (tiap folder = 1 URL)
 components/             Komponen yang dipakai ulang (Navbar, Footer, kartu, peta, chart, dll.)
 data/                   Data konten: lokasi.json, statistik.json, berita.json
 lib/                    site.js (konfigurasi pusat) & data.js (helper)
-public/images/          Tempat menyimpan foto (hero, lokasi, galeri, tim, berita, infografis)
+public/images/          Tempat menyimpan foto (hero, lokasi, galeri, berita, infografis)
+public/videos/          Video latar hero
+SUMBER-FOTO.md          Catatan asal-usul & lisensi tiap foto (tidak ikut ter-deploy)
 ```
 
 ---
