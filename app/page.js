@@ -3,6 +3,7 @@ import HeroVisual from "@/components/HeroVisual";
 import { Tilt } from "@/components/motion";
 import Reveal from "@/components/Reveal";
 import { SectionHeading, TautanSelengkapnya, Tombol } from "@/components/ui";
+import StructuredData from "@/components/StructuredData";
 import { getBeritaTerbaru, getLokasiById } from "@/lib/data";
 import { site } from "@/lib/site";
 import {
@@ -18,6 +19,50 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
+// Identitas desa untuk mesin pencari — alamat, koordinat, kontak, jam layanan.
+const dataTerstruktur = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "GovernmentOrganization",
+      "@id": `${site.url}/#desa`,
+      name: site.namaDesa,
+      description: site.deskripsiSingkat,
+      url: site.url,
+      logo: `${site.url}/icon-512.png`,
+      image: `${site.url}/images/og-default.jpg`,
+      email: site.kontak.email,
+      telephone: site.kontak.telepon,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.kontak.alamat,
+        addressLocality: `Kecamatan ${site.kecamatan}`,
+        addressRegion: site.provinsi,
+        addressCountry: "ID",
+      },
+      areaServed: {
+        "@type": "Place",
+        name: site.namaDesa,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: site.koordinat.lat,
+          longitude: site.koordinat.lng,
+        },
+      },
+      openingHours: "Mo-Fr 08:00-15:00",
+      sameAs: [site.sosial.instagram, site.sosial.facebook].filter(Boolean),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#situs`,
+      url: site.url,
+      name: `${site.namaDesa} — Kec. ${site.kecamatan}, ${site.kabupaten}`,
+      inLanguage: "id-ID",
+      publisher: { "@id": `${site.url}/#desa` },
+    },
+  ],
+};
+
 export default function Beranda() {
   const beritaTerbaru = getBeritaTerbaru(3);
 
@@ -28,6 +73,8 @@ export default function Beranda() {
 
   return (
     <>
+      <StructuredData data={dataTerstruktur} />
+
       {/* ============ HERO ============ */}
       {/*
         Latar belakang hero berupa video (public/videos/hero-background.mp4)

@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// useLayoutEffect di klien, useEffect saat render di server (menghindari warning)
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /*
   ============================================================
@@ -71,23 +75,34 @@ export function ScrollProgress() {
    - format  : fungsi format (default: pemisah ribuan id-ID) */
 export function CountUp({ nilai, durasi = 1600, suffix = "", format, className = "" }) {
   const ref = useRef(null);
-  const [tampil, setTampil] = useState(0);
-  const [selesai, setSelesai] = useState(false);
   const reduced = useReducedMotion();
 
   const fmt = format || ((n) => Math.round(n).toLocaleString("id-ID"));
 
-  useEffect(() => {
+  /*
+    Angka ditulis langsung ke DOM lewat ref, bukan lewat state. Versi state
+    memicu render ulang React ~90 kali per angka (satu per frame); halaman
+    Statistik punya empat penghitung sekaligus. Pola ini sama dengan
+    ScrollProgress di atas.
+
+    Nilai akhir sudah tercetak di HTML hasil build, jadi angka tetap terbaca
+    bagi mesin pencari dan pengunjung tanpa JavaScript. Reset ke nol dilakukan
+    di layout effect — sebelum browser sempat melukis — supaya tidak ada kedip.
+  */
+  useIsomorphicLayoutEffect(() => {
     const el = ref.current;
-    if (!el || selesai) return;
+    if (!el) return;
+    // Formatter dibuat ulang di dalam effect agar tidak perlu ref yang dibaca
+    // saat render (dilarang React) sekaligus tetap sinkron dengan prop.
+    const f = format || ((n) => Math.round(n).toLocaleString("id-ID"));
+    const tulis = (n) => {
+      el.textContent = f(n) + suffix;
+    };
 
-    // Tanpa animasi: langsung tampilkan nilai akhir
-    if (reduced || typeof IntersectionObserver === "undefined") {
-      setTampil(nilai);
-      setSelesai(true);
-      return;
-    }
+    // Tanpa animasi: biarkan nilai akhir apa adanya
+    if (reduced || typeof IntersectionObserver === "undefined") return;
 
+    tulis(0);
     let raf = 0;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -98,9 +113,9 @@ export function CountUp({ nilai, durasi = 1600, suffix = "", format, className =
           const t = Math.min((kini - mulai) / durasi, 1);
           // easeOutExpo — cepat di awal, mendarat lembut
           const e = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-          setTampil(nilai * e);
+          tulis(nilai * e);
           if (t < 1) raf = requestAnimationFrame(loop);
-          else setSelesai(true);
+          else tulis(nilai); // pastikan mendarat tepat di angka aslinya
         };
         raf = requestAnimationFrame(loop);
       },
@@ -111,11 +126,11 @@ export function CountUp({ nilai, durasi = 1600, suffix = "", format, className =
       observer.disconnect();
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [nilai, durasi, reduced, selesai]);
+  }, [nilai, durasi, reduced, suffix, format]);
 
   return (
     <span ref={ref} className={className}>
-      {fmt(tampil)}
+      {fmt(nilai)}
       {suffix}
     </span>
   );

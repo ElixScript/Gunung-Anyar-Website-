@@ -20,14 +20,18 @@ export const metadata = {
 };
 
 // Dokumen transparansi anggaran desa (APBDes) — infografis & laporan realisasi.
+// `thumb` dipakai untuk pratinjau kartu; `src` (dokumen penuh, bisa dibaca
+// angkanya) baru dimuat saat dokumen diperbesar atau diunduh.
 const dokumenAnggaran = [
   {
     src: "/images/infografis/apbdes-2026.jpg",
+    thumb: "/images/infografis/apbdes-2026-thumb.jpg",
     judul: "Infografis APBDes 2026",
     tahun: "2026",
   },
   {
     src: "/images/infografis/realisasi-apbdes-2025.jpg",
+    thumb: "/images/infografis/realisasi-apbdes-2025-thumb.jpg",
     judul: "Laporan Realisasi APBDes 2025",
     tahun: "2025",
   },

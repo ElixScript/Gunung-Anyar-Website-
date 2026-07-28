@@ -53,25 +53,43 @@ function gradienBatang(ctx, dari, ke) {
   return g;
 }
 
-// Opsi umum: responsif, tinggi diatur wadah, animasi tumbuh halus
-const opsiDasar = {
-  responsive: true,
-  maintainAspectRatio: false,
-  animation: { duration: 1100, easing: "easeOutQuart" },
-  plugins: {
-    legend: {
-      labels: { font: { family: "Inter" }, color: WARNA.tinta600, usePointStyle: true, boxWidth: 8 },
+/*
+  next/font menyajikan Inter dengan nama family ter-hash (mis. "__Inter_a1b2c3"),
+  jadi menulis "Inter" begitu saja akan jatuh ke font sistem dan grafik tampak
+  beda dari teks di sekitarnya. Ambil hasil komputasinya dari <body>, yang
+  memang sudah memakai var(--font-sans). Dihitung sekali lalu disimpan.
+*/
+let _fontSans;
+function fontSans() {
+  if (_fontSans) return _fontSans;
+  if (typeof document === "undefined") return "system-ui, sans-serif";
+  _fontSans = getComputedStyle(document.body).fontFamily || "system-ui, sans-serif";
+  return _fontSans;
+}
+
+// Opsi umum: responsif, tinggi diatur wadah, animasi tumbuh halus.
+// Berupa fungsi agar nama font baru dibaca saat render di klien.
+function opsiDasar() {
+  const family = fontSans();
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 1100, easing: "easeOutQuart" },
+    plugins: {
+      legend: {
+        labels: { font: { family }, color: WARNA.tinta600, usePointStyle: true, boxWidth: 8 },
+      },
+      tooltip: {
+        backgroundColor: "#1e2a1a",
+        titleFont: { family },
+        bodyFont: { family },
+        padding: 10,
+        cornerRadius: 8,
+        displayColors: false,
+      },
     },
-    tooltip: {
-      backgroundColor: "#1e2a1a",
-      titleFont: { family: "Inter" },
-      bodyFont: { family: "Inter" },
-      padding: 10,
-      cornerRadius: 8,
-      displayColors: false,
-    },
-  },
-};
+  };
+}
 
 // Plugin ringan: tulis nilai di atas tiap batang (direct label, lebih mudah dibaca)
 const labelNilaiAtas = {
@@ -81,7 +99,7 @@ const labelNilaiAtas = {
     if (!meta) return;
     const { ctx } = chart;
     ctx.save();
-    ctx.font = "600 12px Inter, sans-serif";
+    ctx.font = `600 12px ${fontSans()}`;
     ctx.fillStyle = WARNA.hutan700;
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
@@ -182,6 +200,8 @@ function Tile({ ikon: Ikon, nilai, label, sub }) {
 export default function StatCharts({ data }) {
   const sumber = data.sumber_data;
   const totalPenduduk = data.ringkasan.jumlah_penduduk;
+  const dasar = opsiDasar();
+  const family = fontSans();
 
   /* 1) Rentang usia — bar vertikal, satu seri, gradien + label nilai */
   const usiaData = {
@@ -200,22 +220,22 @@ export default function StatCharts({ data }) {
   };
   const usiaTertinggi = [...data.rentang_usia].sort((a, b) => b.jumlah - a.jumlah)[0];
   const opsiUsia = {
-    ...opsiDasar,
+    ...dasar,
     layout: { padding: { top: 22 } },
     plugins: {
-      ...opsiDasar.plugins,
+      ...dasar.plugins,
       legend: { display: false },
       tooltip: {
-        ...opsiDasar.plugins.tooltip,
+        ...dasar.plugins.tooltip,
         callbacks: { label: (c) => `${formatAngka(c.parsed.y)} jiwa` },
       },
     },
     scales: {
-      x: { grid: { display: false }, ticks: { font: { family: "Inter" }, color: WARNA.tinta600 } },
+      x: { grid: { display: false }, ticks: { font: { family }, color: WARNA.tinta600 } },
       y: {
         beginAtZero: true,
         grid: { color: WARNA.krem200 },
-        ticks: { font: { family: "Inter" }, color: WARNA.tinta600, callback: (v) => formatAngka(v) },
+        ticks: { font: { family }, color: WARNA.tinta600, callback: (v) => formatAngka(v) },
       },
     },
   };
@@ -235,13 +255,13 @@ export default function StatCharts({ data }) {
     ],
   };
   const opsiJk = {
-    ...opsiDasar,
+    ...dasar,
     cutout: "68%",
     plugins: {
-      ...opsiDasar.plugins,
-      legend: { ...opsiDasar.plugins.legend, position: "bottom" },
+      ...dasar.plugins,
+      legend: { ...dasar.plugins.legend, position: "bottom" },
       tooltip: {
-        ...opsiDasar.plugins.tooltip,
+        ...dasar.plugins.tooltip,
         callbacks: {
           label: (c) => {
             const p = ((c.parsed / totalPenduduk) * 100).toLocaleString("id-ID", { maximumFractionDigits: 1 });

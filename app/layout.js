@@ -1,7 +1,28 @@
 import "./globals.css";
+import { Fraunces, Inter } from "next/font/google";
 import { site } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+/*
+  Font diunduh & disimpan sendiri saat BUILD oleh next/font — bukan diminta ke
+  Google saat halaman dibuka. Efeknya: hilang satu permintaan render-blocking
+  ke domain pihak ketiga, dan next/font otomatis menyisipkan fallback dengan
+  metrik yang disamakan sehingga teks tidak bergeser saat font asli tiba.
+  Keduanya font variabel, jadi seluruh bobot 400–700 cukup satu file.
+*/
+const fontDisplay = Fraunces({
+  subsets: ["latin"],
+  axes: ["opsz"], // pertahankan optical sizing seperti setelan sebelumnya
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 // Metadata default seluruh situs. Tiap halaman bisa menimpanya lewat `export const metadata`.
 export const metadata = {
@@ -31,25 +52,30 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
+};
+
+// Warna bilah alamat browser di HP — samakan dengan latar krem situs
+export const viewport = {
+  themeColor: "#faf7f0",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className="h-full antialiased">
+    <html
+      lang="id"
+      className={`h-full antialiased ${fontDisplay.variable} ${fontSans.variable}`}
+    >
       <head>
-        {/* Font dimuat dari Google Fonts saat halaman dibuka di browser
-            (bukan saat build), agar situs statis mudah di-build di mana saja.
-            Fraunces = font display heading, Inter = font body. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* Konten di bawah hero memakai animasi scroll-reveal yang dimulai dari
+            opacity 0. Tanpa JavaScript animasinya tak pernah jalan, jadi
+            pastikan semuanya tetap terbaca. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+        </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-krem text-tinta">
         {/* Lewati navigasi — aksesibilitas keyboard */}

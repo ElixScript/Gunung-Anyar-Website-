@@ -2,7 +2,7 @@ import Link from "next/link";
 import { IconArrowRight, IconMapPin, IconCalendar } from "@tabler/icons-react";
 import SmartImage from "@/components/SmartImage";
 import { BadgeKategori } from "@/components/ui";
-import { formatTanggal } from "@/lib/data";
+import { formatTanggal, fotoKecil } from "@/lib/data";
 
 /*
   Kartu Potensi — dipakai di Beranda & halaman Potensi.
@@ -16,6 +16,7 @@ export function PotensiCard({ lokasi }) {
         {/* Foto hidup: zoom lembut saat kartu di-hover */}
         <SmartImage
           src={lokasi.foto}
+          thumb={fotoKecil(lokasi.foto)}
           alt={`Foto ${lokasi.nama}`}
           ratio="16/9"
           imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.07]"
@@ -61,6 +62,7 @@ export function BeritaCard({ berita }) {
       <Link href={`/berita/${berita.slug}`} className="block overflow-hidden">
         <SmartImage
           src={berita.thumbnail}
+          thumb={fotoKecil(berita.thumbnail)}
           alt={`Ilustrasi berita: ${berita.judul}`}
           ratio="16/9"
           imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.07]"

@@ -1,0 +1,23 @@
+{
+  "name": "Desa Gunung Anyar — Kec. Tapen, Bondowoso",
+  "short_name": "Desa Gunung Anyar",
+  "description": "Website resmi profil Desa Gunung Anyar: profil desa, peta potensi interaktif, data statistik, direktori UMKM, dan berita desa.",
+  "lang": "id",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#faf7f0",
+  "theme_color": "#faf7f0",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

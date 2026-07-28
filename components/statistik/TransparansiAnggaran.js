@@ -60,9 +60,11 @@ export default function TransparansiAnggaran({ dokumen }) {
               aria-label={`Perbesar ${d.judul}`}
               className="relative block w-full overflow-hidden bg-krem-200/60"
             >
-              {/* Pratinjau utuh dokumen; tinggi dibatasi agar kartu ringkas */}
+              {/* Pratinjau utuh dokumen; tinggi dibatasi agar kartu ringkas.
+                  Versi kecil sudah cukup di sini — dokumen penuh baru diunduh
+                  saat kartu diklik. */}
               <img
-                src={d.src}
+                src={d.thumb || d.src}
                 alt={d.judul}
                 loading="lazy"
                 className="mx-auto max-h-[440px] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"

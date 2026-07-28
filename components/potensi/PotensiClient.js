@@ -16,7 +16,7 @@ import {
 import SmartImage from "@/components/SmartImage";
 import { BadgeKategori } from "@/components/ui";
 import { kategoriLokasi, getKategori } from "@/lib/site";
-import { getLokasi } from "@/lib/data";
+import { getLokasi, fotoKecil } from "@/lib/data";
 
 /*
   Halaman Potensi Desa (sisi-klien untuk filter tab).
@@ -94,6 +94,7 @@ function KartuPotensiDetail({ lok }) {
       <div className="relative overflow-hidden">
         <SmartImage
           src={lok.foto}
+          thumb={fotoKecil(lok.foto)}
           alt={`Foto ${lok.nama}`}
           ratio="16/9"
           imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.07]"

@@ -64,7 +64,8 @@ export default function GaleriClient({ items, kategoriList = [] }) {
             {/* Foto hidup: zoom lembut mengikuti hover. Versi kecil dipakai di
                 grid, versi penuh baru dimuat saat lightbox dibuka. */}
             <SmartImage
-              src={it.thumb || it.src}
+              src={it.src}
+              thumb={it.thumb}
               alt={it.alt || ""}
               ratio="1/1"
               imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.08]"

@@ -14,6 +14,9 @@ Berisi: profil desa, **peta potensi interaktif**, **dashboard statistik**, direk
 
 - **Next.js 16** (App Router) + **React 19** — dibangun sebagai **situs statis** (`output: export`)
 - **Tailwind CSS v4** — styling (konfigurasi warna/font ada di `app/globals.css`)
+- **next/font** — Fraunces & Inter diunduh saat `npm run build` lalu disajikan dari domain sendiri
+  (browser pengunjung tidak menghubungi Google sama sekali). Karena itu **proses build butuh koneksi internet**;
+  hasil build-nya sendiri tetap murni statis.
 - **Leaflet + react-leaflet** — peta interaktif (tile gratis OpenStreetMap, tanpa API key)
 - **Chart.js + react-chartjs-2** — grafik statistik
 - **@tabler/icons-react** — ikon
@@ -99,6 +102,17 @@ Cara mendapatkan koordinat: buka [openstreetmap.org](https://www.openstreetmap.o
 Letakkan file gambar di folder `public/images/...` sesuai kategori, lalu tulis path-nya di data (contoh: `/images/lokasi/nama-foto.jpg`).
 Selama foto belum ada, sistem menampilkan placeholder hijau otomatis. Disarankan memakai format **WebP/JPG** yang sudah dikompres agar cepat dibuka.
 
+**Versi kecil (thumbnail).** Kartu dan grid tidak memuat foto ukuran penuh,
+melainkan file bernama sama berakhiran `-thumb.jpg` (lebar 640px) — misalnya
+`nama-foto.jpg` berpasangan dengan `nama-foto-thumb.jpg`. Ini yang membuat
+halaman Potensi & UMKM ringan meski memuat puluhan foto. Kalau file `-thumb`
+belum dibuat, situs otomatis memakai foto penuh sehingga tampilan tetap aman —
+hanya lebih berat. Cara membuatnya (butuh `sharp`, sudah ada di proyek):
+
+```bash
+node -e "require('sharp')('public/images/lokasi/nama-foto.jpg').resize({width:640}).jpeg({quality:72,mozjpeg:true}).toFile('public/images/lokasi/nama-foto-thumb.jpg')"
+```
+
 ---
 
 ## 📁 Struktur Folder
@@ -121,7 +135,10 @@ components/             Komponen yang dipakai ulang (Navbar, Footer, kartu, peta
 data/                   Data konten: lokasi.json, statistik.json, berita.json
 lib/                    site.js (konfigurasi pusat) & data.js (helper)
 public/images/          Tempat menyimpan foto (hero, lokasi, galeri, berita, infografis)
+                        Tiap foto berpasangan dengan versi "-thumb.jpg" untuk kartu/grid
 public/videos/          Video latar hero
+public/manifest.webmanifest, icon-*.png, apple-touch-icon.png
+                        Agar situs bisa dipasang sebagai ikon di layar utama HP
 SUMBER-FOTO.md          Catatan asal-usul & lisensi tiap foto (tidak ikut ter-deploy)
 ```
 

@@ -46,9 +46,10 @@
   --color-kat-layanan: #3b6d11;
 
   /* --- Tipografi: display berkarakter + sans mudah dibaca ---
-     Font dimuat lewat <link> Google Fonts di app/layout.js */
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+     --font-fraunces & --font-inter dipasang oleh next/font di app/layout.js
+     (font disimpan sendiri, tanpa permintaan ke Google saat halaman dibuka) */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, Segoe UI, sans-serif;
 
   /* --- Radius & shadow lembut, berlapis (depth premium) --- */
   --radius-card: 1rem;

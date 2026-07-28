@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { IconSearch, IconBrandWhatsapp, IconMapPin, IconUser, IconTag } from "@tabler/icons-react";
 import SmartImage from "@/components/SmartImage";
-import { getLokasiByKategori } from "@/lib/data";
+import { getLokasiByKategori, fotoKecil } from "@/lib/data";
 
 /*
   Direktori UMKM.
@@ -57,6 +57,7 @@ export default function UmkmClient() {
               <div className="overflow-hidden">
                 <SmartImage
                   src={u.foto}
+                  thumb={fotoKecil(u.foto)}
                   alt={`Produk ${u.nama}`}
                   ratio="4/3"
                   imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.07]"

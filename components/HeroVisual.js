@@ -18,6 +18,7 @@ export default function HeroVisual() {
   const lapisRef = useRef(null); // wadah blob yang digeser kursor
   // Default false agar SSR & first paint memutar video; diperbarui di klien.
   const [reduced, setReduced] = useState(false);
+  const [muatVideo, setMuatVideo] = useState(false);
 
   // Deteksi preferensi pengurangan animasi → pakai foto statis, bukan video.
   useEffect(() => {
@@ -27,6 +28,23 @@ export default function HeroVisual() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
+
+  /*
+    Video baru dipasang SETELAH halaman selesai memuat. Filenya ~3 MB; kalau
+    dibiarkan ikut antrean muat awal, ia berebut bandwidth dengan teks dan foto
+    hero yang justru dilihat lebih dulu. Poster tetap tampil sejak detik pertama
+    sehingga secara visual tidak ada bedanya — video menimpanya begitu siap.
+  */
+  useEffect(() => {
+    if (reduced) return;
+    const mulai = () => setMuatVideo(true);
+    if (document.readyState === "complete") {
+      mulai();
+      return;
+    }
+    window.addEventListener("load", mulai, { once: true });
+    return () => window.removeEventListener("load", mulai);
+  }, [reduced]);
 
   useEffect(() => {
     const wadah = lapisRef.current;
@@ -61,15 +79,17 @@ export default function HeroVisual() {
 
   return (
     <>
-      {/* Latar: video (autoplay, muted, loop) — atau foto statis saat reduced-motion */}
+      {/* Latar: foto selalu tampil lebih dulu (elemen LCP), video menimpanya
+          setelah halaman siap. Saat reduced-motion, foto saja yang dipakai. */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        {reduced ? (
-          <img
-            src={POSTER}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        ) : (
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={POSTER}
+          alt=""
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {!reduced && muatVideo && (
           <video
             className="absolute inset-0 h-full w-full object-cover"
             src={VIDEO}
